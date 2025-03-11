@@ -36,8 +36,8 @@
       ga = "git add";
       gs = "git status";
       gd = "git diff --color=always $@ | diff-so-fancy";
-      gc = "git commit -S";
-      gcm = "git commit -S -m";
+      gc = "git commit";
+      gcm = "git commit -m";
       gph = "git push";
       gpl = "git pull --rebase";
       glo = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'";
@@ -131,7 +131,37 @@
           nvm "$@"
         }
 
-        # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        # Lazy load Direnv
+        direnv() {
+          unset -f direnv
+          eval "$(direnv hook zsh)"
+          direnv "$@"
+        }
+
+        # Lazy load Zoxide
+        z() {
+          unset -f z
+          eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
+          z "$@"
+        }
+
+        # Extract archives
+        extract() {
+          if [-f "$1"]; then
+            case "$1" in
+            *.tar.gz) tar xzf "$1";;
+            *.tar.xz) tar xJf "$1";;
+            *.tar.bz2) tar xjf "$1";;
+            *.zip) unzip "$1";;
+            *) echo "Unsupported file formmat!";;
+          esac
+          else
+            echo "File not found: $1"
+          fi
+        }
+
+        # FZF integration
+        [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
         # Enable Powerline glyphs
         export POWERLINE=true
@@ -168,12 +198,6 @@
         # Directory stack navigation
         setopt AUTO_PUSHD
         setopt PUSHD_IGNORE_DUPS
-
-        # Direnv integration
-        eval "$(direnv hook zsh)"
-
-        # z - jump around
-        ${lib.optionalString (pkgs.zoxide != null) "eval \"$(${pkgs.zoxide}/bin/zoxide init zsh)\""} 
     '';
   };
 
@@ -188,7 +212,6 @@
         "$directory"
         "$git_branch"
         "$git_status"
-        "$git_metrics"
         "$nix_shell"
         "$cmd_duration"
         "$line_break"
@@ -199,26 +222,30 @@
       scan_timeout = 10;
       command_timeout = 1000;
 
+      # OS Section
       os = {
         disabled = false;
         style = "bold blue";
         symbols = {
-          NixOS = "❄️ ";
+          NixOS = "❄️  NixOS";
         };
       };
 
+      # Username Section
       username = {
         style_user = "bold green";
         style_root = "bold red";
-        format = "[$user]($style) ";
+        format = "[🕵️ $user]($style) ";
         show_always = true;
       };
 
+      # Hostname Section
       hostname = {
         style = "bold yellow";
-        format = "[$hostname]($style) ";
+        format = "[🌐 $hostname]($style) ";
       };
 
+      # Directory Section
       directory = {
         truncation_length = 3;
         truncation_symbol = "…/";
@@ -226,61 +253,65 @@
         read_only_style = "red";
         read_only = " ";
         substitutions = {
-          "Documents" = " ";
-          "Downloads" = " ";
-          "Music" = " ";
-          "Pictures" = " ";
+          "Documents" = "📁 Documents";
+          "Downloads" = "📥 Downloads";
+          "Music" = "🎵 Music";
+          "Pictures" = "🖼️ Pictures";
         };
+        format = "[📂 $path]($style)";
       };
 
+      # Git Branch Section
       git_branch = {
-        symbol = " ";
+        symbol = " ";
         style = "bold purple";
         format = "[$symbol$branch]($style) ";
       };
 
+      # Git Status Section
       git_status = {
         style = "bold yellow";
-        conflicted = "═";
-        ahead = "⇡";
-        behind = "⇣";
-        diverged = "⇕";
-        untracked = "?";
-        stashed = "§";
-        modified = "!";
-        staged = "+";
-        renamed = "»";
-        deleted = "✘";
+        conflicted = "⚔️ ";
+        ahead = "🚀 ";
+        behind = "🔙 ";
+        diverged = "🔀 ";
+        untracked = "❓ ";
+        stashed = "📦 ";
+        modified = "📝 ";
+        staged = "✅ ";
+        renamed = "📛 ";
+        deleted = "🗑️ ";
+        format = "([$all_status$ahead_behind]($style) )";
       };
 
-      git_metrics = {
-        disabled = true;
-        format = "([+$added]($added_style) )([-$deleted]($deleted_style) )";
-      };
-
+      # Nix Shell Section
       nix_shell = {
         symbol = "❄️ ";
         format = "[$symbol$name]($style) ";
         style = "bold blue";
       };
 
+      # Command Duration Section
       cmd_duration = {
         min_time = 1000;
-        format = "took [⏱ $duration]($style) ";
+        format = "⏱️  [$duration]($style) ";
         style = "bold magenta";
       };
 
+      # Prompt Character Section
       character = {
-        success_symbol = "[❯](bold green)";
-        error_symbol = "[✖](bold red)";
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[✗](bold red)";
         vicmd_symbol = "[V](bold blue)";
       };
 
+      # Right Prompt (Time)
       right_format = "$time";
       time = {
         disabled = false;
-        time_format = "%R";
+        time_format = "%T"; # 24-hour format
         style = "bold dimmed white";
+        format = "[⏰ $time]($style)";
       };
     };
   };

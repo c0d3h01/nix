@@ -41,7 +41,6 @@
     slack
     anydesk
     github-desktop
-    jetbrains.pycharm-community-bin
     jetbrains.webstorm
     postman
     vesktop
@@ -57,13 +56,12 @@
     youtube-music
     spotify
     transmission_4-gtk
-    texliveBasic
     postman
 
     # -*- Development tools -*-
-    zulu23
+    nodejs
+    zulu23 # java23
     parallel # sql
-    ruby
     metasploit # msfconsole 
     nmap
     yarn
@@ -75,8 +73,6 @@
     glfw
     glew
     glm
-    go # Go lang
-    php84
 
     # -*- Misc utilities -*-
     android-tools
