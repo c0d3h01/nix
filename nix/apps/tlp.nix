@@ -5,7 +5,7 @@
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
-    enable = true; # Enable TLP for power management
+    enable = true;
 
     settings = {
       # CPU scaling governor (performance on AC, powersave on battery)
@@ -21,8 +21,8 @@
       CPU_DRIVER_OPMODE_ON_BAT = "active";
 
       # Wi-Fi power settings (kept on for both AC and battery)
-      # WIFI_PWR_ON_AC = "off";
-      # WIFI_PWR_ON_BAT = "off";
+      WIFI_PWR_ON_AC = "auto";
+      WIFI_PWR_ON_BAT = "auto";
 
       # Runtime power management (automatic power savings)
       RUNTIME_PM_ON_AC = "auto";

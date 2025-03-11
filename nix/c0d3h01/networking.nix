@@ -23,6 +23,12 @@
     "1.1.1.1"
     "1.0.0.1"
   ];
+  networking.dhcpcd.extraConfig = "nohook resolv.conf";
+  networking.networkmanager.connectionConfig = {
+    "connection.mdns" = 2;
+    "ipv4.dns-priority" = -1;
+    "ipv6.dns-priority" = -1;
+  };
 
   # -*- Firewall -*-
   networking.firewall.enable = true;

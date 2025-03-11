@@ -17,23 +17,18 @@
   # Exclude unwanted GNOME packages
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
-    gnome-user-docs
     gnome-disk-utility
     gnome-backgrounds
     gnome-font-viewer
     gnome-music
-    gedit
     epiphany
     geary
     yelp
     baobab
-    gnome-console
     gnome-weather
-    gnome-text-editor
     gnome-connections
     gnome-contacts
     gnome-system-monitor
-    gnome-initial-setup
   ];
 
   services.xserver.excludePackages = with pkgs; [
@@ -48,13 +43,12 @@
     evolutionWithPlugins
     rhythmbox
     libreoffice
-    micro
-    kdePackages.kpat
+    kdePackages.kpat # Game
     yaru-theme # Theme
 
     # Gnome Extensions
     gnomeExtensions.gsconnect
-    gnomeExtensions.dash2dock-lite
+    gnomeExtensions.dash-to-dock
   ];
 
   home-manager.users.c0d3h01 = { pkgs, ... }: {
@@ -64,7 +58,7 @@
         enabled-extensions = [
           # gnome Extensions 
           "gsconnect@andyholmes.github.io"
-          "dash2dock-lite@icedman.github.com"
+          "dash-to-dock@micxgx.gmail.com"
         ];
 
         #   favorite-apps = [

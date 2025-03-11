@@ -39,11 +39,19 @@
     curl
     wget
     tree
-    appimage-run
     asar
     fuse
     dos2unix
     zoxide
+    glibc # GNU lib
+    android-tools # Android
+    appimage-run
+    universal-android-debloater # uad-ng
+    wine # Windows
+    ventoy
+    shc # Shell compiler
+    nh # Nix Garbage Cleaner
+    waydroid # Android System
 
     # -*-[ Editors & Viewers ]-*-
     eza # ls

@@ -2,19 +2,18 @@
 
 {
   # -*-[ Docker Setup ]-*-
-
   # Enable Docker Daemon and Utilities
   virtualisation.docker = {
-    enable = true; # Enable the Docker daemon
-    enableOnBoot = false; # Start Docker on system boot
+    enable = true;
+    enableOnBoot = false;
     autoPrune.enable = true; # Automatically remove unused Docker resources
   };
 
   # Install CLI tools
   environment.systemPackages = with pkgs; [
-    docker # The Docker CLI
-    docker-compose # For managing multi-container applications
-    # lazydocker     # A simple terminal UI for docker and docker-compose. Optional for visualization
+    docker
+    docker-compose
+    lazydocker
   ];
 
   # Configure default memory and CPU limits

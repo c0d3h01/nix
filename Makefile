@@ -20,5 +20,5 @@ update:
 
 # Clean old generations (use with caution)
 clean:
-	sudo nix-store --gc
-	sudo nix-collect-garbage -d
+	nix-store --gc
+	nix-collect-garbage -d

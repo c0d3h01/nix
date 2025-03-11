@@ -14,7 +14,7 @@
   # -*- Allow Nix experimental-features enable -*-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # -*- Automatic cleanup -*-
+  # -*-[ Automatic cleanup ]-*-
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
   nix.settings.auto-optimise-store = true;
@@ -37,12 +37,7 @@
     notion-app-enhanced # Notion Desktop
 
     # -*- Desktop GUI Apps -*-
-    zoom-us
-    slack
-    anydesk
-    github-desktop
     jetbrains.webstorm
-    postman
     vesktop
     telegram-desktop
     github-desktop
@@ -56,15 +51,21 @@
     youtube-music
     spotify
     transmission_4-gtk
-    postman
 
-    # -*- Development tools -*-
-    nodejs
-    zulu23 # java23
-    parallel # sql
+    # -*-[ Development tools ]-*-
+    # Web development tools.
+    # nodejs
+    yarn
+    postman #GUI
+
+    # Java.
+    zulu23
+
+    # Networking tools.
     metasploit # msfconsole 
     nmap
-    yarn
+
+    # C/CPP, tools.
     clang
     gnumake
     cmake
@@ -73,15 +74,6 @@
     glfw
     glew
     glm
-
-    # -*- Misc utilities -*-
-    android-tools
-    appimage-run
-    universal-android-debloater # uad-ng
-    wine
-    ventoy
-    shc
-    nh # Nix Cleaner
   ];
 }
 
