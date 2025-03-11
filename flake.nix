@@ -18,12 +18,9 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Pre-commit hooks
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nur, pre-commit-hooks, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nur, ... }:
     let
       # System architecture
       system = "x86_64-linux";
