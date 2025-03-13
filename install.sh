@@ -13,7 +13,7 @@ fi
 cd $SCRIPT_DIR || exit 1
 
 # Ensure hardware configuration exists
-if [ ! -f "$SCRIPT_DIR/system/hardware-configuration.nix" ]; then
+if [ ! -f "$SCRIPT_DIR/nix/hardware-configuration.nix" ]; then
   echo "Generating hardware configuration..."
   sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/nix/hardware-configuration.nix
 fi
