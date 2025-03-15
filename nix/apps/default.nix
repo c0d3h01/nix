@@ -24,8 +24,8 @@
 
   # flatpak Apps
   # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-  services.flatpak.enable = true;
-  xdg.portal.enable = true;
+  # services.flatpak.enable = true;
+  # xdg.portal.enable = true;
 
   # Limit Nix Build Jobs
   nix.settings.max-jobs = 2;
@@ -43,6 +43,7 @@
     telegram-desktop
     github-desktop
     vscodium-fhs
+    vscode-fhs
     slack
     zoom-us
     anydesk
@@ -52,13 +53,33 @@
     youtube-music
     spotify
     transmission_4-gtk
+    google-chrome
 
     # -*-[ Development tools ]-*-
+
+    # Algorithmic
+    opencv
+
     # Web development tools.
-    nodejs_23
+    nodejs
     nodenv
     yarn
     postman #GUI
+
+    # C/C++ tools
+    clang
+    gcc
+    pkg-config
+    gnumake
+    cmake
+    ninja
+    glib
+
+    # GTK & Graphics
+    gtk3
+    glfw
+    glew
+    glm
 
     # Java.
     zulu23
@@ -66,16 +87,6 @@
     # Networking tools.
     metasploit # msfconsole 
     nmap
-
-    # C/CPP, tools.
-    clang
-    gnumake
-    cmake
-    ninja
-    glib
-    glfw
-    glew
-    glm
   ];
 }
 
