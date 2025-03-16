@@ -21,21 +21,22 @@
 │       ├── neovim
 │       └── zshell
 ├── install.sh
-└── nix
-    ├── apps
-    │   ├── default.nix
-    │   ├── devtools
-    │   ├── notion-app-enhanced
-    │   ├── printing.nix
-    │   ├── steam.nix
-    │   └── tlp.nix
-    ├── c0d3h01
-    │   ├── audio.nix
-    │   ├── default.nix
-    │   ├── desktop.nix
-    │   ├── fonts.nix
-    │   ├── networking.nix
-    │   └── user.nix
-    ├── configuration.nix
-    └── hardware-configuration.nix
+├── nix
+│   ├── apps
+│   │   ├── default.nix
+│   │   ├── devtools
+│   │   ├── notion-app-enhanced
+│   │   ├── printing.nix
+│   │   ├── steam.nix
+│   │   └── tlp.nix
+│   ├── c0d3h01
+│   │   ├── audio.nix
+│   │   ├── default.nix
+│   │   ├── desktop.nix
+│   │   ├── fonts.nix
+│   │   ├── networking.nix
+│   │   └── user.nix
+│   ├── configuration.nix
+│   └── hardware-configuration.nix
+└── shell.nix
 ```
