@@ -20,7 +20,6 @@
     gnome-disk-utility
     gnome-backgrounds
     gnome-font-viewer
-    gnome-music
     epiphany
     geary
     yelp
@@ -41,9 +40,7 @@
     gnome-tweaks
     gnome-boxes
     evolutionWithPlugins
-    rhythmbox
     libreoffice
-    kdePackages.kpat # Game
 
     # Theme pkgs
     palenight-theme
