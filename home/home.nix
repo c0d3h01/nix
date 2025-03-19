@@ -14,16 +14,16 @@
   # Enable firefox coustom modules
   modules.firefox.enable = true;
 
-  # home.file.".modules/shell/.zshrc".source = ./modules/zsh/.zshrc;
+  # home.file.".modules/zshell/.zshrc".source = ./modules/zsh/.zshrc;
 
   # Core configuration for $home
   home.sessionVariables = {
     EDITOR = "nvim";
+    VISUAL = "nvim";
     TERMINAL = "kitty";
     BROWSER = "firefox";
     PAGER = "less";
     LESS = "-R";
-    PKG_CONFIG_PATH = "${pkgs.gtk3}/lib/pkgconfig:$PKG_CONFIG_PATH";
   };
 
   # -*-[ Home Packages ]-*-
@@ -60,11 +60,6 @@
     fd # find
     ripgrep # Better than grep
     dust # Disk usage visualization
-
-    # -*-[ Rust Tooling ]-*-
-    cargo
-    rustc
-    rust-analyzer
 
     # -*-[ Git Tools ]-*-
     git
