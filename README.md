@@ -24,8 +24,7 @@
 │   │   ├── default.nix
 │   │   ├── devtools
 │   │   ├── notion-app-enhanced
-│   │   ├── printing.nix
-│   │   └── steam.nix
+│   │   └── printing.nix
 │   ├── configuration.nix
 │   ├── hardware.nix
 │   ├── tweaks
@@ -39,7 +38,6 @@
 │       ├── fonts.nix
 │       ├── networking.nix
 │       └── user.nix
-├── scripts
-│   └── install.sh
-└── shell.nix
+└── scripts
+    └── install.sh
 ```
