@@ -1,50 +1,63 @@
 { pkgs, ... }:
+
 {
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
 
-    # Enhanced plugin selection for VS Code-like experience
+    # Use the default Neovim configuration with a few must-have plugins
+    defaultEditor = true;
+
+    # Use a pre-configured Neovim distribution
     plugins = with pkgs.vimPlugins; [
-      # Core plugins
-      vim-sensible
-      vim-commentary
-      vim-surround
-      vim-lastplace
-      vim-sleuth
-      direnv-vim
+      # LazyVim provides a great pre-configured Neovim setup
+      {
+        plugin = lazy-nvim;
+        type = "lua";
+        config = '''';
+      }
 
-      # VS Code-like UI
-      telescope-nvim
-      telescope-fzf-native-nvim
-      nvim-web-devicons
-      lualine-nvim
-      bufferline-nvim
-      nvim-tree-lua
+      # Pre-configured Neovim setup (will handle all plugins and configuration)
+      {
+        plugin = LazyVim;
+        type = "lua";
+        config = '''';
+      }
 
-      # Development features
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
-      gitsigns-nvim
-      which-key-nvim
-      indent-blankline-nvim
-      toggleterm-nvim
-
-      # Completion
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      luasnip
-      cmp_luasnip
-
-      # Theme
+      # Install tokyonight theme which will be auto-detected
       tokyonight-nvim
-      mini-icons
     ];
 
-    # Custom Lua configuration
-    extraLuaConfig = builtins.readFile ./neovim.lua;
+    # Minimal configuration to bootstrap the LazyVim setup
+    extraLuaConfig = ''
+      -- Bootstrap LazyVim
+      require("lazy").setup({
+        spec = {
+          { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+          -- Add your additional plugins here if needed
+        },
+        defaults = {
+          lazy = true,
+          version = false,
+        },
+        install = { colorscheme = { "tokyonight" } },
+        checker = { enabled = true },
+        performance = {
+          rtp = {
+            disabled_plugins = {
+              "gzip",
+              "matchit",
+              "matchparen",
+              "netrwPlugin",
+              "tarPlugin",
+              "tohtml",
+              "tutor",
+              "zipPlugin",
+            },
+          },
+        },
+      })
+    '';
   };
 }
