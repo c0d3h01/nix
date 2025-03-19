@@ -21,10 +21,10 @@
 
   # Set custom DNS servers (IPv4 and IPv6)
   networking.nameservers = [
-    "1.1.1.1"  # Cloudflare DNS
-    "1.0.0.1"  # Cloudflare DNS
-    "2606:4700:4700::1111"  # Cloudflare IPv6 DNS
-    "2606:4700:4700::1001"  # Cloudflare IPv6 DNS
+    "1.1.1.1" # Cloudflare DNS
+    "1.0.0.1" # Cloudflare DNS
+    "2606:4700:4700::1111" # Cloudflare IPv6 DNS
+    "2606:4700:4700::1001" # Cloudflare IPv6 DNS
   ];
 
   # Prevent dhcpcd from overwriting /etc/resolv.conf
@@ -32,11 +32,11 @@
 
   # Configure NetworkManager to use systemd-resolved and prioritize DNS
   networking.networkmanager.connectionConfig = {
-    "connection.mdns" = 2;  # Enable mDNS
-    "ipv4.dns-priority" = -1;  # Ensure systemd-resolved is used
-    "ipv6.dns-priority" = -1;  # Ensure systemd-resolved is used
+    "connection.mdns" = 2; # Enable mDNS
+    "ipv4.dns-priority" = -1; # Ensure systemd-resolved is used
+    "ipv6.dns-priority" = -1; # Ensure systemd-resolved is used
   };
-  
+
   # -*-[ Firewall ]-*-
   # Enable the firewall
   networking.firewall.enable = true;
