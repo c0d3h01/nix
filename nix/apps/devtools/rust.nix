@@ -3,11 +3,19 @@
 {
   environment.systemPackages = with pkgs; [
     rustup
-    cargo-edit
+
+    # Rust tools
+    rustup
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
+
+    # Additional cargo tools
     cargo-watch
+    cargo-edit
     cargo-audit
-    cargo-expand
-    cargo-outdated
+    cargo-tarpaulin
   ];
 
   programs.zsh.shellInit = ''
