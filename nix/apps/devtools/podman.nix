@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
+
 {
   # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
   virtualisation = {
+    containers.enable = true;
     podman = {
       enable = true;
       # Create a `docker` alias for podman, to use it as a drop-in replacement
@@ -12,11 +13,12 @@
     };
   };
 
+  users.users.${username}.extraGroups = [ "podman" ];
+
   # Useful tools
   environment.systemPackages = with pkgs; [
-    dive # look into docker image layers
+    dive
     podman-tui
-    docker-compose
     podman-compose
     podman-desktop
   ];
