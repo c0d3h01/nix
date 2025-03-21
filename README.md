@@ -21,6 +21,7 @@
 │       └── zshell
 ├── nix
 │   ├── apps
+│   │   ├── android.nix
 │   │   ├── default.nix
 │   │   ├── devtools
 │   │   ├── notion-app-enhanced
@@ -40,6 +41,7 @@
 │       └── user.nix
 ├── scripts
 │   ├── install.sh
+│   ├── npm.sh
 │   └── secrets.sh
 ├── secrets
 │   ├── recipients.txt
