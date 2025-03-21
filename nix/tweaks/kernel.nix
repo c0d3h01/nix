@@ -3,20 +3,19 @@
 {
   boot.kernelParams = [
     # CPU Performance
-    "processor.max_cstate=3" # Slightly limit CPU idle states
+    "processor.max_cstate=1" # Prevents deep sleep states, improving responsiveness
     "amd_iommu=on" # Enable AMD IOMMU
     "idle=nomwait" # Disable MWAIT for CPU idle states
+    "mitigations=off" # Disables security mitigations for better raw performance
+    "amd_pstate=active" # Uses AMD's new performance scaling
 
     # GPU Performance (AMD Vega)
-    "amdgpu.ppfeaturemask=0xffffffff" # Enable power features (optional)
+    "amdgpu.ppfeaturemask=0xffffffff" # Enable power features
     "amdgpu.dc=1" # Enable Display Core (DC)
 
     # I/O Performance
-    "elevator=none" # Use a more compatible I/O scheduler
+    "elevator=none" # I/O scheduler, nvme (none), HDD (cfq)
     "scsi_mod.use_blk_mq=1" # Enable multi-queue for SCSI devices
-
-    # Power Management
-    "pcie_aspm=force" # Enable ASPM for better power efficiency
 
     # Network Performance
     "net.core.netdev_max_backlog=8192" # Moderate network backlog
