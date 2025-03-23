@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ config, pkgs, username, ... }:
 
 {
   imports = [
@@ -9,20 +9,30 @@
   ];
 
   # -*-[ Bootloader Configuration ]-*-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
+  
+  # Zen kernel for better performance
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Hardware acceleration for video rendering
-  hardware.graphics.enable = true;
-  # hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # -*-[ GPG ]-*-
   # Some programs need SUID wrappers, can be configured further or are
   # programs.mtr.enable = true;
-  programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = false;
+  programs = {
+    gnupg.agent.enable = true;
+    gnupg.agent.enableSSHSupport = false;
+  };
 
   # -*-[ SSH ]-*-
   services.openssh = {
