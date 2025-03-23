@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./android.nix
+    ./android.nix
     ./devtools
     # ./printing.nix
     # ./vm.nix
