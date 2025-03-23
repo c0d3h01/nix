@@ -1,17 +1,13 @@
 { ... }:
 
 {
-  # System optimization
-  # Cleanup on boot
-  boot = {
-    tmp.cleanOnBoot = true;
-  };
-
+  # Enable system optimization services
   services = {
     # Enable thermald for thermal management
     thermald = {
       enable = true;
     };
+
     # Enable fstrim for SSDs
     fstrim = {
       enable = true;
@@ -36,14 +32,6 @@
         # CPU driver operation mode
         CPU_DRIVER_OPMODE_ON_AC = "active";
         CPU_DRIVER_OPMODE_ON_BAT = "active";
-
-        # Wi-Fi power settings
-        WIFI_PWR_ON_AC = "auto";
-        WIFI_PWR_ON_BAT = "auto";
-
-        # Runtime power management
-        RUNTIME_PM_ON_AC = "auto";
-        RUNTIME_PM_ON_BAT = "auto";
 
         # CPU performance limits
         CPU_MIN_PERF_ON_AC = 0;
@@ -74,9 +62,6 @@
         # Disable scheduler power saving for better performance
         SCHED_POWERSAVE_ON_AC = 0;
         SCHED_POWERSAVE_ON_BAT = 0;
-
-        # Disable USB autosuspend
-        USB_AUTOSUSPEND = 0;
       };
     };
   };
