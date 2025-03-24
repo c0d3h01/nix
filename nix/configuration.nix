@@ -33,7 +33,7 @@
   # -*-[ Bootloader Configuration ]-*-
   boot = {
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       # systemd-boot.enable = true;
       grub = {
@@ -45,6 +45,7 @@
       efi.canTouchEfiVariables = true;
     };
   };
+  
 
   # Hardware acceleration for video rendering
   hardware.graphics = {
