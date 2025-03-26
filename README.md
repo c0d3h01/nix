@@ -33,9 +33,13 @@
 │   │   ├── fonts.nix
 │   │   ├── networking.nix
 │   │   └── user.nix
-│   ├── configuration.nix
-│   ├── hardware.nix
-│   └── optimization.nix
+│   ├── default.nix
+│   ├── hardware-configuration.nix
+│   └── modules
+│       ├── boot.nix
+│       ├── config.nix
+│       ├── default.nix
+│       └── nix-settings.nix
 ├── scripts
 │   ├── install.sh
 │   ├── npm.sh
