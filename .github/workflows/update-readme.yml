@@ -1,4 +1,4 @@
-name: Update README with dotfiles root structure
+name: Update Dotfiles Structure
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-readme:
+  update-structure:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,19 +17,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install tree
+        run: sudo apt-get install -y tree
+
       - name: Generate tree structure
         run: |
-          echo '```' > README_TREE.md
-          tree -L 3 --noreport >> README_TREE.md
-          echo '```' >> README_TREE.md
-
-      - name: Update README.md
-        run: |
-          echo "" >> TEMP.md  # Add an empty line
-          echo "## 📂 Dotfiles Structure" >> TEMP.md
-          cat README_TREE.md >> TEMP.md
-          mv TEMP.md README.md
-          rm README_TREE.md
+          echo "# 📂 Dotfiles Structure" > structure.md
+          echo '```' >> structure.md
+          tree -L 3 --noreport >> structure.md
+          echo '```' >> structure.md
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
