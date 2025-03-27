@@ -35,6 +35,12 @@
       enable = true;
       openFirewall = true;
     };
+
+    udev = {
+      extraRules = ''
+        SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+      '';
+    };
   };
 
   hardware.graphics = {
