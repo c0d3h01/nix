@@ -1,6 +1,9 @@
-<img src="assets/image.png" alt="Custom Image" height="100"/>
+<img src="assets/chillet.png" alt="Custom Image" height="100"/> 
+<span style="font-size: 26px; font-weight: bold; margin-left: 12px; color: #FFD700; font-family: 'Arial', sans-serif; letter-spacing: 1px; text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);">
+    Crafted Dotfiles by <span style="color: #00FFFF; text-shadow: 0px 0px 8px rgba(0, 255, 255, 0.8);">c0d3h01</span>
+</span>
 
-## 📂 **Dotfiles Installation**
+## 📂 **Installation**
 ```bash
 sudo nixos-rebuild switch --flake github:c0d3h01/dotfiles#NixOS --fast
 ```
