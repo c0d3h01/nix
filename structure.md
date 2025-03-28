@@ -11,6 +11,8 @@
 ├── flake.lock
 ├── flake.nix
 ├── home
+│   ├── flake.lock
+│   ├── flake.nix
 │   ├── home.nix
 │   └── modules
 │       ├── default.nix
