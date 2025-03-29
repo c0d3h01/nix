@@ -6,14 +6,14 @@
 {
   imports = [ ./devtools ];
 
+  # Flatpak apps support
   services = {
     flatpak.enable = false;
   };
 
-  # Development environment packages
+  # Environment packages
   environment.systemPackages =
     let
-      # Group packages by category for better organization
       devTools = with pkgs; [
         # Utilities
 
