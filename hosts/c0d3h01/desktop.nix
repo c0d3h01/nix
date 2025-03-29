@@ -112,5 +112,18 @@
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gnome ];
     };
+    mime = {
+      enable = true;
+      defaultApplications = {
+        "application/x-bittorrent" = [ "transmission-gtk.desktop" ];
+        "application/pdf" = [ "firefox.desktop" ];
+        "default-web-browser" = [ "firefox.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+      };
+    };
   };
 }
