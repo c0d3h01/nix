@@ -7,9 +7,7 @@
   imports = [ ./devtools ];
 
   # Flatpak apps support
-  services = {
-    flatpak.enable = false;
-  };
+  # services.flatpak.enable = true;
 
   # VirtualMachine
   # virtualisation.libvirtd.enable = true;
@@ -22,15 +20,9 @@
   environment.systemPackages =
     let
       devTools = with pkgs; [
-        # Utilities
-
         # Editors and IDEs
-        vscodium-fhs
         vscode-fhs
         jetbrains.webstorm
-
-        # Version control
-        github-desktop
 
         # JavaScript/TypeScript
         nodejs
@@ -63,6 +55,9 @@
         postman
       ];
 
+      utilityApps = with pkgs; [
+      ];
+
       communicationApps = with pkgs; [
         discord
         telegram-desktop
@@ -79,6 +74,8 @@
         spotify
         transmission_4-gtk
         anydesk
+        github-desktop
+        chromium
       ];
 
       networkingTools = with pkgs; [
@@ -95,5 +92,5 @@
         gradle
       ];
     in
-    devTools ++ communicationApps ++ desktopApps ++ networkingTools ++ androidTools;
+    utilityApps ++ devTools ++ communicationApps ++ desktopApps ++ networkingTools ++ androidTools;
 }

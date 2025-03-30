@@ -21,8 +21,11 @@
       BROWSER = "firefox";
       PAGER = "less";
       LESS = "-R";
-      ANDROID_HOME = "/home/c0d3h01/Android";
-      PATH = "$HOME/Android/cmdline-tools/bin:$HOME/Android/platform-tools:$HOME/Android/android-ndk-r27c:$PATH";
+      # ANDROID_HOME = "/home/c0d3h01/Android";
+      # ANDROID_SDK_ROOT = "/home/c0d3h01/Android";
+      # ANDROID_NDK_HOME = "/home/c0d3h01/Android/android-ndk-r27c";
+      # PATH = "$HOME/Android/cmdline-tools/bin:$HOME/Android/platform-tools:$HOME/Android/android-ndk-r27c:$PATH";
+      CHROME_EXECUTABLE = "${pkgs.chromium}/bin/chromium";
     };
 
     sessionPath = [

@@ -5,14 +5,27 @@
 }:
 {
   # Enable X server and GNOME
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "amdgpu" ];
-    xkb.layout = "us";
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    excludePackages = with pkgs; [ xterm ];
+  services = {
+    udisks2.enable = true;
+    gvfs.enable = true;
+    xserver = {
+      enable = true;
+      videoDrivers = [ "amdgpu" ];
+      xkb.layout = "us";
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      excludePackages = with pkgs; [ xterm ];
+    };
   };
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id.indexOf("org.freedesktop.udisks2.filesystem-mount") == 0 &&
+            subject.isInGroup("users")) {
+            return polkit.Result.YES;
+        }
+    });
+  '';
 
   # Exclude unwanted GNOME packages
   environment = {
@@ -21,7 +34,6 @@
       gnome-backgrounds
       gnome-font-viewer
       epiphany
-      geary
       yelp
       baobab
       gnome-weather
@@ -34,8 +46,6 @@
     systemPackages = with pkgs; [
       gnome-photos
       gnome-tweaks
-      gnome-boxes
-      evolutionWithPlugins
       micro
       libreoffice
       # Gnome Extensions
@@ -62,10 +72,11 @@
 
       # interface
       "org/gnome/desktop/interface" = {
-        enable-hot-corners = false;
+        enable-hot-corners = true;
         clock-show-weekday = true;
         clock-show-seconds = false;
         clock-show-date = true;
+        clock-format = "12h";
       };
 
       # wallpaper
@@ -110,7 +121,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gnome ];
+      extraPortals = with pkgs; [ xdg-desktop-portal ];
     };
     mime = {
       enable = true;
