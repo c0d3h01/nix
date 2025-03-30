@@ -6,8 +6,6 @@
 {
   # Enable X server and GNOME
   services = {
-    udisks2.enable = true;
-    gvfs.enable = true;
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
@@ -52,17 +50,12 @@
       micro
       libreoffice
       rhythmbox
-      transmission-gtk
-      # transmission_4-gtk
-      # Gnome Extensions
-      gnomeExtensions.gsconnect
+      transmission_4-gtk
+      gnomeExtensions.gsconnect # Extension
     ];
 
     pathsToLink = [
-      "/share/gtksourceview-4"
-      "/share/gtksourceview-5"
       "/share/icons"
-      "/share/themes"
       "/share/applications"
     ];
   };
@@ -103,10 +96,10 @@
 
     gtk = {
       enable = true;
-      theme = {
-        name = "palenight";
-        package = pkgs.palenight-theme;
-      };
+      # theme = {
+      #   name = "palenight";
+      #   package = pkgs.palenight-theme;
+      # };
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
@@ -127,7 +120,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-gnome ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
     };
     mime = {
       enable = true;
