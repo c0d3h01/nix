@@ -124,7 +124,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
     mime = {
       enable = true;
