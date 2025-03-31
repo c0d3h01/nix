@@ -38,15 +38,12 @@
 │   │   ├── devtools
 │   │   └── notion-app-enhanced
 │   ├── default.nix
+│   ├── hardware-configuration.nix
 │   └── modules
 │       ├── boot.nix
 │       ├── config.nix
 │       ├── default.nix
 │       └── nix-settings.nix
-├── scripts
-│   ├── install.sh
-│   ├── npm.sh
-│   └── secrets.sh
 ├── secrets.nix
 └── structure.md
 ```
