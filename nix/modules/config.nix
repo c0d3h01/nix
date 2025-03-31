@@ -31,6 +31,23 @@
     };
   };
 
+  services.ananicy = {
+    enable = true;
+    settings = {
+      apply_nice = true;
+      check_freq=10; # runs every seconds
+      cgroup_load=true;
+      type_load=true;
+      rule_load=true;
+      apply_ioclass=true;
+      apply_ionice=true;
+      apply_sched=true;
+      apply_oom_score_adj=true;
+      apply_cgroup=true;
+      check_disks_schedulers=true;
+    };
+  };
+
   zramSwap = {
     enable = true;
     algorithm = "lz4";
