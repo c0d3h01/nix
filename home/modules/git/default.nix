@@ -1,16 +1,15 @@
 { config
-, useremail
-, specialArgs
+, user
 , pkgs
 , ...
 }:
 {
   programs.git = {
     enable = true;
-    userName = "${specialArgs.username}";
-    userEmail = "${specialArgs.useremail}";
+    userName = "${user.username}";
+    userEmail = "${user.email}";
     extraConfig = {
-      init.defaultBranch = "master";
+      init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
       color.ui = true;

@@ -1,6 +1,6 @@
 { config
 , pkgs
-, specialArgs
+, user
 , lib
 , ...
 }:
@@ -15,8 +15,6 @@
   ];
 
   # gnupg agent configuration
-  # This is required for SSH support
-  # and to use gpg-agent as a SSH agent
   programs = {
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = false;
@@ -31,7 +29,7 @@
       settings = {
         PasswordAuthentication = false;
         PermitRootLogin = "prohibit-password";
-        AllowUsers = [ "${specialArgs.username}" ];
+        AllowUsers = [ "${user.username}" ];
       };
     };
     # Printing support
@@ -66,7 +64,7 @@
   # Enable zram swap
   zramSwap = {
     enable = true;
-    algorithm = "lz4";
+    algorithm = "zstd";
     memoryPercent = 200;
     priority = 100;
   };

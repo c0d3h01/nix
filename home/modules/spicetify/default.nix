@@ -9,7 +9,6 @@ let
 in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
-  stylix.targets.spicetify.enable = false;
   programs.spicetify = lib.mkForce {
     enable = true;
     enabledExtensions = with spicePkgs.extensions; [

@@ -1,13 +1,14 @@
 { config
 , agenix
-, specialArgs
+, user
 , system
-, ... 
-}:
-
-{
-  age.identityPaths = [ "/home/${specialArgs.username}/dotfiles/secrets/keys/default.key" ];
+, ...
+}: {
   imports = [ agenix.nixosModules.default ];
   environment.systemPackages = [ agenix.packages.${system}.default ];
-  age.secrets = { };
+
+  age = {
+    identityPaths = [ "/home/${user.username}/dotfiles/secrets/keys/default.key" ];
+    secrets = { };
+  };
 }

@@ -1,6 +1,6 @@
 { config
 , pkgs
-, specialArgs
+, user
 , ...
 }:
 {
@@ -11,8 +11,8 @@
   modules.firefox.enable = true;
 
   home = {
-    username = "${specialArgs.username}";
-    homeDirectory = "/home/${specialArgs.username}";
+    username = "${user.username}";
+    homeDirectory = "/home/${user.username}";
     stateVersion = "24.11";
 
     sessionVariables = {

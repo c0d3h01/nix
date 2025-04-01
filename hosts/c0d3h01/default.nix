@@ -1,6 +1,6 @@
 { config
 , pkgs
-, specialArgs
+, user
 , ...
 }:
 {
@@ -27,10 +27,10 @@
     };
   };
 
-  users.users.${specialArgs.username} = {
-    description = "Harshal Sawant";
+  users.users.${user.username} = {
+    description = "${user.fullName}";
     isNormalUser = true;
-    home = "/home/${specialArgs.username}";
+    home = "/home/${user.username}";
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
     extraGroups = [
