@@ -10,9 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-
     nur.url = "github:nix-community/NUR";
 
     spicetify-nix = {
@@ -26,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
       user = {
         username = "c0d3h01";
@@ -57,7 +54,7 @@
 
       # Shared arguments for all modules
       commonArgs = system: {
-        inherit inputs system user agenix;
+        inherit inputs system user;
         pkgs = pkgsFor system;
         lib = nixpkgs.lib;
       };
