@@ -11,6 +11,7 @@
     };
 
     nur.url = "github:nix-community/NUR";
+    sops-nix.url = "github:Mic92/sops-nix";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -32,11 +33,11 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
       # Create package set with overlays for each system
-      pkgs = system: import nixpkgs {
+      pkgsFor = system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.nur.overlays.default
+          inputs.nur.overlay
           (final: prev: {
             unstable = import inputs.nixpkgs-unstable {
               inherit system;
@@ -48,7 +49,8 @@
 
       # Shared arguments for all modules
       commonArgs = system: {
-        inherit inputs system user;
+        inherit inputs user;
+        pkgs = pkgsFor system;
         lib = nixpkgs.lib;
       };
     in
@@ -58,7 +60,7 @@
         system = "x86_64-linux";
         specialArgs = commonArgs "x86_64-linux";
         modules = [
-          ./hosts/${user.username}
+          ./hosts/${user.hostname}
           inputs.spicetify-nix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
