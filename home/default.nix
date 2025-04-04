@@ -2,6 +2,7 @@
 , user
 , ...
 }: {
+
   imports = [ ./modules ];
 
   modules.firefox.enable = true;
@@ -31,8 +32,6 @@
 
     packages = with pkgs; [
       home-manager
-      age
-      openssh
 
       # Utilities
       fastfetch
@@ -41,6 +40,7 @@
       xclip
       curl
       wget
+      openssh
       tree
       asar
       fuse

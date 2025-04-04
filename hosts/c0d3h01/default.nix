@@ -4,7 +4,7 @@
 }: {
   imports = [
     ../../modules
-    ../../secrets/secrets.nix
+    ../../secrets
     # Hardware configuration
     ./hardware-configuration.nix
   ];
