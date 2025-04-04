@@ -55,19 +55,6 @@
         v = "nvim";
       };
 
-      oh-my-zsh = {
-        enable = true;
-        theme = "robbyrussell";
-        plugins = [
-          "git"
-          "z"
-          "sudo"
-          "colored-man-pages"
-          "command-not-found"
-          "fzf"
-        ];
-      };
-
       plugins = [
         {
           name = "zsh-autosuggestions";
