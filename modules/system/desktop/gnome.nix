@@ -1,6 +1,7 @@
 { config
 , pkgs
 , user
+, lib
 , ...
 }:
 {
@@ -10,9 +11,9 @@
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.layout = "us";
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       excludePackages = with pkgs; [ xterm ];
+      displayManager.gdm.enable = true;
     };
   };
 
@@ -93,22 +94,27 @@
 
     gtk = {
       enable = true;
-      # theme = {
-      #   name = "palenight";
-      #   package = pkgs.palenight-theme;
-      # };
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
+
+      cursorTheme = lib.mkForce {
+        name = "Qogir-dark";
+        package = pkgs.qogir-theme;
       };
-      cursorTheme = {
-        name = "Numix-Cursor";
-        package = pkgs.numix-cursor-theme;
+
+      iconTheme = lib.mkForce {
+        name = "Qogir-dark";
+        package = pkgs.qogir-icon-theme;
       };
-      gtk3.extraConfig = {
+
+      theme = lib.mkForce {
+        name = "Arc-Darker";
+        package = pkgs.arc-theme;
+      };
+
+      gtk3.extraConfig = lib.mkForce {
         "gtk-application-prefer-dark-theme" = true;
       };
-      gtk4.extraConfig = {
+
+      gtk4.extraConfig = lib.mkForce {
         "gtk-application-prefer-dark-theme" = true;
       };
     };
