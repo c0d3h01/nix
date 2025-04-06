@@ -1,9 +1,7 @@
-{ config
-, lib
-, user
+{ user
 , ...
-}:
-{
+}: {
+
   imports = [
     ./audio.nix
     ./auth.nix
@@ -19,13 +17,4 @@
 
   system.stateVersion = user.stateVersion;
   networking.hostName = user.hostname;
-
-  # NixOS configuration
-  nixpkgs = {
-    config = lib.mkForce {
-      allowUnfree = true;
-      tarball-ttl = 0;
-      android_sdk.accept_license = true;
-    };
-  };
 }
