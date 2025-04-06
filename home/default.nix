@@ -30,7 +30,7 @@
       "$HOME/.npm-global/bin"
     ];
 
-    packages = with pkgs; [
+    packages = with pkgs.unstable; [
       home-manager
 
       # Utilities
