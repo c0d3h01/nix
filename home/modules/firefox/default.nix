@@ -2,7 +2,8 @@
 , config
 , user
 , pkgs
-, ... }:
+, ...
+}:
 with lib;
 let
   cfg = config.modules.firefox;
