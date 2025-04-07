@@ -1,5 +1,6 @@
 { config
 , lib
+, pkgs
 , ...
 }: {
 
@@ -8,8 +9,8 @@
       enable = true;
       dotDir = ".config/zsh";
 
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
       autocd = true;
 
@@ -20,7 +21,7 @@
         ignoreSpace = true;
         save = 15000;
         size = 15000;
-        path = "$HOME/.local/share/zsh/history";
+        path = "${config.xdg.dataHome}/.local/share/zsh/history";
         share = true;
       };
 
@@ -54,11 +55,8 @@
         ff = "fastfetch";
         cl = "clear";
         x = "exit";
-        v = "nvim";
         # Additional useful aliases
         ports = "netstat -tulpn";
-        path = "echo $PATH | tr ':' '\n'";
-        weather = "curl wttr.in";
         ip = "ip --color=auto";
         diff = "diff --color=auto";
         ping = "ping -c 5";
@@ -73,8 +71,8 @@
         export EDITOR="nvim"
         export VISUAL="nvim"
         export TERM="xterm-256color"
-        export LANG="en_US.UTF-8"
-        export LC_ALL="en_US.UTF-8"
+        export LANG="en_IN.UTF-8"
+        export LC_ALL="en_IN.UTF-8"
       '';
 
       # Functional config
@@ -92,10 +90,12 @@
         bindkey '^?' backward-delete-char
         bindkey '^h' backward-delete-char
         bindkey '^w' backward-kill-word
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
-        bindkey '^[[C' forward-char
-        bindkey '^[[D' backward-char
+
+        # History substring search key bindings
+        # bindkey '^[[A' history-substring-search-up
+        # bindkey '^[[B' history-substring-search-down
+        # bindkey -M vicmd 'k' history-substring-search-up
+        # bindkey -M vicmd 'j' history-substring-search-down
 
         # Directory stack
         setopt AUTO_PUSHD
@@ -103,7 +103,6 @@
         setopt PUSHD_SILENT
         setopt EXTENDED_GLOB
         setopt NO_BEEP
-        setopt AUTO_CD
         setopt MULTIOS
         setopt CORRECT
         setopt CORRECT_ALL
@@ -116,15 +115,23 @@
         setopt SHORT_LOOPS
         setopt NO_FLOW_CONTROL
 
-        # Load FZF
-        if [ -n "$(command -v fzf-share)" ]; then
-          source "$(fzf-share)/key-bindings.zsh"
-          source "$(fzf-share)/completion.zsh"
-        fi
-
         # Custom functions
         function mkcd() {
           mkdir -p "$1" && cd "$1"
+        }
+
+        # Lazy load Direnv
+        direnv() {
+          unset -f direnv
+          eval "$(direnv hook zsh)"
+          direnv "$@"
+        }
+
+        # Lazy load Zoxide
+        z() {
+          unset -f z
+          eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
+          z "$@"
         }
 
         function extract() {
@@ -152,6 +159,7 @@
 
     fzf = {
       enable = true;
+      enableZshIntegration = true;
       defaultOptions = [
         "--color=dark"
         "--color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe"
@@ -190,101 +198,104 @@
     # Starship prompt
     starship = {
       enable = true;
-      settings = {
-        add_newline = true;
-        
-        format = "$all";
+      enableZshIntegration = true;
+      settings =
+        let
+          darkgray = "242";
+        in
+        {
+          add_newline = true;
+          format = lib.concatStrings [
+            "$username"
+            "$hostname"
+            "$directory"
+            "$git_branch"
+            "$git_state"
+            "$git_status"
+            "$git_metrics"
+            "$cmd_duration"
+            "$line_break"
+            "$python"
+            "$nix_shell"
+            "$direnv"
+            "$character"
+          ];
 
-        character = {
-          success_symbol = "[❯](bold green)";
-          error_symbol = "[❯](bold red)";
-          vicmd_symbol = "[❮](bold green)";
-        };
+          character = {
+            success_symbol = "[❯](bold green)";
+            error_symbol = "[❯](bold red)";
+            vicmd_symbol = "[❮](bold green)";
+          };
 
-        directory = {
-          style = "bold blue";
-          read_only = " ";
-          truncation_length = 3;
-          truncation_symbol = "…/";
-        };
+          directory = {
+            style = "bold blue";
+            read_only = " !";
+            truncation_symbol = "…/";
+          };
 
-        git_branch = {
-          format = "[$symbol$branch]($style) ";
-          style = "bold purple";
-          symbol = " ";
-        };
+          git_branch = {
+            format = "[$branch]($style) ";
+            style = darkgray;
+          };
 
-        git_status = {
-          format = "([$all_status$ahead_behind]($style) )";
-          style = "bold red";
-          conflicted = "=";
-          ahead = "⇡$count";
-          behind = "⇣$count";
-          diverged = "⇕⇡$ahead_count⇣$behind_count";
-          untracked = "?";
-          stashed = "≡";
-          modified = "!";
-          staged = "+";
-          renamed = "»";
-          deleted = "✘";
-        };
+          git_status = {
+            format = "([$all_status$ahead_behind]($style) )";
+            style = "bold purple";
+            conflicted = "= ";
+            ahead = "⇡$count ";
+            behind = "⇣$count ";
+            diverged = "⇕⇡$ahead_count⇣$behind_count";
+            untracked = "? ";
+            stashed = "≡ ";
+            modified = "! ";
+            staged = "+ ";
+            renamed = "» ";
+            deleted = "✘ ";
+          };
 
-        git_state = {
-          format = "([$state( $progress_current/$progress_total)]($style)) ";
-          style = "bright-black";
-        };
+          git_state = {
+            format = "([$state( $progress_current/$progress_total)]($style)) ";
+            style = "bright-black";
+          };
 
-        cmd_duration = {
-          format = "[$duration]($style) ";
-          style = "yellow";
-          min_time = 2000;
-        };
+          cmd_duration = {
+            format = "[$duration]($style) ";
+            style = "yellow";
+            min_time = 2000;
+          };
 
-        nix_shell = {
-          format = "[$symbol$state]($style) ";
-          symbol = "❄️ ";
-          style = "bold blue";
-        };
+          nix_shell = {
+            format = "[$symbol]($style) ";
+            symbol = "❄️";
+            style = "bold blue";
+          };
 
-        memory_usage = {
-          format = "$symbol[$ram_pct]($style) ";
-          symbol = "󰍛 ";
-          style = "bold dimmed white";
-          threshold = 75;
-        };
+          python = {
+            format = "[$symbol$version$virtualenv]($style) ";
+            style = "bold yellow";
+          };
 
-        status = {
-          format = "[$symbol$status]($style) ";
-          symbol = "✖";
-          success_symbol = "✓";
-          not_executable_symbol = "🚫";
-          not_found_symbol = "🔍";
-          sigint_symbol = "⚡";
-          signal_symbol = "⚡";
-          style = "bold red";
-          map_symbol = true;
-          disabled = false;
-        };
+          username = {
+            format = "[$user]($style) ";
+            style_user = "bold dimmed green";
+            style_root = "bold red";
+            show_always = true;
+          };
 
-        python = {
-          format = "[$symbol$version]($style) ";
-          style = "bold yellow";
-          symbol = "🐍 ";
-        };
+          hostname = {
+            format = "[$hostname]($style) ";
+            style = "bold dimmed green";
+            ssh_only = false;
+          };
 
-        username = {
-          format = "[$user]($style) ";
-          style_user = "bold dimmed blue";
-          style_root = "bold red";
-          show_always = false;
+          right_format = "$time";
+          time = {
+            disabled = false;
+            time_format = "%T"; # 24-hour format
+            style = "bold dimmed white";
+            format = "[$time]($style)";
+          };
         };
-
-        hostname = {
-          format = "[$hostname]($style) ";
-          style = "bold dimmed green";
-          ssh_only = true;
-        };
-      };
     };
   };
 }
