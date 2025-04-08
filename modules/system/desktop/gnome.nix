@@ -53,7 +53,6 @@
       rhythmbox
       transmission_4-gtk
       gnomeExtensions.gsconnect
-      gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.blur-my-shell
       gnomeExtensions.just-perfection
@@ -71,7 +70,6 @@
         disable-user-extensions = false;
         enabled-extensions = [
           "gsconnect@andyholmes.github.io"
-          "appindicator@rgcjonas.gmail.com"
           "dash-to-dock@micxgx.gmail.com"
           "blur-my-shell@aunetx"
           "just-perfection-desktop@just-perfection"
