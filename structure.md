@@ -58,6 +58,7 @@
 ├── secrets
 │   ├── default.nix
 │   ├── keys.nix
-│   └── secrets.nix
+│   ├── secrets.nix
+│   └── ssh-private-key.age
 └── structure.md
 ```
