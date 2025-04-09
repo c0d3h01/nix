@@ -9,7 +9,16 @@
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
+      lazygit-nvim
       tokyonight-nvim
+      rocks-nvim
+    ];
+
+    extraPackages = with pkgs; [
+      tree-sitter
+      lazygit
+      imagemagick
+      xclip
     ];
 
     extraLuaConfig = ''
