@@ -2,39 +2,39 @@
   description = "NixOS Dotfiles c0d3h01";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
     { self
+    , nixpkgs
     , nixpkgs-stable
-    , nixpkgs-unstable
     , home-manager
     , agenix
     , ...
@@ -54,10 +54,11 @@
       };
 
       # Helper Functions
-      forAllSystems = nixpkgs-stable.lib.genAttrs supportedSystems;
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
-      mkPkgs = system: import nixpkgs-stable {
+      mkPkgs = system: import nixpkgs {
         inherit system;
+        # Unstable Nixpkgs Config
         config = {
           allowUnfree = true;
           tarball-ttl = 0;
@@ -66,7 +67,8 @@
 
         overlays = [
           (final: prev: {
-            unstable = import nixpkgs-unstable {
+            # Stable Nixpkgs config
+            stable = import nixpkgs-stable {
               inherit system;
               config.allowUnfree = true;
             };
@@ -83,7 +85,7 @@
 
       # NixOS Configuration
       mkNixOSConfiguration = { system ? defaultSystem, hostname ? userConfig.hostname }:
-        nixpkgs-stable.lib.nixosSystem {
+        nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = mkSpecialArgs system;
 
@@ -114,9 +116,9 @@
       nixosConfigurations.${userConfig.hostname} = mkNixOSConfiguration { };
 
       devShells = forAllSystems (system:
-        let
-          pkgs = mkPkgs system;
-        in
+      let
+        pkgs = mkPkgs system;
+      in
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
@@ -127,14 +129,14 @@
           };
         });
 
-      # checks = forAllSystems (system: {
-      #   formatting = mkPkgs system.runCommand "check-formatting" {
-      #     nativeBuildInputs = [ (mkPkgs system).nixpkgs-fmt ];
-      #   } ''
-      #     nixpkgs-fmt --check ${./.}
-      #     touch $out
-      #   '';
-      # });
+      checks = forAllSystems (system: {
+        formatting = mkPkgs system.runCommand "check-formatting" {
+          nativeBuildInputs = [ (mkPkgs system).nixpkgs-fmt ];
+        } ''
+          nixpkgs-fmt --check ${./.}
+          touch $out
+        '';
+      });
 
       formatter = forAllSystems (system: (mkPkgs system).nixpkgs-fmt);
     };
