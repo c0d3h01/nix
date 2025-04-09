@@ -4,7 +4,6 @@
 
   imports = [
     ./audio.nix
-    ./auth.nix
     ./boot.nix
     ./desktop
     ./fonts.nix
