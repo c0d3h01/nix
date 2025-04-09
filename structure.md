@@ -41,11 +41,12 @@
 │   │   ├── docker.nix
 │   │   ├── mysql.nix
 │   │   ├── podman.nix
+│   │   ├── postgres.alloy
+│   │   ├── postgres.nix
 │   │   ├── python.nix
 │   │   └── rust.nix
 │   └── system
 │       ├── audio.nix
-│       ├── auth.nix
 │       ├── boot.nix
 │       ├── default.nix
 │       ├── desktop
