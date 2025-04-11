@@ -26,10 +26,9 @@
 │       ├── spicetify
 │       └── zshell
 ├── hosts
-│   ├── c0d3h01
-│   │   ├── default.nix
-│   │   └── hardware-configuration.nix
-│   └── common.nix
+│   └── c0d3h01
+│       ├── default.nix
+│       └── hardware-configuration.nix
 ├── keys.nix
 ├── modules
 │   ├── applications
@@ -42,8 +41,6 @@
 │   │   ├── docker.nix
 │   │   ├── mysql.nix
 │   │   ├── podman.nix
-│   │   ├── postgres.alloy
-│   │   ├── postgres.nix
 │   │   ├── python.nix
 │   │   └── rust.nix
 │   └── system
@@ -53,14 +50,12 @@
 │       ├── desktop
 │       ├── fonts.nix
 │       ├── hardware.nix
-│       ├── hosts.nix
 │       ├── networking.nix
 │       ├── nix.nix
 │       ├── security.nix
 │       └── services.nix
 ├── secrets
 │   ├── default.nix
-│   ├── secrets.nix
-│   └── ssh-private-key.age
+│   └── secrets.nix
 └── structure.md
 ```
