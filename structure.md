@@ -3,7 +3,6 @@
 .
 ├── LICENSE
 ├── README.md
-├── age.key
 ├── assets
 │   ├── README
 │   │   ├── chillet.png
