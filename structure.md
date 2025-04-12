@@ -30,7 +30,6 @@
 │       ├── default.nix
 │       └── hardware-configuration.nix
 ├── install.sh
-├── keys.nix
 ├── modules
 │   ├── applications
 │   │   ├── default.nix
