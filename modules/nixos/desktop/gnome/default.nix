@@ -53,6 +53,7 @@
       libreoffice
       rhythmbox
       qbittorrent
+      evince # Document viewer
 
       # Gnome extensions here
       gnomeExtensions.gsconnect
