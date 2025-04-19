@@ -17,13 +17,16 @@
   home-manager.users.${userConfig.username} = _: {
     home.file = {
       ".scripts/autostart.sh" = {
-        source = ./autostart.sh;
+        source = ./config/scripts/autostart.sh;
         executable = true;
       };
     };
   };
 
   environment = {
+    # For Electron apps to use wayland
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
     systemPackages = with pkgs; [
       inputs.hyprpanel.packages.${pkgs.system}.hyprpanel
       brightnessctl
@@ -43,34 +46,54 @@
     ];
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
+  programs = {
+    uwsm.enable = true;
+    hyprlock.enable = true;
+    dconf.enable = true;
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = true;
+    };
   };
 
-  programs.uwsm = {
+  thunar = {
     enable = true;
+    plugins = with pkgs.xfce; [
+      exo
+      mousepad
+      thunar-archive-plugin
+      thunar-volman
+      tumbler
+    ];
   };
 
-  programs.hyprlock = {
-    enable = true;
-  };
+  services = {
+    power-profiles-daemon.enable = true;
+    gnome.gnome-keyring.enable = true;
+    upower.enable = true;
+    blueman.enable = true;
 
-  programs.dconf.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.upower.enable = true;
-  services.blueman.enable = true;
-
-  services.greetd = {
-    enable = true;
-    restart = false;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --greeting 'Welcome to Wonderland' --asterisks --cmd 'uwsm start hyprland-uwsm.desktop'";
-        user = userConfig.username;
+    greetd = {
+      enable = true;
+      restart = false;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --greeting 'Welcome to Wonderland' --asterisks --cmd 'uwsm start hyprland-uwsm.desktop'";
+          user = userConfig.username;
+        };
       };
     };
   };
+
+  # AMD GPU Drivers
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.graphics.extraPackages = with pkgs; [
+    libva
+    libva-utils
+  ];
+  systemd.tmpfiles.rules = [
+    "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
+  ];
 }
