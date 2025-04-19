@@ -37,7 +37,7 @@
         # Modern ls replacements
         l = "eza -l --icons --group-directories-first";
         ls = "eza --icons --group-directories-first";
-        ll = "eza -l --icons --group-directories-first --git";
+        ll = "eza --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name";
         la = "eza -a --icons --group-directories-first";
         lt = "eza --tree --icons --level=2";
         # Git shortcuts
