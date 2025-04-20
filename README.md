@@ -12,14 +12,11 @@
 .
 ├── assets/         # Images and other assets
 ├── hosts/          # Host-specific configurations
-│   ├── desktop/    # Desktop machine configuration
 │   ├── laptop/     # Laptop configuration
-│   └── common.nix  # Shared configuration between hosts
 ├── modules/        # Modular configuration components
 │   ├── home-manager/  # Home-manager configurations
 │   └── nixos/      # NixOS-specific modules
 ├── overlays/       # Custom package overlays
-├── scripts/        # Utility scripts
 └── flake.nix       # Main Nix flake configuration
 ```    
 
