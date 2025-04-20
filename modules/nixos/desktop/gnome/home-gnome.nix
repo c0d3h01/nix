@@ -30,11 +30,6 @@
       clock-format = "12h";
       color-scheme = "prefer-dark";
     };
-    # keyboard
-    "org/gnome/desktop/peripherals/keyboard" = {
-      numlock-state = true;
-      remember-numlock-state = true;
-    };
     # touchpad
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;

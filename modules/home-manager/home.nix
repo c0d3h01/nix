@@ -20,13 +20,6 @@
     ../nixos/desktop/gnome/home-gnome.nix
   ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      android_sdk.accept_license = true;
-    };
-  };
-
   home = {
     username = "${userConfig.username}";
     homeDirectory = "/home/${userConfig.username}";

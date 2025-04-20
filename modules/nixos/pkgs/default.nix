@@ -1,6 +1,6 @@
 { pkgs, ... }:
-{
 
+{
   imports = [ ./development ];
 
   # Flatpak apps support
@@ -13,9 +13,6 @@
   # Allow running dynamically linked binaries
   programs.nix-ld.enable = true;
 
-  # Firefox install
-  programs.firefox.enable = true;
-
   # Environment packages
   environment.systemPackages =
     let
@@ -23,34 +20,26 @@
       ];
 
       unstablePkgs = with pkgs; [
+        # Browser
+        brave
+
         # Notion Enhancer With patches
         (pkgs.callPackage ./notion-app-enhanced { })
 
         # Editors and IDEs
         vscode-fhs
-        android-studio
 
         # Developement desktop apps
         postman
         github-desktop
 
         # Communication apps
-        vesktop
+        discord
         telegram-desktop
-        slack
-        element-desktop
         zoom-us
 
         # Common desktop apps
-        spotify
         anydesk
-
-        # Network tools
-        metasploit
-        nmap
-        tcpdump
-        aircrack-ng
-        wireshark
 
         # -+ Common Developement tools
         nodejs
@@ -63,14 +52,11 @@
         ninja
 
         # Gtk tools
-        gtk3
-        gtk4
         pkg-config
 
         # Android Tools
         flutter
         openjdk
-        android-tools
       ];
     in
     stablePkgs ++ unstablePkgs;

@@ -10,7 +10,7 @@ in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
-  programs.spicetify = lib.mkForce {
+  programs.spicetify = {
     enable = true;
 
     theme = spicePkgs.themes.sleek;

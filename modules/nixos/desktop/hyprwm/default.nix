@@ -16,7 +16,7 @@
   home-manager.users.${userConfig.username} = _: {
     home.file = {
       ".scripts/autostart.sh" = {
-        source = ./config/scripts/autostart.sh;
+        source = ./autostart.sh;
         executable = true;
       };
     };

@@ -1,7 +1,10 @@
 { pkgs, userConfig, ... }:
-{
 
-  imports = [ ./hardware-configuration.nix ];
+{
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/nixos
+  ];
 
   time.timeZone = "Asia/Kolkata";
   i18n = {
@@ -30,11 +33,9 @@
       "wheel"
       "audio"
       "video"
-      "dialout"
-      "input"
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINUA3sq3OYb6T+xvWdhM/LlN58Y3NdVka6OrHfDpYbQO haarshalsawant@gmail.com"
+      ""
     ];
   };
 }
