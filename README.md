@@ -21,7 +21,7 @@
 ```    
 
 > [!CAUTION]  
-> These host system and home configurations are published for educational and research purposes only. They are specifically tailored for my hardware and should not be used directly on other systems. Attempting to build and deploy these configurations to other systems without appropriate modifications can lead to unbootable machines and data loss.
+> These host system and home configurations are published for my system configurations. They are specifically tailored for my hardware and should not be used directly on other systems. Attempting to build and deploy these configurations to other systems without appropriate modifications can lead to unbootable machines and data loss.
 
 > [!NOTE]  
 > I intentionally do not provide copy/pastable commands for building, switching, or installing any of these configurations given the risks mentioned above.
