@@ -86,7 +86,6 @@
               extraSpecialArgs = { inherit inputs outputs userConfig; };
               users.${userConfig.username} = {
                 imports = [ ./modules/home-manager/home.nix ];
-                home.stateVersion = userConfig.stateVersion;
               };
             };
           }
