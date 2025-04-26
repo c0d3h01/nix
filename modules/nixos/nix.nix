@@ -5,8 +5,9 @@
   userConfig,
   lib,
   ...
-}: {
+}:
 
+{
   system.stateVersion = userConfig.stateVersion;
   networking.hostName = userConfig.hostname;
 
