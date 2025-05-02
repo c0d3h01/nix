@@ -15,11 +15,16 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                  "noatime"
-                  "umask=0077"
-                ];
+                mountOptions = [ "umask=0077" ];
+              };
+            };
+            plainSwap = {
+              name = "nixos-swap";
+              size = "8G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true; # resume from hiberation from this device
               };
             };
             root = {
@@ -29,10 +34,6 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                mountOptions = [
-                  "defaults"
-                  "noatime"
-                ];
               };
             };
           };
