@@ -18,7 +18,6 @@
     "nvme"
     "xhci_pci"
     "ahci"
-    "usb_storage"
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
@@ -26,12 +25,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/20535753-e402-40ad-93ed-a0b82799f5eb";
+    device = "/dev/disk/by-uuid/d6e53dd6-f749-4a5f-9407-8b842cf3d1ff";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2131-FCBC";
+    device = "/dev/disk/by-uuid/61D4-48A3";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -46,6 +45,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
