@@ -19,6 +19,15 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+            plainSwap = {
+              name = "nixos-swap";
+              size = "8G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true;
+              };
+            };
             root = {
               name = "nixos-root";
               size = "100%";
