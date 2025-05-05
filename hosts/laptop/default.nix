@@ -24,7 +24,7 @@
   };
 
   users.users.${userConfig.username} = {
-    description = "${userConfig.fullName}";
+    description = userConfig.fullName;
     isNormalUser = true;
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
@@ -36,7 +36,7 @@
       "video"
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHh6J/Bx4RkVH8kRcSuKELT0N7lLWhTYUFUVxJWpRiJf haarshalsawant@gmail.com"
+      ""
     ];
   };
 }
