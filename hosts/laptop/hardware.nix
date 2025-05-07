@@ -21,6 +21,11 @@
     memoryPercent = 200;
   };
 
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/57913b7c-10d6-4c92-8fd8-e269758630db";
+    fsType = "ext4";
+  };
+
   boot = {
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
