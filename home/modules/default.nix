@@ -3,8 +3,7 @@
     ./firefox.nix
     ./git.nix
     ./gtk.nix
-    ./nvim.nix
+    # ./nvim.nix
     ./spicetify.nix
-    ./zshell.nix
   ];
 }

@@ -2,6 +2,7 @@
   userConfig,
   ...
 }:
+
 {
   programs = {
     gh = {
@@ -41,17 +42,7 @@
           recurseSubmodules = true;
         };
 
-        url = {
-          "git@github.com:".insteadOf = "https://github.com/";
-          "git@gitlab.com:".insteadOf = "https://gitlab.com/";
-        };
-
-        # Core helpful aliases
         alias = {
-          st = "status";
-          co = "checkout";
-          ci = "commit";
-          br = "branch";
           unstage = "reset HEAD --";
           graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
         };
@@ -67,26 +58,6 @@
           syntax-theme = "ansi";
         };
       };
-
-      # Common ignores
-      ignores = [
-        # General
-        ".DS_Store"
-        "Thumbs.db"
-        # Editor files
-        ".idea/"
-        ".vscode/"
-        "*.swp"
-        # Environment files
-        ".env"
-        ".direnv/"
-        # Build artifacts
-        "dist/"
-        "build/"
-        "node_modules/"
-        "__pycache__/"
-        "*.pyc"
-      ];
     };
   };
 }

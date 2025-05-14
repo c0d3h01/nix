@@ -8,18 +8,18 @@
   gtk = {
     enable = true;
 
-    theme = lib.mkForce {
-      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
-        size = "compact";
-        tweaks = [
-          "rimless"
-          "black"
-        ];
-        variant = "macchiato";
-      };
-    };
+    # theme = lib.mkForce {
+    #   name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+    #   package = pkgs.catppuccin-gtk.override {
+    #     accents = [ "pink" ];
+    #     size = "compact";
+    #     tweaks = [
+    #       "rimless"
+    #       "black"
+    #     ];
+    #     variant = "macchiato";
+    #   };
+    # };
 
     cursorTheme = lib.mkForce {
       name = "Bibata-Modern-Ice";

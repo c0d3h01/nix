@@ -47,6 +47,14 @@
       stow
       zellij
 
+      # zsh
+      bat
+      direnv
+      zoxide
+      eza
+      ripgrep
+      starship
+
       # Editors & Viewers
       fd # find
       file
@@ -70,5 +78,9 @@
       zstd
       cabextract
     ];
+  };
+
+  programs = {
+    zsh.enable = true;
   };
 }
