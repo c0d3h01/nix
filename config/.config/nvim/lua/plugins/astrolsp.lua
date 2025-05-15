@@ -21,7 +21,7 @@ return {
 			"terraformls",
 			"typos_lsp",
 			"yamlls",
-			"nixd",
+			"vtsls",
 			-- add more servers as needed...
 		})
 		opts.formatting = opts.formatting or {}
