@@ -4,7 +4,6 @@
   imports = [
     ./disko.nix
     ./hardware.nix
-    # ./tlp.nix
     ../../nixos
     ../../secrets
   ];
