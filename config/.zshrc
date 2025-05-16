@@ -184,28 +184,28 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 
 # ===== Custom Plugin Submodules =====
-ZSH_PLUGINS="${HOME}/dotfiles/zsh"
+# ZSH_PLUGINS="${HOME}/dotfiles/zsh"
 
 # zsh-completions
-fpath+=("$ZSH_PLUGINS/zsh-completions")
+fpath+=("$HOME/.zsh-completions")
 
 # zsh-autosuggestions
-source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.zsh-autosuggestions/zsh-autosuggestions.zsh"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=60
 
 # pure prompt
-fpath+=("$ZSH_PLUGINS/pure")
+fpath+=("$HOME/.zsh-pure")
 autoload -U promptinit; promptinit
 prompt pure
 
 # zsh-autopair
-source "$ZSH_PLUGINS/zsh-autopair/autopair.zsh"
+source "$HOME/.zsh-autopair/autopair.zsh"
 
 # fast-syntax-highlighting
-source "$ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "$HOME/.zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 # fzf-tab
-source "$ZSH_PLUGINS/fzf-tab/fzf-tab.zsh"
+source "$HOME/.zsh-fzf-tab/fzf-tab.zsh"
 
 # prevent broken terminals by resetting to sane defaults after a command
 ttyctl -f
