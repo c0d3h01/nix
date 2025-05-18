@@ -50,6 +50,8 @@
       less
       findutils
       hub
+      ruby
+      xdg-utils
 
       # Nix Tools
       nix-prefetch-github
