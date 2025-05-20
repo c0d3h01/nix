@@ -34,10 +34,7 @@
 
       # Code editor
       vscode-fhs
-
-      # Development desktop apps
-      postman
-      github-desktop
+      android-studio
 
       # Communication apps
       vesktop
@@ -46,11 +43,14 @@
       element-desktop
 
       # Common desktop apps
+      postman
+      github-desktop
       anydesk
       drawio
       electrum
       blender-hip
-      android-studio
+      gimp
+      graphicsmagick
 
       # Terminal
       kitty
@@ -86,6 +86,8 @@
       ruby
       xdg-utils
       pciutils
+      cheat
+      nixos-shell
 
       # Nix Tools
       nix-prefetch-github
