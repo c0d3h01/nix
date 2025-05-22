@@ -35,7 +35,7 @@
 [user]
   name = Harshal Sawant
   email = harshalsawant.dev@gmail.com
-  signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOGOsLJ8MvzMo4QMjZYUhObxB565LmF+0PWf3RGClCOQ harshalsawant.dev@gmail.com
+  signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7Sz5q/4YN3RJNe+WXXPWvNW+fEfYACYEBJQlxCQ/Bq harshalsawant.dev@gmail.com
 
 [github]
   user = c0d3h01
