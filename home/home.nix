@@ -24,6 +24,7 @@
 
       # Code editor
       vscode-fhs
+      jetbrains.pycharm-community-bin
       android-studio
 
       # Communication apps
@@ -61,7 +62,7 @@
       stow
       zellij
       bat
-      direnv
+      # direnv
       zoxide
       eza
       ripgrep
@@ -91,6 +92,14 @@
       stylua
       hpx
       sqlite
+
+      #gtkextra
+      glade
+      gtk4
+      gtk3
+      gtkmm3
+      gtkmm4
+      gtk-server
 
       # Nix Tools
       nix-prefetch-github
