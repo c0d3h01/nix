@@ -7,7 +7,12 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            "boot" = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+              priority = 1;
+            };
+            "ESP" = {
               name = "nixos-esp";
               type = "EF00";
               size = "1G";
@@ -15,12 +20,11 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
             };
             plainSwap = {
               name = "nixos-swap";
-              size = "4G";
+              size = "8G";
               content = {
                 type = "swap";
                 discardPolicy = "both";
@@ -36,7 +40,7 @@
                   "/@" = {
                     mountpoint = "/";
                     mountOptions = [
-                      "compress=zstd:3"
+                      "compress=zstd:1"
                       "discard=async"
                       "noatime"
                       "ssd"
@@ -45,7 +49,7 @@
                   "/@home" = {
                     mountpoint = "/home";
                     mountOptions = [
-                      "compress=zstd:3"
+                      "compress=zstd:1"
                       "discard=async"
                       "noatime"
                       "ssd"
