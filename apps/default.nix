@@ -15,7 +15,6 @@
   # programs.adb.enable = true;
 
   myModules = {
-    # androidtools.enable = true;
     # docker.enable = true;
     # monitoring.enable = true;
     # mysql.enable = true;
@@ -25,21 +24,24 @@
     rust.enable = true;
   };
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+    dumpcap.enable = true;
+    usbmon.enable = true;
+  };
+
   # Environment packages
   environment.systemPackages =
     let
       Apps = with pkgs; [
         # Browser
-        brave
+        firefox
 
-        # -+ Common Developement tools
+        # Developement tools
         nodejs
         yarn
-
-        # Electron tools
         electron
-
-        # C/C++
         gdb
         glib
         gcc
@@ -48,8 +50,6 @@
         cmake
         ninja
         clang-tools
-
-        # Gtk tools
         pkg-config
       ];
     in

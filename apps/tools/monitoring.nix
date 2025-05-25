@@ -11,7 +11,7 @@
     myModules.monitoring.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
-      description = "Enable hacking, monitoring tools suite";
+      description = "Enable monitoring tools suite";
     };
   };
 
@@ -69,6 +69,5 @@
       openvpn
       proxychains-ng
     ];
-    programs.wireshark.enable = true;
   };
 }

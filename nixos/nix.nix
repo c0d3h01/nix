@@ -7,12 +7,10 @@
 }:
 
 {
-  imports = [
-    ./fhs-compat.nix
-  ];
-
   system.stateVersion = userConfig.stateVersion;
   networking.hostName = userConfig.hostname;
+
+  programs.nix-ld.enable = true;
 
   nixpkgs = {
     overlays = outputs.overlays;
