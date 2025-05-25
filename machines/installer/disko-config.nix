@@ -24,7 +24,7 @@
             };
             plainSwap = {
               name = "nixos-swap";
-              size = "8G";
+              size = "4G";
               content = {
                 type = "swap";
                 discardPolicy = "both";
@@ -48,52 +48,6 @@
                 ];
               };
             };
-            # root = {
-            #   name = "nixos-root";
-            #   size = "100%";
-            #   content = {
-            #     type = "btrfs";
-            #     extraArgs = [ "-f" ];
-            #     subvolumes = {
-            #       "/@" = {
-            #         mountpoint = "/";
-            #         mountOptions = [
-            #           "compress=zstd:1"
-            #           "discard=async"
-            #           "noatime"
-            #           "ssd"
-            #         ];
-            #       };
-            #       "/@home" = {
-            #         mountpoint = "/home";
-            #         mountOptions = [
-            #           "compress=zstd:1"
-            #           "discard=async"
-            #           "noatime"
-            #           "ssd"
-            #         ];
-            #       };
-            #       "/@nix" = {
-            #         mountpoint = "/nix";
-            #         mountOptions = [
-            #           "compress=zstd:1"
-            #           "discard=async"
-            #           "noatime"
-            #           "ssd"
-            #         ];
-            #       };
-            #       "/@log" = {
-            #         mountpoint = "/var/log";
-            #         mountOptions = [
-            #           "compress=zstd:1"
-            #           "discard=async"
-            #           "noatime"
-            #           "ssd"
-            #         ];
-            #       };
-            #     };
-            #   };
-            # };
           };
         };
       };
