@@ -31,3 +31,9 @@ $ sudo nixos-install --flake .#NixOS
 $ stow config
 
 ```
+
+## Home Manager (Other distros)
+
+```bash
+$ home-manager switch --flake .#c0d3h01@NixOS --extra-experimental-features 'nix-command flakes'
+```
