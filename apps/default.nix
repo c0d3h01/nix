@@ -23,9 +23,9 @@
   };
 
   myModules = {
-    # docker.enable = true;
-    # monitoring.enable = true;
-    # mysql.enable = true;
+    docker.enable = true;
+    monitoring.enable = true;
+    mysql.enable = true;
     # podman.enable = true;
     python.enable = true;
     r.enable = true;
@@ -39,21 +39,26 @@
     usbmon.enable = true;
   };
 
-  programs.direnv = {
-    enable = true;
-    silent = true;
-    nix-direnv.enable = true;
-    loadInNixShell = true;
-    enableZshIntegration = true;
-  };
-
   # Environment packages
-  environment.systemPackages =
-    let
-      Apps = with pkgs; [
-        # Browser
-        firefox
-      ];
-    in
-    Apps;
+  environment.systemPackages = with pkgs; [
+    firefox
+    julia
+    ruby
+    go
+    gtk4
+    gtkmm4
+    nodejs
+    yarn
+    electron
+    gdb
+    glib
+    gcc
+    gnumake
+    cmake
+    ninja
+    clang-tools
+    pkg-config
+    jdk24
+    flutter
+  ];
 }
