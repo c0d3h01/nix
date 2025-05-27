@@ -9,8 +9,8 @@
           partitions = {
             ESP = {
               name = "nixos-esp";
-              type = "EF00";
               size = "512M";
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -19,12 +19,19 @@
               };
             };
             root = {
-              name = "nixos-root";
-              size = "100%";
+              name = "root";
+              end = "-0";
               content = {
                 type = "filesystem";
-                format = "ext4";
+                format = "f2fs";
                 mountpoint = "/";
+                extraArgs = [
+                  "-O"
+                  "extra_attr,inode_checksum,sb_checksum,compression"
+                ];
+                mountOptions = [
+                  "compress_algorithm=zstd:6,compress_chksum,atgc,gc_merge,lazytime,nodiscard"
+                ];
               };
             };
           };
