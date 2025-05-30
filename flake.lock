@@ -114,11 +114,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1748576020,
-        "narHash": "sha256-wSUKJP0+TIFiOd3fM9TTV8n4LCk07Fb0bmRzfmROun4=",
+        "lastModified": 1748614414,
+        "narHash": "sha256-Bq3IGui+c7ZsSQRGKWnSZF0s6ehRx/txfR6xX03EfzI=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "c4088f0c73af1c153c743fc006637cc76c1ee127",
+        "rev": "2f88b3bcfa1c44e5204b4ecfd08a7ac7dd526141",
         "type": "github"
       },
       "original": {
@@ -176,40 +176,25 @@
         ]
       },
       "locked": {
-        "lastModified": 1748570847,
-        "narHash": "sha256-XU1a6wFctd+s3ZvBIFB6s4GhPJ+Oc6pkeOrEsbA2fMo=",
+        "lastModified": 1748618795,
+        "narHash": "sha256-XrNoXAbUenzde4NKMsuCYdmW8t+2/Ks+vcFrlwRh4K4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4e9efaa68b0be7e19127dad4f0506a9b89e28ef4",
+        "rev": "214f9bd3a693bbc8cc6d705d01421787e04eaacd",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "nixos-hardware": {
-      "locked": {
-        "lastModified": 1747900541,
-        "narHash": "sha256-dn64Pg9xLETjblwZs9Euu/SsjW80pd6lr5qSiyLY1pg=",
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
-        "rev": "11f2d9ea49c3e964315215d6baa73a8d42672f06",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1748568828,
-        "narHash": "sha256-5O6tAGsPwQyh+0TjqxLRGQ3g0IrF8pTKa8M/W6hwWt0=",
+        "lastModified": 1748619709,
+        "narHash": "sha256-Nuo6fTOqmqDXK9mtBm2DqewV8zuE7uuPMf56A9ReuDY=",
         "ref": "master",
-        "rev": "6bfd7663660ecf5336c1054e9e877824a4f84954",
+        "rev": "bf9f4a1bcf1bc9e17aea91f5e485a8d993fdb1c2",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixpkgs"
@@ -266,7 +251,6 @@
         "flake-utils": "flake-utils",
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
-        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "spicetify-nix": "spicetify-nix",

@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=master";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware";
     systems.url = "github:nix-systems/default";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -78,7 +78,7 @@
         modules = [
           ./machines/c0d3h01
           inputs.disko.nixosModules.disko
-          inputs.nixos-hardware.nixosModules.dell-inspiron-14-5420
+          # inputs.nixos-hardware.nixosModules.dell-inspiron-14-5420
 
           home-manager.nixosModules.home-manager
           {
