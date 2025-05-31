@@ -88,7 +88,7 @@
               extraSpecialArgs = { inherit inputs outputs userConfig; };
               users.${userConfig.username} = {
                 imports = [
-                  ./home/home.nix
+                  ./home-manager/home.nix
                 ];
               };
             };
@@ -102,7 +102,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs userConfig; };
           modules = [
-            ./home/home.nix
+            ./home-manager/home.nix
             { nixpkgs.config.allowUnfree = true; }
           ];
         };

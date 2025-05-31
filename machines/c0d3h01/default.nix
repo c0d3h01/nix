@@ -9,8 +9,7 @@
   imports = [
     ../installer/disko-config.nix
     ./hardware.nix
-    ../../nixos
-    ../../apps
+    ../../nixosModules
     ../../secrets
   ];
 

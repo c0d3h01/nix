@@ -1,5 +1,6 @@
 {
   imports = [
+    ./apps
     ./gnome
     # ./KDE
     ./audio.nix
