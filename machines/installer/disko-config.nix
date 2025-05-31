@@ -8,10 +8,8 @@
           type = "gpt";
           partitions = {
             ESP = {
-              priority = 1;
               name = "nix-esp";
-              start = "1MiB";
-              end = "512M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -31,11 +29,9 @@
                     mountpoint = "/";
                     mountOptions = [
                       "compress=zstd:3"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
-                      "autodefrag"
                       "commit=120"
                     ];
                   };
@@ -43,11 +39,9 @@
                     mountpoint = "/home";
                     mountOptions = [
                       "compress=zstd:3"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
-                      "autodefrag"
                       "commit=120"
                     ];
                   };
@@ -55,7 +49,6 @@
                     mountpoint = "/nix";
                     mountOptions = [
                       "compress=zstd:1"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
@@ -66,7 +59,6 @@
                     mountpoint = "/var/log";
                     mountOptions = [
                       "compress=zstd:6"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
@@ -77,7 +69,6 @@
                     mountpoint = "/tmp";
                     mountOptions = [
                       "compress=no"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
@@ -89,19 +80,11 @@
                     mountpoint = "/var";
                     mountOptions = [
                       "compress=zstd:3"
-                      "discard=async"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
-                      "autodefrag"
                       "commit=300"
                     ];
-                  };
-                  "/@swap" = {
-                    mountpoint = "/swap";
-                    swap = {
-                      swapfile.size = "4G";
-                    };
                   };
                 };
               };
