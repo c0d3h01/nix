@@ -37,7 +37,7 @@
   environment.systemPackages = with pkgs.gnomeExtensions; [
     dash-to-dock
     user-themes
-    blur-my-shell
+    # blur-my-shell
     # open-bar
   ] ++ (with pkgs; [
     gnome-photos
@@ -53,7 +53,7 @@
           # "openbar@neuromorph"
           "dash-to-dock@micxgx.gmail.com"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "blur-my-shell@aunetx"
+          # "blur-my-shell@aunetx"
         ];
       };
 
