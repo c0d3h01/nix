@@ -24,11 +24,17 @@
       hinting.enable = true;
       hinting.style = "slight"; # Options: "none", "slight", "medium", "full"
       subpixel.lcdfilter = "default";
-      subpixel.rgba = "rgb";    # Options: "rgb", "bgr", "vrgb", "vbgr", "none"
+      subpixel.rgba = "rgb"; # Options: "rgb", "bgr", "vrgb", "vbgr", "none"
 
       defaultFonts = {
-        serif = lib.mkForce [ "DejaVu Serif" "Noto Serif" ];
-        sansSerif = lib.mkForce [ "DejaVu Sans" "Noto Sans" ];
+        serif = lib.mkForce [
+          "DejaVu Serif"
+          "Noto Serif"
+        ];
+        sansSerif = lib.mkForce [
+          "DejaVu Sans"
+          "Noto Sans"
+        ];
         monospace = lib.mkForce [ "Hack" ];
         emoji = lib.mkForce [ "Twitter Color Emoji" ];
       };
