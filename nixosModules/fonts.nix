@@ -6,20 +6,19 @@
 
 {
   fonts = {
-    fontDir.enable = true;
-    enableDefaultPackages = false;
-
     packages = with pkgs; [
-      dejavu_fonts
-      hack-font
-      twitter-color-emoji
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-extra
+      noto-fonts-emoji
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      cascadia-code
+      source-sans
+      source-serif
     ];
-
     fontconfig = {
       enable = true;
+
       antialias = true;
       hinting.enable = true;
       hinting.style = "slight"; # Options: "none", "slight", "medium", "full"
@@ -27,16 +26,22 @@
       subpixel.rgba = "rgb"; # Options: "rgb", "bgr", "vrgb", "vbgr", "none"
 
       defaultFonts = {
-        serif = lib.mkForce [
-          "DejaVu Serif"
-          "Noto Serif"
+        serif = [
+          "Source Serif Pro"
+          # "Noto Serif"
         ];
-        sansSerif = lib.mkForce [
-          "DejaVu Sans"
-          "Noto Sans"
+        sansSerif = [
+          "Source Sans Pro"
+          # "Noto Sans"
         ];
-        monospace = lib.mkForce [ "Hack" ];
-        emoji = lib.mkForce [ "Twitter Color Emoji" ];
+        monospace = [
+          # "JetBrainsMono Nerd Font"
+          # "FiraCode Nerd Font"
+          "Cascadia Code Nerd Font"
+        ];
+        emoji = [
+          "Noto Color Emoji"
+        ];
       };
     };
   };
