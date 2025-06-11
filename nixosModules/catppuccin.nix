@@ -9,14 +9,9 @@
 
 let
   theme = {
-    flavor = "mocha"; # Options: "mocha", "macchiato", "frappe", "latte"
-    accent = "mauve"; # Options: "blue", "flamingo", "green", ...
-    size = "compact"; # "standard", "compact"
-    cursor = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
+    flavor = "macchiato"; # Options: "mocha", "macchiato", "frappe", "latte"
+    accent = "mauve"; # Options: "mauve" "blue", "flamingo", "green", ...
+    size = "standard"; # "standard", "compact"
   };
 
   catppuccinGtkTheme = inputs.catppuccin.packages.${pkgs.system}.gtk.override {
@@ -52,13 +47,6 @@ in
         inputs.catppuccin.homeModules.catppuccin
       ];
 
-      # Home-level Catppuccin settings (GUI, shells, etc)
-      catppuccin = {
-        enable = true;
-        flavor = theme.flavor;
-        accent = theme.accent;
-      };
-
       # GTK theming
       gtk = {
         enable = true;
@@ -69,6 +57,11 @@ in
         iconTheme = {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme;
+        };
+        cursorTheme = {
+          name = "Bibata-Modern-Ice";
+          package = pkgs.bibata-cursors;
+          size = 24;
         };
         gtk2.extraConfig = ''
           gtk-application-prefer-dark-theme = 1
@@ -81,38 +74,7 @@ in
         };
       };
 
-      # Cursor (pointer) theme
-      home.pointerCursor = {
-        gtk.enable = true;
-        x11.enable = true;
-        package = theme.cursor.package;
-        name = theme.cursor.name;
-        size = theme.cursor.size;
-      };
-
-      # GNOME/GTK session settings
-      dconf.settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          icon-theme = "Papirus-Dark";
-          cursor-theme = theme.cursor.name;
-          cursor-size = theme.cursor.size;
-        };
-      };
-
       # Catppuccin for terminal emulator
       catppuccin.kitty.enable = true;
-
-      programs.vscode = {
-        enable = true;
-        profiles.default.extensions = with pkgs.vscode-extensions; [
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
-        ];
-        profiles.default.userSettings = {
-          "workbench.colorTheme" = "Catppuccin Mocha";
-          "workbench.iconTheme" = "catppuccin-mocha";
-        };
-      };
     };
 }
