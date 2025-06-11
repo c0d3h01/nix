@@ -18,11 +18,6 @@
     memoryPercent = 180;
   };
 
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
   environment.systemPackages = with pkgs; [
     mesa-demos
   ];
