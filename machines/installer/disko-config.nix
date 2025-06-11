@@ -8,7 +8,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              name = "nix-esp";
+              name = "Nix EFI";
               size = "512M";
               type = "EF00";
               content = {
@@ -19,20 +19,12 @@
               };
             };
             root = {
-              name = "nix-root";
+              name = "Nix root";
               size = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = [
                   "-f"
-                  "-O"
-                  "no-holes"
-                  "-R"
-                  "free-space-tree"
-                  "-s"
-                  "4096"
-                  "-n"
-                  "4096"
                 ];
                 subvolumes = {
                   "/@" = {
@@ -49,7 +41,7 @@
                   "/@home" = {
                     mountpoint = "/home";
                     mountOptions = [
-                      "compress=zstd:3"
+                      "compress=zstd:5"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
@@ -69,16 +61,30 @@
                       "discard=async"
                     ];
                   };
-                  "/@log" = {
-                    mountpoint = "/var/log";
+                  "/@var" = {
+                    mountpoint = "/var";
                     mountOptions = [
-                      "compress=zstd:6"
+                      "compress=zstd:3"
                       "noatime"
                       "ssd"
                       "space_cache=v2"
-                      "commit=300"
+                      "commit=120"
                       "discard=async"
                       "autodefrag"
+                      "ssd_spread"
+                    ];
+                  };
+                  "/@log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = [
+                      "compress=zstd:9"
+                      "noatime"
+                      "ssd"
+                      "space_cache=v2"
+                      "commit=60"
+                      "discard=async"
+                      "autodefrag"
+                      "ssd_spread"
                     ];
                   };
                   "/@tmp" = {
@@ -87,22 +93,9 @@
                       "compress=no"
                       "noatime"
                       "ssd"
-                      "space_cache=v2"
                       "nosuid"
                       "nodev"
                       "discard=async"
-                    ];
-                  };
-                  "/@var" = {
-                    mountpoint = "/var";
-                    mountOptions = [
-                      "compress=zstd:3"
-                      "noatime"
-                      "ssd"
-                      "space_cache=v2"
-                      "commit=300"
-                      "discard=async"
-                      "autodefrag"
                     ];
                   };
                 };
