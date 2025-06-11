@@ -7,7 +7,7 @@
         disable-user-extensions = false;
         enabled-extensions = [
           "gsconnect@andyholmes.github.io"
-          "forge@jmmaranan.com"
+          # "forge@jmmaranan.com"
           "dash-to-dock@micxgx.gmail.com"
         ];
       };

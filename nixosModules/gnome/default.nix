@@ -45,7 +45,7 @@
     with pkgs.gnomeExtensions;
     [
       dash-to-dock
-      forge
+      # forge
     ]
     ++ (with pkgs; [
       gnome-photos
