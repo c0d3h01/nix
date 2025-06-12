@@ -19,22 +19,23 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
-    ghostty.url = "github:ghostty-org/ghostty";
-    ghostty.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    devenv.url = "github:cachix/devenv";
-    devenv.inputs.nixpkgs.follows = "nixpkgs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     vscode-server.inputs.nixpkgs.follows = "nixpkgs";
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     catppuccin.url = "github:catppuccin/nix";
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-utils, home-manager, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      flake-utils,
+      home-manager,
+      ...
+    }:
     let
       declarative = {
         hostname = "devbox";
@@ -49,12 +50,7 @@
         "aarch64-darwin"
       ];
 
-      overlays = [
-        inputs.nur.overlays.default
-        (final: prev: {
-          devenv = inputs.devenv.packages.${final.system or "x86_64-linux"}.devenv;
-        })
-      ];
+      overlays = import ./overlays;
 
       nixpkgsConfig = {
         config = {
@@ -84,8 +80,8 @@
         pkgs = import nixpkgs { inherit system; } // nixpkgsConfig;
       in
       {
+        pkgs = pkgs;
         formatter = pkgs.nixfmt-tree;
-
         checks.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
