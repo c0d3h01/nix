@@ -7,7 +7,9 @@
 
 {
   imports = [
-    # ./devenvShells
     ./devenvShells/flutter.nix
+    ./devenvShells/rust.nix
   ];
+
+  # packages = [ ];
 }
