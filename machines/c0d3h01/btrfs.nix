@@ -11,7 +11,7 @@
     enable = true;
     timerConfig = {
       OnCalendar = "weekly";
-      RandomizedDelaySec = "1h";  # Spread load a bit
+      RandomizedDelaySec = "1h"; # Spread load a bit
       Persistent = true;
     };
     wantedBy = [ "timers.target" ];
