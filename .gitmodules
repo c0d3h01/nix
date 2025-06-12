@@ -31,3 +31,12 @@
 [submodule "gdb/gef"]
 	path = gdb/gef
 	url = https://github.com/hugsy/gef
+[submodule "fish/pure"]
+	path = fish/pure
+	url = https://github.com/pure-fish/pure
+[submodule "fish/fish-async-prompt"]
+	path = fish/fish-async-prompt
+	url = https://github.com/acomagu/fish-async-prompt
+[submodule "fish/autopair.fish"]
+	path = fish/autopair.fish
+	url = https://github.com/jorgebucaran/autopair.fish
