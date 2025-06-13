@@ -62,7 +62,7 @@
       };
 
       machineModule = name: ./machines/${name};
-      homeModule = ./home-manager/home.nix;
+      homeModule = ./homeManager/home.nix;
 
       # Modular devshells import
       devShellModules = {
