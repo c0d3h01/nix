@@ -15,12 +15,6 @@
     ./btrfs.nix
   ];
 
-  age.secrets = {
-    ssh.file = ../../secrets/ssh.age;
-    userPassword.file = ../../secrets/userPassword.age;
-    sshPublicKeys.file = ../../secrets/sshPublicKeys.age;
-  };
-
   documentation.enable = false;
   documentation.nixos.enable = lib.mkForce false;
   documentation.info.enable = false;
@@ -64,10 +58,9 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
-    hashedPasswordFile = config.age.secrets.userPassword.path;
     home = "/home/${declarative.username}";
     openssh.authorizedKeys.keys = [
-      config.age.secrets.sshPublicKeys.path
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG5qPWYOZSxl3Fnsiu3fBCTxQuwGrigSoqHAoMpLGmAC harshalsawant.dev@gmail.com"
     ];
     extraGroups = [
       "networkmanager"
