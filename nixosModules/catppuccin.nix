@@ -71,27 +71,14 @@ in
 
       # Catppuccin configs
       catppuccin = {
-        brave = {
-          enable = true;
-          flavor = theme.flavor;
-        };
-        obs = {
-          enable = true;
-          flavor = theme.flavor;
-        };
-        starship = {
-          enable = true;
-          flavor = theme.flavor;
-        };
-        micro = {
-          enable = true;
-          flavor = theme.flavor;
-          transparent = true;
-        };
-        zellij = {
-          enable = true;
-          flavor = theme.flavor;
-        };
+        # starship = {
+        #   enable = true;
+        #   flavor = theme.flavor;
+        # };
+        # zellij = {
+        #   enable = true;
+        #   flavor = theme.flavor;
+        # };
       };
     };
 }
