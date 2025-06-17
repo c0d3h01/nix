@@ -20,6 +20,9 @@
     enableNixpkgsReleaseCheck = false;
 
     packages = with pkgs; [
+      # Let install Home manager
+      home-manager
+
       # Terminal Utilities
       neovim
       vim
