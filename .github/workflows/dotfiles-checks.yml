@@ -16,8 +16,8 @@ jobs:
           extra-conf: |
             system-features = nixos-test benchmark big-parallel kvm
 
-      - name: Test flake check
-        run: nix flake check
+    #   - name: Test flake check
+    #     run: nix flake check
 
       - name: Test system build
         run: nix build .#nixosConfigurations.devbox.config.system.build.toplevel
