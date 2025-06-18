@@ -12,6 +12,7 @@
     ./hardware.nix
     ../../nixosModules
     ../../secrets
+    ../../sops
     ./btrfs.nix
   ];
 
@@ -59,8 +60,9 @@
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
     home = "/home/${declarative.username}";
+    hashedPasswordFile = config.age.secrets.ssh-key.path;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG5qPWYOZSxl3Fnsiu3fBCTxQuwGrigSoqHAoMpLGmAC harshalsawant.dev@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8va6PxchHjK67XVlCqf8R2Hy7OeSji1Ve6PscBhhY0 harshalsawant.dev@gmail.com"
     ];
     extraGroups = [
       "networkmanager"
