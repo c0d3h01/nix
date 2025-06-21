@@ -2,7 +2,6 @@
   imports = [
     ../pkgs
     ./gnome
-    # ./server
     ./audio.nix
     ./fonts.nix
     # ./libvirt.nix
