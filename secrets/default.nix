@@ -7,17 +7,13 @@
 
 {
   imports = [
-    inputs.agenix.homeManagerModules.default
-  ];
-
-  home.packages = with pkgs; [
-    inputs.agenix.packages.x86_64-linux.default
-    age
+    inputs.agenix.nixosModules.default
   ];
 
   age = {
     identityPaths = [
       "/home/${declarative.username}/.ssh/id_ed25519"
+      "/etc/ssh/ssh_host_ed25519_key"
     ];
 
     secrets = {

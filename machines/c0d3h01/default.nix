@@ -10,6 +10,7 @@
   imports = [
     ../installer
     ../../nixosModules
+    ../../secrets
   ];
 
   documentation.enable = false;

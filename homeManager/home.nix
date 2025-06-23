@@ -9,8 +9,9 @@
 
 {
   imports = [
+    # inputs.agenix.homeManagerModules.default
     ./spicetify.nix
-    ../secrets
+    # ../secrets
   ];
 
   # services.syncthing.enable = true;
@@ -20,15 +21,18 @@
     homeDirectory = "/home/${declarative.username}";
     stateVersion = lib.trivial.release;
     enableNixpkgsReleaseCheck = false;
-    # passwordFile = config.age.secrets.ssh-key.path; #EXAMPLE
 
     packages = with pkgs; [
+
+      # Secrets management tools
+      inputs.agenix.packages.x86_64-linux.default
+      age
+
       # Let install Home manager
       home-manager
 
       # Terminal Utilities
       neovim
-      vim
       tmux
       coreutils
       fastfetch
