@@ -58,28 +58,28 @@
                       "nodiscard"
                     ];
                   };
-                #   "/@log" = {
-                #     mountpoint = "/var/log";
-                #     mountOptions = [
-                #       "compress=zstd:1"
-                #       "ssd"
-                #       "noatime"
-                #       "space_cache=v2"
-                #       "commit=120"
-                #       "nodiscard"
-                #     ];
-                #   };
-                #   "/@tmp" = {
-                #     mountpoint = "/tmp";
-                #     mountOptions = [
-                #       "ssd"
-                #       "noatime"
-                #       "space_cache=v2"
-                #       "nodatacow"
-                #       "commit=120"
-                #       "nodiscard"
-                #     ];
-                #   };
+                  "/@log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "ssd"
+                      "noatime"
+                      "space_cache=v2"
+                      "commit=120"
+                      "nodiscard"
+                    ];
+                  };
+                  "/@tmp" = {
+                    mountpoint = "/tmp";
+                    mountOptions = [
+                      "ssd"
+                      "noatime"
+                      "space_cache=v2"
+                      "nodatacow"
+                      "commit=120"
+                      "nodiscard"
+                    ];
+                  };
                 };
               };
             };
