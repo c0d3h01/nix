@@ -4,7 +4,7 @@
     ./gnome
     ./audio.nix
     ./fonts.nix
-    # ./libvirt.nix
+    ./libvirt.nix
     ./networking.nix
     ./nix.nix
     # ./printing.nix
