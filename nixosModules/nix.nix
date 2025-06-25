@@ -1,13 +1,13 @@
 {
   lib,
-  declarative,
+  userConfig,
   pkgs,
   ...
 }:
 
 {
   system.stateVersion = lib.trivial.release;
-  networking.hostName = declarative.hostname;
+  networking.hostName = userConfig.hostname;
 
   programs.nix-ld.enable = true;
 

@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  declarative,
+  userConfig,
   inputs,
   ...
 }:
@@ -17,8 +17,8 @@
   # services.syncthing.enable = true;
 
   home = {
-    username = declarative.username;
-    homeDirectory = "/home/${declarative.username}";
+    username = userConfig.username;
+    homeDirectory = "/home/${userConfig.username}";
     stateVersion = lib.trivial.release;
     enableNixpkgsReleaseCheck = false;
 

@@ -1,7 +1,7 @@
-{ declarative, pkgs, ... }:
+{ userConfig, pkgs, ... }:
 
 {
-  home-manager.users."${declarative.username}" = {
+  home-manager.users."${userConfig.username}" = {
     dconf.settings = {
       # GNOME Shell extensions
       "org/gnome/shell" = {
@@ -75,8 +75,8 @@
 
       # wallpaper
       # "org/gnome/desktop/background" = {
-      #   picture-uri = "file:///home/${declarative.username}/dotfiles/assets/wallpapers/Space-Nebula.png";
-      #   picture-uri-dark = "file:///home/${declarative.username}/dotfiles/assets/wallpapers/Space-Nebula.png";
+      #   picture-uri = "file:///home/${userConfig.username}/dotfiles/assets/wallpapers/Space-Nebula.png";
+      #   picture-uri-dark = "file:///home/${userConfig.username}/dotfiles/assets/wallpapers/Space-Nebula.png";
       #   picture-options = "zoom";
       # };
     };

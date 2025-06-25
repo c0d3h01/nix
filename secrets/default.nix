@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  declarative,
+  userConfig,
   ...
 }:
 
@@ -12,7 +12,7 @@
 
   age = {
     identityPaths = [
-      "/home/${declarative.username}/.ssh/id_ed25519"
+      "/home/${userConfig.username}/.ssh/id_ed25519"
       "/etc/ssh/ssh_host_ed25519_key"
     ];
 

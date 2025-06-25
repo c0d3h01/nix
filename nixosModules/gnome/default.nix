@@ -1,6 +1,6 @@
 {
   pkgs,
-  declarative,
+  userConfig,
   ...
 }:
 
@@ -37,7 +37,6 @@
       gnome-connections
       gnome-system-monitor
       gnome-user-docs
-      geary
     ];
   };
 

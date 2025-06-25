@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  declarative,
+  userConfig,
   ...
 }:
 
@@ -16,7 +16,7 @@
 
   config = lib.mkIf config.myModules.docker.enable {
 
-    users.users.${declarative.username}.extraGroups = [ "docker" ];
+    users.users.${userConfig.username}.extraGroups = [ "docker" ];
     virtualisation.docker = {
       enable = true;
       enableOnBoot = false;

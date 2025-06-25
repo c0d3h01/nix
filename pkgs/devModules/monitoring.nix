@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  declarative,
+  userConfig,
   lib,
   ...
 }:
