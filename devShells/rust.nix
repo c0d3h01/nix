@@ -12,8 +12,6 @@ pkgs.mkShell {
     clippy
     rust-analyzer
   ];
-  shellHook = ''
-    echo "🦀 Rust development shell."
-    exec zsh
-  '';
+  # shellHook = ''
+  # '';
 }

@@ -9,8 +9,6 @@ pkgs.mkShell {
     maven
     gradle
   ];
-  shellHook = ''
-    echo "☕ Java development shell. Use 'mvn' or 'gradle' as needed."
-    exec zsh
-  '';
+  # shellHook = ''
+  # '';
 }

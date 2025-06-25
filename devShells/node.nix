@@ -10,8 +10,6 @@ pkgs.mkShell {
     eslint
     prettierd
   ];
-  shellHook = ''
-    echo "🟩 Node.js development shell. Use 'npm' or 'yarn' as needed."
-    exec zsh
-  '';
+  # shellHook = ''
+  # '';
 }

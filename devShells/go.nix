@@ -10,8 +10,6 @@ pkgs.mkShell {
     gotools
     golangci-lint
   ];
-  shellHook = ''
-    echo "🐹 Go development shell. Use 'go mod' for dependency management."
-    exec zsh
-  '';
+  # shellHook = ''
+  # '';
 }
