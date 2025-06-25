@@ -13,9 +13,6 @@ update:
 check:
     nix flake check
 
-deve:
-    devenv shell -v
-
 swapon:
     btrfs filesystem mkswapfile --size 4G swapfile
     sudo swapon swapfile
