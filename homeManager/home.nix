@@ -58,7 +58,7 @@
       glances
       cheat # CheatSheet
       tree-sitter
-      devenv
+      # devenv
       just
       pre-commit
       fzf
