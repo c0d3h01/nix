@@ -22,6 +22,7 @@
           uv # Fast package installer and resolver (pip alternative)
           virtualenv
           jupyterlab
+          black
           # sympy          # Symbolic mathematics library
           # pygame         # Game development and multimedia library
           # numpy          # Fundamental package for numerical computations
