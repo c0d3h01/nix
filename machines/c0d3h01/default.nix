@@ -1,4 +1,6 @@
 {
+  inputs,
+  config,
   pkgs,
   userConfig,
   ...
@@ -6,9 +8,10 @@
 
 {
   imports = [
+    # inputs.sops-nix.nixosModules.sops
+
     ../installer.nix
     ../../nixosModules
-    ../../secrets
   ];
 
   time.timeZone = "Asia/Kolkata";
@@ -46,6 +49,22 @@
 
   users.mutableUsers = false;
 
+  # sops.age = {
+  #   keyFile = "/home/c0d3h01/.config/sops/sops-secrets-key.txt";
+  #   sshKeyPaths = [
+  #     "/home/c0d3h01/.ssh/id_ed25519"
+  #   ];
+  # };
+  #
+  # sops.secrets = {
+  #   "passwd" = {
+  #     neededForUsers = true;
+  #     sopsFile = ../../secrets/c0d3h01/passwd.enc;
+  #     path = "/run/secrets/passwd";
+  #     format = "binary";
+  #   };
+  # };
+
   users.users = {
     root = {
       # Allow the user to log in as root without a password.
@@ -58,7 +77,7 @@
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       home = "/home/${userConfig.username}";
-      # hashedPasswordFile = "/run/secrets/${userConfig.username}-passwd";
+      # hashedPasswordFile = config.sops.secrets.passwd.path;
       hashedPassword = "$6$kSA3b9/kB7OH7iC7$vLinn51U1LLTWo1BGIY6JhqKNrzZ7Xj6xOwhbQv4fZRQq99qkZBhqshW/5LjcAJygLH5G2XoK6dfkrwgKycUY0";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSjL8HGjiSAnLHupMZin095bql7A8+UDfc7t9XCZs8l harshalsawant.dev@gmail.com"

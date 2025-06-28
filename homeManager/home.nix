@@ -47,7 +47,10 @@ in
 {
   imports =
     # Sops secret management for homeland
-    [ inputs.sops-nix.homeManagerModules.sops ]
+    [
+      inputs.sops-nix.homeManagerModules.sops
+      ../secrets
+    ]
 
     # Automatically import all modules from homeManager/modules ;)
     ++ (autoImportModules homeManagerModulesPath);
