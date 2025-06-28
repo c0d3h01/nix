@@ -4,10 +4,6 @@
 }:
 
 {
-  imports = [
-    ./devModules
-  ];
-
   # <-- Enable flatpak repo --> :
   # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   # services.flatpak.enable = true;
@@ -16,20 +12,6 @@
   programs.appimage = {
     enable = true;
     binfmt = true;
-  };
-
-  # <-- Coustom modules -->
-  myModules = {
-    # docker.enable = true;
-    go.enable = true;
-    java.enable = true;
-    # monitoring.enable = true;
-    mysql.enable = true;
-    node.enable = true;
-    podman.enable = true;
-    python.enable = true;
-    r.enable = true;
-    rust.enable = true;
   };
 
   programs.wireshark = {
@@ -46,7 +28,7 @@
     firefox
 
     # Notion Enhancer With patches
-    (pkgs.callPackage ./notion-app-enhanced { })
+    (pkgs.callPackage ./_notion-app-enhanced { })
 
     # Terminal
     ghostty
