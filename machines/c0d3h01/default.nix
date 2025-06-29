@@ -8,7 +8,7 @@
 
 {
   imports = [
-    # inputs.sops-nix.nixosModules.sops
+    inputs.sops-nix.nixosModules.sops
 
     ../installer.nix
     ../../nixosModules
@@ -49,21 +49,21 @@
 
   users.mutableUsers = false;
 
-  # sops.age = {
-  #   keyFile = "/home/c0d3h01/.config/sops/sops-secrets-key.txt";
-  #   sshKeyPaths = [
-  #     "/home/c0d3h01/.ssh/id_ed25519"
-  #   ];
-  # };
-  #
-  # sops.secrets = {
-  #   "passwd" = {
-  #     neededForUsers = true;
-  #     sopsFile = ../../secrets/c0d3h01/passwd.enc;
-  #     path = "/run/secrets/passwd";
-  #     format = "binary";
-  #   };
-  # };
+  sops.age = {
+    keyFile = "/home/c0d3h01/.config/sops/age/keys.txt";
+    sshKeyPaths = [
+      "/home/c0d3h01/.ssh/id_ed25519"
+    ];
+  };
+
+  sops.secrets = {
+    "passwd" = {
+      neededForUsers = true;
+      sopsFile = ../../secrets/c0d3h01/passwd.enc;
+      path = "/run/secrets/passwd";
+      format = "binary";
+    };
+  };
 
   users.users = {
     root = {
