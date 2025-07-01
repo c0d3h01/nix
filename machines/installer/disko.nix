@@ -25,6 +25,7 @@
                 mountpoint = "/";
                 mountOptions = [
                   "commit=60"
+                  "noatime"
                   "data=writeback"
                   "journal_async_commit"
                 ];
