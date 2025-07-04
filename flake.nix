@@ -10,6 +10,7 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixgl.url = "github:guibou/nixGL";
 
     sops-nix.url = "github:c0d3h01/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +48,7 @@
           };
           extraSpecialArgs = {
             inherit inputs self userConfig;
+            nixgl = inputs.nixgl;
           };
           modules = [ homeModule ];
         };
