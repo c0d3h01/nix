@@ -29,7 +29,7 @@
                   "/@" = {
                     mountpoint = "/";
                     mountOptions = [
-                      "compress=zstd:3"
+                      "compress=zstd:1"
                       "ssd"
                       "noatime"
                       "space_cache=v2"
@@ -39,7 +39,7 @@
                   "/@home" = {
                     mountpoint = "/home";
                     mountOptions = [
-                      "compress=zstd:3"
+                      "compress=zstd:1"
                       "ssd"
                       "noatime"
                       "space_cache=v2"
