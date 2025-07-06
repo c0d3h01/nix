@@ -2,7 +2,7 @@
   description = "NixOS Flake: WorkSpace";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "git+https://github.com/c0d3h01/nixpkgs?shallow=1&ref=master";
     systems.url = "github:nix-systems/default";
 
     disko.url = "github:nix-community/disko";
