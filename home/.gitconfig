@@ -144,7 +144,7 @@
   helper = store
 
 # sucks with lazygit
-#[commit]
+# [commit]
 #  gpgsign = true
 
 [commit]
