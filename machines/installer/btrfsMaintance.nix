@@ -26,7 +26,7 @@
   systemd.timers."btrfs-balance" = {
     enable = true;
     timerConfig = {
-      OnCalendar = "weekly";
+      OnCalendar = "Sun *-*-* 02:00:00"; # Run Sunday at 2 AM
       RandomizedDelaySec = "1h"; # Spread load a bit
       Persistent = true;
     };
@@ -40,6 +40,7 @@
       IOSchedulingClass = "idle";
       IOSchedulingPriority = 7;
       CPUWeight = 1;
+      ExecStart = "/run/current-system/sw/bin/btrfs balance start -dusage=50 /";
     };
   };
 
