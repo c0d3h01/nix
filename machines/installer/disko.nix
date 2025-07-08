@@ -8,7 +8,6 @@
           type = "gpt";
           partitions = {
             ESP = {
-              label = "nixos-efi";
               size = "512M";
               type = "EF00";
               content = {
@@ -22,7 +21,6 @@
               };
             };
             root = {
-              label = "nixos-root";
               size = "100%";
               content = {
                 type = "btrfs";
@@ -105,6 +103,16 @@
             };
           };
         };
+      };
+      nodev = {
+      "/tmp" = {
+        fsType = "tmpfs";
+        mountOptions = [
+          "defaults"
+          "noatime"
+          "size=1G"
+          "mode=1777"
+        ];
       };
     };
   };
