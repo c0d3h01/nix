@@ -12,13 +12,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # firmware updates
-  services.fwupd.enable = true;
-
   zramSwap = {
     enable = true;
     priority = 100;
-    algorithm = "lzo-rle";
+    algorithm = "lz4";
     memoryPercent = 200;
   };
 
