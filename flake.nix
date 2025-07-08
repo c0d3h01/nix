@@ -30,7 +30,7 @@
     }:
     let
       userConfig = {
-        hostname = "devbox";
+        hostname = "neuro";
         username = "c0d3h01";
         fullName = "Harshal Sawant";
       };
