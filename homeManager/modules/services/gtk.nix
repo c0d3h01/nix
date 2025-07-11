@@ -1,13 +1,16 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
   # GTK theming
   gtk = {
     enable = true;
-    # theme = {
-    #   name = "Catppuccin-Mocha-Dark";
-    #   package = pkgs.catppuccin-gtk;
-    # };
+    theme = {
+      name = "Adwaita-Dark";
+      package = pkgs.gnome-themes-extra;
+    };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
