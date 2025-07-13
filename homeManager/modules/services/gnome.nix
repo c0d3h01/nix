@@ -1,5 +1,4 @@
 {
-  userConfig,
   pkgs,
   ...
 }:

@@ -1,8 +1,5 @@
 {
   lib,
-  inputs,
-  config,
-  pkgs,
   userConfig,
   ...
 }:
@@ -15,8 +12,6 @@ let
 in
 {
   imports = [
-    # inputs.sops-nix.nixosModules.sops
-
     ./hardware.nix
     ../../nixosModules/c0d3h01
   ];
@@ -55,22 +50,6 @@ in
   '';
 
   users.mutableUsers = false;
-
-  # sops.age = {
-  #   keyFile = "/home/c0d3h01/.config/sops/age/keys.txt";
-  #   sshKeyPaths = [
-  #     "/home/c0d3h01/.ssh/id_ed25519"
-  #   ];
-  # };
-
-  # sops.secrets = {
-  #   "passwd" = {
-  #     neededForUsers = true;
-  #     sopsFile = ../../secrets/c0d3h01/passwd.enc;
-  #     path = "/run/secrets/passwd";
-  #     format = "binary";
-  #   };
-  # };
 
   programs.zsh.enable = true;
   security.sudo.execWheelOnly = lib.mkForce false;

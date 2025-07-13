@@ -1,7 +1,6 @@
 {
   lib,
   userConfig,
-  pkgs,
   ...
 }:
 

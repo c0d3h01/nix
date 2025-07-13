@@ -3,7 +3,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf genAttrs;
+  inherit (lib) genAttrs;
 in
 {
   # AppImage support
