@@ -1,5 +1,6 @@
-# nix builds
-result
+# funny macos thing
+.DS_Store
 
-# direnv
-.direnv
+# Ignore nixos build outputs
+result*
+.direnv/
