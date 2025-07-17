@@ -1,12 +1,5 @@
 {
-  inputs,
-  ...
-}:
-
-{
   imports = [
-    inputs.disko.nixosModules.disko
-
     ./disko-btrfs.nix
     ./users.nix
   ];
@@ -48,7 +41,7 @@
       };
 
       bluetooth.enable = true;
-      printing.enable = true;
+      printing.enable = false;
 
       security = {
         fixWebcam = false;

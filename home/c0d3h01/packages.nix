@@ -75,19 +75,5 @@ in
         # aseprite
         ;
     })
-
-    (optionalAttrs (config.programs.hyprland.enable && isLinux) {
-      inherit (pkgs)
-        swappy # used for screenshot area selection
-        wl-gammactl
-        brightnessctl # brightness managed via cli
-        libnotify # needed for some notifications
-        grim
-        slurp
-        wl-clipboard
-        cliphist
-        pwvucontrol
-        ;
-    })
   ];
 }

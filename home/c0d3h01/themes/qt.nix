@@ -15,8 +15,6 @@ in
       style.name = "kvantum";
     };
 
-    # catppuccin.kvantum.apply = true;
-
     home.sessionVariables = {
       # scaling - 1 means no scaling
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";

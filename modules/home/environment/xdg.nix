@@ -60,11 +60,6 @@ let
     // {
       "x-scheme-handler/spotify" = [ "spotify.desktop" ];
       "x-scheme-handler/discord" = [ "Discord.desktop" ];
-      "inode/directory" = [
-        "${
-          if defaults.fileManager == "cosmic-files" then "com.system76.CosmicFiles" else defaults.fileManager
-        }.desktop"
-      ];
     };
 in
 {

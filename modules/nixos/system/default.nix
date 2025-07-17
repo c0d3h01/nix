@@ -1,13 +1,11 @@
 {
   imports = [
-    # keep-sorted start
+    ./disko.nix
     ./command-not-found.nix
     ./earlyoom.nix
     ./firmware.nix
     ./flatpak.nix
-    ./gnome.nix
     ./location.nix
-    ./loginManager.nix
     ./logind.nix
     ./logs.nix
     ./misc.nix
@@ -23,6 +21,5 @@
     ./terminfo.nix
     ./xdg-portals.nix
     ./xserver.nix
-    # keep-sorted end
   ];
 }

@@ -36,11 +36,12 @@ in
 
     fileManager = {
       type = enum [
+        "nautilus"
         "cosmic-files"
         "dolphin"
         "nemo"
       ];
-      default = "cosmic-files";
+      default = "nautilus";
     };
 
     browser = {
@@ -48,13 +49,15 @@ in
         "firefox"
         "chromium"
         "thorium"
+        "barav"
       ];
-      default = "chromium";
+      default = "firefox";
     };
 
     editor = {
       type = enum [
         "nvim"
+        "code"
         "codium"
       ];
       default = "nvim";
@@ -68,36 +71,6 @@ in
     manpager = {
       type = str;
       default = "nvim +Man!";
-    };
-
-    launcher = {
-      type = nullOr (enum [
-        "rofi"
-        "wofi"
-        "cosmic-launcher"
-      ]);
-      default = "rofi";
-    };
-
-    bar = {
-      type = nullOr (enum [
-        "waybar"
-        "ags"
-        "quickshell"
-      ]);
-      default = "ags";
-    };
-
-    screenLocker = {
-      type = nullOr (enum [
-        "swaylock"
-        "gtklock"
-        "cosmic-greeter"
-      ]);
-      default = "gtklock";
-      description = ''
-        The lockscreen module to be loaded by home-manager.
-      '';
     };
 
     noiseSuppressor = {

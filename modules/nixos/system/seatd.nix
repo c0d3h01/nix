@@ -9,7 +9,7 @@ let
 in
 {
   systemd.services.seatd = {
-    enable = config.garden.profiles.graphical.enable && !config.services.desktopManager.cosmic.enable;
+    enable = config.garden.profiles.graphical.enable;
     description = "Seat management daemon";
     script = "${getExe pkgs.seatd} -g wheel";
     serviceConfig = {

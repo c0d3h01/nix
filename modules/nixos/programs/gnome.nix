@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkForce mkEnableOption;
 
   cfg = config.garden.programs.gnome;
 in
@@ -16,10 +16,8 @@ in
 
   config = mkIf cfg.enable {
     services.desktopManager.gnome.enable = true;
-    garden.environment.loginManager = "gdm";
-
-    # Disable gnome initial setup
-    services.gnome.gnome-initial-setup.enable = false;
+    services.displayManager.gdm.enable = true;
+    services.gnome.gnome-remote-desktop.enable = mkForce false;
 
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour

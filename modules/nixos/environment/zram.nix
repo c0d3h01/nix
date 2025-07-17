@@ -6,8 +6,7 @@ in
   # compress half of the ram to use as swap basically, get more memory per memory
   zramSwap = {
     enable = true;
-    algorithm = "lz4";
-
+    algorithm = "lzo-rle";
     # defaults to 50
     memoryPercent = 200;
   };

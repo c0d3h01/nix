@@ -1,12 +1,5 @@
 {
-  inputs,
-  ...
-}:
-
-{
   imports = [
-    inputs.disko.nixosModules.disko
-
     ../c0d3h01/disko-btrfs.nix
     ./users.nix
   ];

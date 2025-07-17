@@ -44,7 +44,7 @@ in
         };
       };
 
-      # enabled by default by cosmic and some other DE's
+      # Conflict
       power-profiles-daemon.enable = false;
     };
   };

@@ -6,7 +6,6 @@
     ./apparmor.nix # apparmor
     ./auditd.nix # auditd
     ./kernel.nix # kernel hardening
-    ./pam.nix # pam configuration
     ./polkit.nix # polkit configuration
     ./sudo.nix # sudo rules and configuration
     # keep-sorted end

@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./catppuccin.nix
     ./evergarden.nix
     ./fonts.nix
     ./global.nix
