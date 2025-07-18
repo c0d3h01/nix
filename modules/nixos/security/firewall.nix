@@ -23,8 +23,9 @@ in
       allowedTCPPorts = [
         443
         8080
+        1716 # gsconnect
       ];
-      allowedUDPPorts = [ ];
+      allowedUDPPorts = [ 1716 ];
 
       allowedTCPPortRanges = [ ];
       allowedUDPPortRanges = [ ];

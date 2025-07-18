@@ -10,8 +10,6 @@ in
   imports = [
     # keep-sorted start
     ./blocker.nix
-    ./fail2ban.nix
-    ./firewall.nix
     ./networkmanager.nix
     ./openssh.nix
     ./optimise.nix
