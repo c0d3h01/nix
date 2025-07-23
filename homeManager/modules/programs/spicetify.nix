@@ -6,12 +6,12 @@
 
 {
   imports = [
-    inputs.spicetify-nix.homeManagerModules.default
+    inputs.spicetify.homeManagerModules.default
   ];
 
   programs.spicetify =
     let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
     {
       enable = true;
@@ -27,6 +27,7 @@
         beautifulLyrics
         goToSong
         history
+        adblock
       ];
     };
 }
