@@ -6,7 +6,7 @@ These are my personal dotfiles, managed with [Nix Flakes](https://nixos.org/manu
 
 ## **Requirements**
 
-* **Nix** (latest stable version).
+* **Nix** (latest stable version) [Reference](https://nixos.org/download/).
   Install Nix using:
 
   ```bash
