@@ -33,6 +33,9 @@
   # Enable sudo for wheel group
   security.sudo.wheelNeedsPassword = false;
 
+  # Run dynamically linked librarys.
+  programs.nix-ld.enable = true;
+
   # Configure X11 only if GUI is enabled
   services.xserver = lib.mkIf userConfig.machine.hasGUI {
     enable = true;
