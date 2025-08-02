@@ -1,9 +1,24 @@
 {
   imports = [
+    ./appImage.nix
     ./audio.nix
     ./automount.nix
+    ./command-not-found.nix
     ./docs.nix
+    ./fhs-compact.nix
+    ./firmware.nix
+    ./flatpak.nix
+    ./graphical.nix
+    ./libvirt.nix
+    ./logind.nix
+    ./logs.nix
+    ./oomd.nix
+    ./pager.nix
     ./power.nix
     ./printing.nix
+    ./scheduler.nix
+    ./touchpad.nix
+    ./xdg-portals.nix
+    ./yubikey.nix
   ];
 }

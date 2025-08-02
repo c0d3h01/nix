@@ -4,7 +4,7 @@
   ...
 }:
 {
-  services = lib.mkIf userConfig.machine.hasGUI {
+  services = lib.mkIf userConfig.machine.workstation {
     printing = {
       enable = true;
       openFirewall = true;
@@ -14,6 +14,7 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
+      nssmdns6 = true;
       openFirewall = true;
     };
   };

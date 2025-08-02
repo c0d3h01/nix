@@ -46,6 +46,7 @@ in
       ++ lib.optionals isIntelSystem [
         intel-media-driver
         intel-vaapi-driver
+        libva-vdpau-driver
       ]
 
       # AMD-specific packages
@@ -58,6 +59,7 @@ in
       # NVIDIA-specific packages
       ++ lib.optionals isNvidiaSystem [
         libva-vdpau-driver
+        nvidia-vaapi-driver
       ];
 
     extraPackages32 =
@@ -68,8 +70,14 @@ in
         libvdpau
         vulkan-loader
       ]
+
+      ++ lib.optionals isNvidiaSystem [
+        nvidia-vaapi-driver
+      ]
+
       ++ lib.optionals isIntelSystem [
         intel-media-driver
+        libva-vdpau-driver
         intel-vaapi-driver
       ];
   };

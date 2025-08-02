@@ -25,23 +25,17 @@
       "audio"
       "video"
     ];
-    shell = pkgs.${userConfig.dev.shell or "bash"};
+    shell = pkgs.${userConfig.dev.shell};
   };
 
   # Enable sudo for wheel group
   security.sudo.wheelNeedsPassword = false;
 
-  # Run dynamically linked librarys.
-  programs.nix-ld.enable = true;
-
-  services.libinput.enable = lib.mkIf (userConfig.machine.type == "laptop") true;
-  services.libinput.touchpad.tapping = lib.mkIf (userConfig.machine.type == "laptop") true;
-
   # Configure X11
-  services.xserver = lib.mkIf userConfig.machine.hasGUI {
+  services.xserver = lib.mkIf userConfig.machine.workstation {
     enable = true;
     xkb = {
-      layout = "us,in";
+      layout = "us";
       variant = ""; # Standard QWERTY
       options = "grp:alt_shift_toggle";
     };

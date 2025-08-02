@@ -1,13 +1,16 @@
 {
+  lib,
   userConfig,
   pkgs,
   ...
 }:
-
+let
+  isMonitoring = lib.mkIf userConfig.dev.monitoring;
+in
 {
   home.packages =
     with pkgs;
-    lib.mkIf (userConfig.hm ? monitoring && userConfig.hm.monitoring) [
+    isMonitoring [
       # Recon & Scanning
       amass # DNS subdomain enumeration
       whois # Domain WHOIS lookup

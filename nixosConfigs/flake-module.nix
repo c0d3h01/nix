@@ -24,6 +24,7 @@ let
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            backupFileExtension = "bak";
             extraSpecialArgs = {
               inherit inputs userConfig hostName;
               inherit (inputs) self;

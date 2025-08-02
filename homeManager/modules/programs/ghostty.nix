@@ -9,7 +9,7 @@ let
   inherit (config.lib.nixGL) wrap;
 in
 {
-  programs.ghostty = lib.mkIf (userConfig.machine ? hasGUI && userConfig.machine.hasGUI) {
+  programs.ghostty = lib.mkIf userConfig.machine.workstation {
     enable = true;
     package = wrap pkgs.ghostty;
     enableZshIntegration = true;
@@ -26,24 +26,24 @@ in
       macos-non-native-fullscreen = "visible-menu";
 
       keybind = [
-        "ctrl+c=copy_to_clipboard"
-        "ctrl+v=paste_from_clipboard"
-        "ctrl+shift+c=copy_to_clipboard"
-        "ctrl+shift+v=paste_from_clipboard"
-        "ctrl+zero=reset_font_size"
-        "ctrl+q=quit"
-        "ctrl+shift+comma=reload_config"
-        "ctrl+k=clear_screen"
-        "ctrl+n=new_window"
-        "ctrl+w=close_surface"
-        "ctrl+shift+w=close_window"
-        "ctrl+t=new_tab"
-        "ctrl+shift+left_bracket=previous_tab"
-        "ctrl+shift+right_bracket=next_tab"
-        "ctrl+d=new_split:right"
-        "ctrl+shift+d=new_split:down"
-        "ctrl+right_bracket=goto_split:next"
-        "ctrl+left_bracket=goto_split:previous"
+        "alt+c=copy_to_clipboard"
+        "alt+v=paste_from_clipboard"
+        "alt+shift+c=copy_to_clipboard"
+        "alt+shift+v=paste_from_clipboard"
+        "alt+zero=reset_font_size"
+        "alt+q=quit"
+        "alt+shift+comma=reload_config"
+        "alt+k=clear_screen"
+        "alt+n=new_window"
+        "alt+w=close_surface"
+        "alt+shift+w=close_window"
+        "alt+t=new_tab"
+        "alt+shift+left_bracket=previous_tab"
+        "alt+shift+right_bracket=next_tab"
+        "alt+d=new_split:right"
+        "alt+shift+d=new_split:down"
+        "alt+right_bracket=goto_split:next"
+        "alt+left_bracket=goto_split:previous"
       ];
     };
   };

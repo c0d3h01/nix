@@ -1,8 +1,11 @@
 keys:
-  - &c0d3h01_laptop age1qnpfvptlyqw6f2n9zr2zmp3cl5hcqw8zz28pvr29kelype54aehsj6nm0c
+  - &admin_harshal C94AADFF16519330791C0F98A2D5F421ECBFED37
+  - &c0d3h01_laptop age1slc5p3prmn8hsldxezvsaz29luuhsjxsj7gspk8p506d4xw9rstqeyy0ls
 
 creation_rules:
   - path_regex: .*
     key_groups:
       - age:
           - *c0d3h01_laptop
+        gpg:
+          - *admin_harshal

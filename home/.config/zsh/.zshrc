@@ -1,9 +1,9 @@
-#! /bin/zsh
+#!/bin/zsh
 
 # Basic exports
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export TERM="ghostty"
+export TERM="xterm-256color"
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
@@ -14,7 +14,6 @@ export DIFFTOOL='icdiff'
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/functions"
 source "$ZDOTDIR/exports"
-source "$ZDOTDIR/nix"
 
 # zsh settings
 export DISABLE_AUTO_TITLE="true"
@@ -22,7 +21,7 @@ export COMPLETION_WAITING_DOTS="false"
 export HIST_STAMPS="dd.mm.yyyy"
 export HISTSIZE=5000
 export SAVEHIST=5000
-export HISTFILE="$HOME/.local/share/zsh/.zsh_history"
+export HISTFILE="$HOME/.zsh_history"
 setopt HIST_IGNORE_SPACE
 setopt appendhistory
 setopt sharehistory
@@ -49,6 +48,7 @@ zstyle ':completion:::::' completer _expand _complete _ignored _approximate # en
 # Tool Initialization
 eval "$(zoxide init zsh --cmd j)"
 eval "$(direnv hook zsh)"
+eval "$(dircolors -b "$ZDOTDIR/dircolors")"
 
 # Starship prompt
 eval "$(starship init zsh)"
@@ -63,7 +63,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-# sourcing plugins & themes
+# sourcing plugins
 source "$ZDOTDIR/.zsh-custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$ZDOTDIR/.zsh-custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 source "$ZDOTDIR/.zsh-custom/plugins/fzf-tab/fzf-tab.plugin.zsh"
@@ -95,16 +95,18 @@ ifsource(){
 ifsource "$HOME/.credentials"
 
 # source dir hashes
-ifsource "$HOME/.local/share/zsh/.zsh_dir_hashes"
+ifsource "$HOME/.zsh_dir_hashes"
 
 # load nix
 ifsource /etc/profile.d/nix.sh
 ifsource "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
+# Local environment
+ifsource "$HOME/.local/bin/env"
+
 # Source fzf
-[ -d "$HOME/.nix-profile/share/fzf" ] &&
-    source "$HOME/.nix-profile/share/fzf/completion.zsh" &&
-    source "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
+ifsource "$HOME/.nix-profile/share/fzf/completion.zsh"
+ifsource "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
 
 # Use vim mode in zsh
 autoload -Uz edit-command-line

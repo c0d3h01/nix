@@ -1,18 +1,20 @@
 #!/bin/sh
 
+ensure_dir() { [ -d "$1" ] || mkdir -p "$1"; }
+
 # rustup and cargo
 export CARGO_HOME="$HOME/.local/share/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source '$HOME/.cargo/env'
 
-# android (FIXED: Removed duplicate and conflicting ANDROID_HOME definitions)
+# android
 export ANDROID_HOME="$HOME/.local/share/android"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 
-# Flutter & Dart (FIXED: Consolidated Flutter paths)
+# Flutter & Dart
 export FLUTTER_HOME="$HOME/.local/share/flutter"
 PATH="$PATH:$FLUTTER_HOME/bin"
 PATH="$PATH:$FLUTTER_HOME/bin/cache/dart-sdk/bin"
@@ -22,7 +24,6 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/.dotnet"
 
 # Path Configuration
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.npm-global/bin" ] && export PATH="$HOME/.npm-global/bin:$PATH"
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
@@ -34,7 +35,7 @@ PATH=$PATH:$GOPATH/bin
 # Homebrew
 PATH=$PATH:/opt/homebrew/bin
 
-# Poetry (FIXED: Typo .loca -> .local)
+# Poetry
 PATH="$HOME/.local/share/poetry/bin:$PATH"
 
 # pyenv
@@ -51,7 +52,7 @@ export PATH=$HOME/.local/cache/gems/bin:$PATH
 # node
 export NVM_DIR="$HOME/.local/cache/nvm"
 
-# deno (FIXED: Changed hardcoded username to $HOME)
+# deno
 export PATH="$HOME/.deno/bin:$PATH"
 
 # Latex (macos)
@@ -63,7 +64,8 @@ PATH=/Library/TeX/texbin:$PATH
 [ -d "/usr/share" ] && XDG_DATA_DIRS="/usr/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS
 
-# PATH (extras) - FIXED: Removed duplicate $HOME/.local/bin and consolidated npm path
+# PATH (extras)
+PATH=$HOME/.local/bin:$PATH
 PATH=$HOME/.local/bin/random:$PATH
 PATH=$HOME/.local/bin/helpers:$PATH
 PATH=$HOME/.local/bin/utils:$PATH
@@ -78,7 +80,6 @@ PATH=$HOME/.local/bin/tmux:$PATH
 PATH=$HOME/.local/bin/ai:$PATH
 export PATH
 
-## =============================================================== :settings
 # add color to man pages  
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)

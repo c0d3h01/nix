@@ -1,6 +1,3 @@
-/.config/alacritty
-/.config/gh
 /.config/ghostty
-/.config/ripgrep
 /.config/starship.toml
 .bashrc

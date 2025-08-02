@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 
 {
   imports = [
@@ -10,7 +7,6 @@
 
   networking.stevenBlackHosts = {
     enable = true;
-
     enableIPv6 = true;
     blockFakenews = true;
     blockGambling = true;

@@ -1,4 +1,4 @@
-theme = Belafonte Night
+theme = catppuccin-mocha
 
 clipboard-read = allow
 clipboard-write = allow
@@ -7,7 +7,7 @@ shell-integration = zsh
 gtk-titlebar = true
 
 font-size = 12
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font
 
 background-opacity = 0.85
 background-blur-radius = 20

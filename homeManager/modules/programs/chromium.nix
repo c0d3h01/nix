@@ -9,7 +9,7 @@ let
   inherit (lib) concatLists concatMapStrings enableFeature;
 in
 {
-  programs.chromium = lib.mkIf (userConfig.machine ? hasGUI && userConfig.machine.hasGUI) {
+  programs.chromium = lib.mkIf userConfig.machine.workstation {
     enable = true;
     extensions = [
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin

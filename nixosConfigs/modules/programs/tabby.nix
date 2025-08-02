@@ -1,7 +1,7 @@
 { userConfig, lib, ... }:
 
 {
-  services.tabby = lib.mkIf (userConfig.dev ? tabby && userConfig.dev.tabby) {
+  services.tabby = lib.mkIf userConfig.dev.tabby {
     enable = true;
     port = 8080;
     acceleration = "rocm"; # or "rocm" for AMD, false for CPU

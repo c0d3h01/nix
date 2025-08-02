@@ -1,7 +1,6 @@
 {
   userConfig,
   lib,
-  pkgs,
   ...
 }:
 
@@ -49,44 +48,42 @@ let
 
 in
 {
-  services.ollama = lib.mkIf (userConfig.dev ? ollama && userConfig.dev.ollama) {
-    enable = true;
+  config = lib.mkIf userConfig.dev.ollama {
+    services.ollama = {
+      enable = true;
 
-    # GPU acceleration
-    inherit (currentGpuConfig) acceleration;
+      # GPU acceleration
+      inherit (currentGpuConfig) acceleration;
 
-    # Network configuration
-    host = "127.0.0.1";
-    port = 11434;
-    openFirewall = true;
+      # Network configuration
+      host = "127.0.0.1";
+      port = 11434;
+      openFirewall = true;
 
-    # Storage configuration
-    home = "/var/lib/ollama";
-    models = "/var/lib/ollama/models";
+      # Storage configuration
+      home = "/var/lib/ollama";
+      models = "/var/lib/ollama/models";
 
-    # Environment variables
-    inherit environmentVariables;
+      # Environment variables
+      inherit environmentVariables;
 
-    # Preload models (commented out by default)
-    loadModels = [
-      # "llama3.2:3b"
-      # "codellama:7b"
-    ];
+      # Preload models (commented out by default)
+      loadModels = [
+        # "llama3.2:3b"
+        # "codellama:7b"
+      ];
+    };
+
+    # Service optimization
+    systemd.services.ollama.serviceConfig = {
+      # Resource limits
+      CPUQuota = "400%";
+      # MemoryMax = "16G";
+      # I/O optimization
+      IOSchedulingClass = 1;
+      IOSchedulingPriority = 4;
+      # Process priority
+      Nice = -5;
+    };
   };
-
-  # Service optimization
-  systemd.services.ollama.serviceConfig =
-    lib.mkIf (userConfig.dev ? ollama && userConfig.dev.ollama)
-      {
-        # Resource limits
-        CPUQuota = "400%";
-        # MemoryMax = "16G";
-
-        # I/O optimization
-        IOSchedulingClass = 1;
-        IOSchedulingPriority = 4;
-
-        # Process priority
-        Nice = -5;
-      };
 }

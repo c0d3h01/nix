@@ -7,7 +7,7 @@
 {
   environment.systemPackages =
     with pkgs;
-    lib.mkIf (userConfig.dev ? phpadmin && userConfig.dev.phpadmin) [
+    lib.mkIf userConfig.dev.phpadmin [
       (callPackage ./config.nix { })
     ];
 }

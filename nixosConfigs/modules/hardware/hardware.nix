@@ -8,8 +8,8 @@
 }:
 let
   # Auto-detect CPU vendor
-  isAMD = userConfig.machine ? cpuType && userConfig.machine.cpuType == "amd";
-  isIntel = userConfig.machine ? cpuType && userConfig.machine.cpuType == "intel";
+  isAMD = userConfig.machine.cpuType == "amd";
+  isIntel = userConfig.machine.cpuType == "intel";
 
   # Auto-detect GPU type (fallback to userConfig)
   gpuType = userConfig.machine.gpuType or "intel";
@@ -53,13 +53,12 @@ let
       "intel_pstate=active"
     ];
 
-  # Auto-detect if laptop (has battery)
-  isLaptop = userConfig.machine ? hasBattery && userConfig.machine.hasBattery;
+  isLaptop = userConfig.machine.type == "laptop";
 
   laptopKernelParams = lib.optionals isLaptop [
     "acpi_backlight=native"
     "pcie_aspm=force" # Power saving for PCIe
-    "processor.max_cstate=2" # Better responsiveness
+    "processor.max_cstate=1" # Better responsiveness
   ];
 in
 {
@@ -70,8 +69,8 @@ in
   # ZRAM configuration
   zramSwap = {
     enable = true;
-    priority = 32767; # Highest priority
-    algorithm = "lz4";
+    priority = 100;
+    algorithm = "lzo-rle";
     memoryPercent = if isLaptop then 200 else 100;
   };
 
@@ -193,15 +192,11 @@ in
   networking.useDHCP = lib.mkDefault true;
 
   # Platform detection
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault userConfig.system;
 
   # CPU microcode updates - dynamic based on CPU type
-  hardware.cpu.amd.updateMicrocode = lib.mkIf isAMD (
-    lib.mkDefault config.hardware.enableRedistributableFirmware
-  );
-  hardware.cpu.intel.updateMicrocode = lib.mkIf isIntel (
-    lib.mkDefault config.hardware.enableRedistributableFirmware
-  );
+  hardware.cpu.amd.updateMicrocode = lib.mkIf isAMD true;
+  hardware.cpu.intel.updateMicrocode = lib.mkIf isIntel true;
 
   # Enable firmware updates
   hardware.enableRedistributableFirmware = lib.mkDefault true;

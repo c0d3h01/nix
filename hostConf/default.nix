@@ -1,41 +1,35 @@
 {
-  # Laptop machine
-  laptop = {
+  c0d3h01 = {
     username = "c0d3h01";
     hostname = "nixos";
     fullName = "Harshal Sawant";
     system = "x86_64-linux";
 
-    hm = {
-      env = true;
-      alacritty = true;
-      chromium = true;
-      monitoring = false;
-    };
-
     machine = {
-      type = "laptop";
-      hasGUI = true;
+      type = "laptop"; # Options = "laptop" | "server"
+      workstation = true; # Proper GUI support & apps
       bootloader = "systemd"; # Options = "systemd" | "grub"
-      gpuType = "amd";
-      hasBattery = true;
+      cpuType = "amd"; # Options = "amd" | "intel"
+      gpuType = "amd"; # Options = "amd" | "nvidia" | "intel"
       gaming = false;
+      wireless-nets = "iwd"; # Options = "iwd" | "wpa_supplicant"
     };
 
     desktop = {
       theme = "dark";
-      windowManager = "gnome";
+      windowManager = "gnome"; # Options = "gnome" | "kde"
     };
 
     dev = {
       ollama = true;
       tabby = false;
       phpadmin = true;
-      wine = false;
-      container = "podman";
-      db = true;
+      wine = false; # WinApps with 32 bit support
+      monitoring = false; # Monitoring grouped tools
+      container = "podman"; # Options = "docker" | "podman"
+      db = true; # Mysql - DBMS
       defaultEditor = "nvim";
-      shell = "zsh";
+      shell = "zsh"; # Options = "bash" | "zsh" | "fish"
       terminalFont = "JetBrains Mono";
     };
   };

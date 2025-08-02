@@ -8,7 +8,7 @@
 {
   home.packages =
     with pkgs;
-    lib.mkIf (userConfig.machine ? hasGUI && userConfig.machine.hasGUI) [
+    lib.mkIf userConfig.machine.workstation [
       (callPackage ./patch { })
     ];
 }

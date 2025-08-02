@@ -10,11 +10,9 @@
   userConfig,
   ...
 }:
-let
-  inherit (lib) mkIf mkEnableOption;
-in
+
 {
-  config = mkIf (userConfig.dev ? db && userConfig.dev.db) {
+  config = lib.mkIf userConfig.dev.db {
     services.mysql = {
       enable = true;
       package = pkgs.mariadb;

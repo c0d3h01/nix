@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf mkEnableOption;
 in
 {
-  config = mkIf (userConfig.dev ? container && userConfig.dev.container == "podman") {
+  config = mkIf (userConfig.dev.container == "podman") {
     users.users.${userConfig.username}.extraGroups = [
       "podman"
       "docker"

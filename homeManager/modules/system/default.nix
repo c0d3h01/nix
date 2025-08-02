@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./secrets.nix
-    # ./ssh.nix
+    ./secrets.nix
+    ./ssh.nix
   ];
 }

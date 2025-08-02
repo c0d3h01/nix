@@ -6,7 +6,6 @@
     ./nix
     ./programs
     ./security
-    ./services
     ./system
     ./users
     ./base.nix

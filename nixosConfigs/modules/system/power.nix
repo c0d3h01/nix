@@ -4,7 +4,7 @@
   ...
 }:
 let
-  isLaptop = userConfig.machine ? hasBattery && userConfig.machine.hasBattery;
+  isLaptop = userConfig.machine.type == "laptop";
 in
 {
   # Performance optimizations
