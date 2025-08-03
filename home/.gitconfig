@@ -21,11 +21,7 @@
     defaultBranch = main
 
 [color]
-    ui = auto
-    branch = auto
-    diff = auto
-    status = auto
-    interactive = auto
+    ui = true
 
 [color "branch"]
     current = yellow reverse
@@ -70,6 +66,7 @@
 [fetch]
     prune = true
     pruneTags = true
+    fsckobjects = true
 
 # Merge configuration
 [merge]
@@ -211,10 +208,6 @@
 [receive]
     fsckObjects = true
 
-[fetch]
-    fsckobjects = true
-
-# HTTP configuration
 [http]
     cookiefile = ~/.gitcookies
     lowSpeedLimit = 0
@@ -225,7 +218,6 @@
     lowSpeedLimit = 0
     lowSpeedTime = 999999
 
-# Advice configuration
 [advice]
     statusHints = false
     detachedHead = false
@@ -233,135 +225,33 @@
     pushUpdateRejected = false
     resolveConflict = false
 
-# Aliases - organized by category
-[alias]
-    # === BASIC OPERATIONS ===
-    a = add
-    aa = add --all
-    ap = add --patch
-    au = add --update
-    
-    s = status --short --branch
+# Aliases
+[alias]     
+    aliases = config --get-regexp alias
+    remotes = remote --verbose
+    contributors = shortlog --summary --numbered
+    clone = clone --recursive
+    update = !git pull && git submodule update --init --recursive
     st = status
-    
-    c = commit
-    ca = commit --amend
-    can = commit --amend --no-edit
-    cm = commit --message
-    cv = commit --verbose
-    
-    co = checkout
-    cob = checkout -b
-    com = checkout main
-    cod = checkout develop
-    
-    # === BRANCHING ===
-    b = branch
-    ba = branch --all
-    bd = branch --delete
-    bD = branch --delete --force
-    bm = branch --move
-    br = branch --remote
-    bs = branch --show-current
-    
-    # === DIFFING ===
-    d = diff
-    dc = diff --cached
-    ds = diff --staged
-    dw = diff --word-diff
+    br = branch --all
     dt = difftool
-    
-    # === LOGGING ===
-    l = log --oneline --decorate --graph
-    la = log --oneline --decorate --graph --all
-    ll = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-    lg = log --color --graph --pretty=format:'%C(bold white)%H %d%Creset%n%s%n%+b%C(bold blue)%an <%ae>%Creset %C(bold green)%cr (%ci)' --abbrev-commit
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    
-    # === REMOTE OPERATIONS ===
+    lg = log --graph --decorate --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --abbrev-commit
     f = fetch --all --prune
-    p = push
     pf = push --force-with-lease
     pu = push --set-upstream origin HEAD
     pl = pull
     pr = pull --rebase
-    
-    # === STASHING ===
     ss = stash save
     sp = stash pop
-    sa = stash apply
     sl = stash list
-    sd = stash drop
-    sc = stash clear
-    
-    # === RESETTING ===
-    r = reset
-    r1 = reset HEAD^
-    r2 = reset HEAD^^
-    rh = reset --hard
-    rh1 = reset HEAD^ --hard
-    rh2 = reset HEAD^^ --hard
-    rs = reset --soft
-    rs1 = reset HEAD^ --soft
-    rs2 = reset HEAD^^ --soft
-    
-    # === REBASING ===
-    rb = rebase
-    rba = rebase --abort
-    rbc = rebase --continue
-    rbi = rebase --interactive
-    rbs = rebase --skip
-    
-    # === MERGING ===
-    m = merge
-    ma = merge --abort
-    mc = merge --continue
-    ms = merge --skip
-    
-    # === CHERRY PICKING ===
     cp = cherry-pick
-    cpa = cherry-pick --abort
-    cpc = cherry-pick --continue
-    
-    # === WORKFLOW ALIASES ===
-    save = !git add -A && git commit -m 'SAVEPOINT'
     wip = !git add -u && git commit -m "WIP"
     undo = reset HEAD~1 --mixed
     amend = commit -a --amend
-    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
-    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-    
-    # === GITHUB/PR WORKFLOWS ===
-    clone = clone --recursive
-    update = !git pull && git submodule update --init --recursive
-    publish = !git push -u origin $(git branch --show-current)
-    unpublish = !git push origin :$(git branch --show-current)
-    
-    # PR aliases
-    pr-checkout = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
-    pr-clean = "!git for-each-ref refs/heads/pr-* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
-    
-    # === INFORMATION ===
-    aliases = config --get-regexp alias
-    remotes = remote --verbose
-    contributors = shortlog --summary --numbered
-    filetrail = log --follow -p -w
-    mergetrail = log --ancestry-path --merges
-    unmerged = diff --name-only --diff-filter=U
-    
-    # === UTILITIES ===
     ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
-    root = rev-parse --show-toplevel
-    exec = "!exec "
-    
-    # === CLEANUP ===
     trim = !git remote prune origin && git gc
-    cleanup = !git clean -df && git stash clear
-    
-    # === ADVANCED ===
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     recent = branch --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)"
+
+[maintenance]
+	repo = /home/c0d3h01/dotfiles
