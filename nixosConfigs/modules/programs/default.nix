@@ -8,5 +8,6 @@
     ./ollama.nix
     ./podman.nix
     ./tabby.nix
+    ./tools.nix
   ];
 }

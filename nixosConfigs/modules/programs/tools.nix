@@ -1,0 +1,28 @@
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    ouch
+    psmisc
+    sipcalc
+    iperf
+    openssl
+    binutils
+    wget
+    lsof
+    tcpdump
+    rsync
+    tig
+    python3
+    zig
+    go
+    strace
+    bandwhich
+    man-pages
+    dnsutils
+    netcat
+    mtr
+    whois
+    usbutils
+    pciutils
+  ];
+}
