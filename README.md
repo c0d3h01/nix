@@ -6,9 +6,6 @@
 
 ## Installation
 
-### User Config
-
-
 ### Apply Home Manager Configuration
 
 ```bash
