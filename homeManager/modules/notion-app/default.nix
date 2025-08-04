@@ -8,7 +8,7 @@
 {
   home.packages =
     with pkgs;
-    lib.mkIf userConfig.machine.workstation [
+    lib.mkIf userConfig.machineConfig.workstation [
       (callPackage ./patch { })
     ];
 }

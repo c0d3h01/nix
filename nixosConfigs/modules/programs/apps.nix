@@ -8,7 +8,7 @@
 {
   # System programs - only enable if GUI is available
 
-  config = lib.mkIf userConfig.machine.workstation {
+  config = lib.mkIf userConfig.machineConfig.workstation {
     # Default browser
     programs.firefox.enable = true;
 
@@ -23,7 +23,7 @@
     environment.systemPackages =
       with pkgs;
       [
-        # Terminal 
+        # Terminal
         ghostty
         neovim # Editor
 
@@ -57,13 +57,13 @@
         # Finance
         electrum # Bitcoin wallet
       ]
-      ++ lib.optionals userConfig.machine.gaming [
+      ++ lib.optionals userConfig.machineConfig.gaming [
         # Gaming (conditional)
         lutris
         heroic
         mangohud
       ]
-      ++ lib.optionals userConfig.dev.wine [
+      ++ lib.optionals userConfig.devStack.wine [
         # Wine for Windows applications
         wineWowPackages.stable
         winetricks

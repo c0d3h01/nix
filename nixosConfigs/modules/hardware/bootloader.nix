@@ -1,8 +1,8 @@
 { lib, userConfig, ... }:
 let
   # Boot loader selection
-  useSystemdBoot = userConfig.machine.bootloader == "systemd";
-  useGrub = userConfig.machine.bootloader == "grub";
+  useSystemdBoot = userConfig.machineConfig.bootloader == "systemd";
+  useGrub = userConfig.machineConfig.bootloader == "grub";
 in
 {
   boot.loader = {

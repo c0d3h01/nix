@@ -6,7 +6,7 @@
   ...
 }:
 {
-  config = lib.mkIf userConfig.machine.workstation {
+  config = lib.mkIf userConfig.machineConfig.workstation {
     programs.obs-studio = {
       enable = true;
 

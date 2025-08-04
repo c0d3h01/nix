@@ -7,7 +7,7 @@
 
   networking.wireless = {
     # wpa_supplicant
-    enable = userConfig.machine.wireless-nets == "wpa_supplicant";
+    enable = userConfig.machineConfig.networking.backend == "wpa_supplicant";
     userControlled.enable = true;
     allowAuxiliaryImperativeNetworks = true;
 
@@ -17,7 +17,7 @@
 
     # iwd
     iwd = {
-      enable = userConfig.machine.wireless-nets == "iwd";
+      enable = userConfig.machineConfig.networking.backend == "iwd";
 
       settings = {
         Settings.AutoConnect = true;

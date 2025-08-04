@@ -6,7 +6,7 @@
 }:
 
 {
-  config = lib.mkIf (userConfig.machine.type == "laptop") {
+  config = lib.mkIf (userConfig.machineConfig.type == "laptop") {
     # Input settings for libinput
     services.libinput = {
       enable = true;

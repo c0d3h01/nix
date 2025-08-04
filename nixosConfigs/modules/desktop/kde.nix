@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf (userConfig.desktop.windowManager == "kde") {
+  config = mkIf (userConfig.desktopEnv.windowManager == "kde") {
     services = {
       desktopManager.plasma6.enable = lib.mkDefault true;
       displayManager.sddm.enable = lib.mkDefault true;

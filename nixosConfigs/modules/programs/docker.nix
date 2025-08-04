@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf (userConfig.dev.container == "docker") {
+  config = mkIf (userConfig.devStack.container == "docker") {
     users.users.${userConfig.username}.extraGroups = [ "docker" ];
 
     # Configure Docker

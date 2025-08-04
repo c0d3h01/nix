@@ -12,7 +12,7 @@
 }:
 
 {
-  config = lib.mkIf userConfig.dev.db {
+  config = lib.mkIf userConfig.devStack.db {
     services.mysql = {
       enable = true;
       package = pkgs.mariadb;

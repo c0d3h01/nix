@@ -8,7 +8,7 @@ let
   inherit (lib) mkIf genAttrs;
 in
 {
-  config = mkIf userConfig.machine.workstation {
+  config = mkIf userConfig.machineConfig.workstation {
     # AppImage support
     programs.appimage = {
       enable = true;

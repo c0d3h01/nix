@@ -3,7 +3,7 @@
   ...
 }:
 let
-  isLaptop = userConfig.machine.type == "laptop";
+  isLaptop = userConfig.machineConfig.type == "laptop";
 in
 {
   # ZRAM configuration

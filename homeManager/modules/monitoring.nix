@@ -5,7 +5,7 @@
   ...
 }:
 let
-  isMonitoring = lib.mkIf userConfig.dev.monitoring;
+  isMonitoring = lib.mkIf userConfig.devStack.monitoring;
 in
 {
   home.packages =

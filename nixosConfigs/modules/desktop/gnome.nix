@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf (userConfig.desktop.windowManager == "gnome") {
+  config = mkIf (userConfig.desktopEnv.windowManager == "gnome") {
 
     services = {
       # GNOME desktop environment configuration

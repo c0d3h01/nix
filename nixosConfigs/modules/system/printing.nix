@@ -4,7 +4,7 @@
   ...
 }:
 {
-  services = lib.mkIf userConfig.machine.workstation {
+  services = lib.mkIf userConfig.machineConfig.workstation {
     printing = {
       enable = true;
       openFirewall = true;

@@ -13,22 +13,22 @@
     fullName = "Harshal Sawant";
     system = "x86_64-linux";
 
-    machine = {
+    machineConfig = {
       type = "laptop"; # Options = "laptop" | "server"
       workstation = true; # Proper GUI support & apps
       bootloader = "systemd"; # Options = "systemd" | "grub"
       cpuType = "amd"; # Options = "amd" | "intel"
       gpuType = "amd"; # Options = "amd" | "nvidia" | "intel"
       gaming = false;
-      wireless-nets = "iwd"; # Options = "iwd" | "wpa_supplicant"
+      networking.backend = "iwd"; # Options = "iwd" | "wpa_supplicant"
     };
 
-    desktop = {
+    desktopEnv = {
       theme = "dark";
       windowManager = "gnome"; # Options = "gnome" | "kde"
     };
 
-    dev = {
+    devStack = {
       ollama = true;
       tabby = false;
       phpadmin = true;

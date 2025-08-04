@@ -8,8 +8,8 @@
 }:
 let
   # Get CPU & GPU types
-  inherit (userConfig.machine) gpuType;
-  inherit (userConfig.machine) cpuType;
+  inherit (userConfig.machineConfig) gpuType;
+  inherit (userConfig.machineConfig) cpuType;
 
   # Dynamic kernel modules based on hardware
   cpuKernelModules =
@@ -45,7 +45,7 @@ let
       "intel_pstate=active"
     ];
 
-  isLaptop = userConfig.machine.type == "laptop";
+  isLaptop = userConfig.machineConfig.type == "laptop";
 
   laptopKernelParams = lib.optionals isLaptop [
     "acpi_backlight=native"

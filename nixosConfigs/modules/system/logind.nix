@@ -6,7 +6,7 @@
 }:
 # https://wiki.debian.org/Suspend#Disable_suspend_and_hibernation
 {
-  config = lib.mkIf (userConfig.machine.type == "server") {
+  config = lib.mkIf (userConfig.machineConfig.type == "server") {
     services.logind = {
       lidSwitch = "ignore";
       lidSwitchDocked = "ignore";

@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf;
-  cfg = userConfig.machine.gpuType;
+  cfg = userConfig.machineConfig.gpuType;
 in
 {
   config = mkIf (cfg == "nvidia") {

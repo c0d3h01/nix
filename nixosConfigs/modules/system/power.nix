@@ -4,7 +4,7 @@
   ...
 }:
 let
-  isLaptop = userConfig.machine.type == "laptop";
+  isLaptop = userConfig.machineConfig.type == "laptop";
 in
 {
   # Performance optimizations

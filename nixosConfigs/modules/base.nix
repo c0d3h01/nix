@@ -5,6 +5,7 @@
   hostName,
   ...
 }:
+
 {
   # Basic system configuration that applies to all machines
 
@@ -17,6 +18,7 @@
   programs.zsh.enable = true;
   # Create the main user
   users.users.${userConfig.username} = {
+    uid = lib.mkDefault 1000;
     isNormalUser = true;
     description = userConfig.fullName;
     shell = "/run/current-system/sw/bin/zsh";
@@ -43,7 +45,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Configure X11
-  services.xserver = lib.mkIf userConfig.machine.workstation {
+  services.xserver = lib.mkIf userConfig.machineConfig.workstation {
     enable = true;
     xkb = {
       layout = "us";
@@ -74,17 +76,4 @@
       LC_TIME = "en_IN";
     };
   };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    (lib.mkIf (userConfig.dev.terminalFont == "JetBrains Mono") jetbrains-mono)
-    (lib.mkIf (userConfig.dev.terminalFont == "Fira Code") fira-code)
-    corefonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    noto-fonts-emoji # emoji fallback
-    liberation_ttf # Common document fonts
-  ];
 }

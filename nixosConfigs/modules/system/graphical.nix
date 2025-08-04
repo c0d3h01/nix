@@ -7,7 +7,7 @@
 }:
 
 {
-  config = lib.mkIf userConfig.machine.workstation {
+  config = lib.mkIf userConfig.machineConfig.workstation {
     programs = {
       dconf.enable = true;
       seahorse.enable = true;

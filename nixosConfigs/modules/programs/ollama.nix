@@ -5,7 +5,7 @@
 }:
 
 let
-  inherit (userConfig.machine) gpuType;
+  inherit (userConfig.machineConfig) gpuType;
 
   # GPU configuration definitions
   gpuConfigs = {
@@ -48,7 +48,7 @@ let
 
 in
 {
-  config = lib.mkIf userConfig.dev.ollama {
+  config = lib.mkIf userConfig.devStack.ollama {
     services.open-webui.enable = true;
 
     services.ollama = {

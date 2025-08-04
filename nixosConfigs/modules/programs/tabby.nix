@@ -1,7 +1,7 @@
 { userConfig, lib, ... }:
 
 {
-  services.tabby = lib.mkIf userConfig.dev.tabby {
+  services.tabby = lib.mkIf userConfig.devStack.tabby {
     enable = true;
     port = 8080;
     acceleration = "rocm"; # "cuda" for nvidia | "rocm" for AMD | false for CPU
