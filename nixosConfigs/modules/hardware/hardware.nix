@@ -15,11 +15,9 @@ let
   cpuKernelModules =
     lib.optionals (cpuType == "amd") [
       "kvm-amd"
-      "amd-pstate"
     ]
     ++ lib.optionals (cpuType == "intel") [
       "kvm-intel"
-      "intel_pstate"
     ];
 
   gpuKernelModules =
