@@ -47,7 +47,7 @@ let
 
   laptopKernelParams = lib.optionals isLaptop [
     "acpi_backlight=native"
-    "pcie_aspm=force" # Power saving for PCIe
+    "pcie_aspm=performance"
     "processor.max_cstate=2" # Better responsiveness
   ];
 in
@@ -55,17 +55,6 @@ in
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  # Hardware sensors service
-  systemd.services.lm-sensors = {
-    description = "Initialize hardware sensors";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.lm_sensors}/bin/sensors-detect --auto";
-      RemainAfterExit = true;
-    };
-  };
 
   # handle ACPI events
   services.acpid.enable = true;
@@ -76,7 +65,7 @@ in
     tmp.cleanOnBoot = true;
 
     # Kernel version
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
 
     kernelModules = [
       "acpi_call"
@@ -98,7 +87,6 @@ in
 
     kernelParams = [
       "nowatchdog"
-      "mitigations=off"
       "splash"
       "quiet"
       "loglevel=3"
@@ -106,7 +94,6 @@ in
       "rd.udev.log_level=3"
       "usbcore.autosuspend=-1"
       "pti=auto"
-      "iommu=pt"
     ]
     ++ cpuKernelParams
     ++ laptopKernelParams;
@@ -143,8 +130,8 @@ in
   };
 
   # Network configuration
-  networking.useDHCP = lib.mkDefault true;
-  networking.dhcpcd.enable = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault false;
+  networking.dhcpcd.enable = lib.mkDefault false;
 
   # Platform detection
   nixpkgs.hostPlatform = lib.mkDefault userConfig.system;
