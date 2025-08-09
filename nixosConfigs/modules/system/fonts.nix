@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   # fonts.packages = with pkgs; [
   #   jetbrains-mono
