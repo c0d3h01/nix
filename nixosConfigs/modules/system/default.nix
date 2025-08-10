@@ -16,10 +16,8 @@
     ./logind.nix
     ./logs.nix
     ./oomd.nix
-    ./pager.nix
     ./power.nix
     ./printing.nix
-    ./ryzen.nix
     ./scheduler.nix
     ./secrets.nix
     ./touchpad.nix

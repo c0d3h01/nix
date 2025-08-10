@@ -28,8 +28,8 @@
         # Development tools
         # android-studio-full
         vscode-fhs
-        jetbrains.webstorm
-        jetbrains.pycharm-community-bin
+        # jetbrains.webstorm
+        # jetbrains.pycharm-community-bin
         postman
         github-desktop
         drawio
@@ -47,7 +47,7 @@
         obsidian
 
         # Media and content creation
-        gimp # Image editing
+        # gimp # Image editing
 
         # System utilities
         anydesk # Remote desktop

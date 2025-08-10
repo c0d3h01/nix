@@ -1,8 +1,8 @@
 {
   imports = [
-    ./checks
-    ./devshell
-    ./formatter
     ./args.nix
+    ./checks.nix
+    ./devshell.nix
+    ./formatter.nix
   ];
 }
