@@ -22,6 +22,7 @@ in
     };
 
     c0d3h01 = {
+      uid = 2004;
       home = "/home/c0d3h01";
       hashedPassword = "$y$j9T$zv/9zYffWILQWXz9xwMaa0$oKN.JemKWm/KA4p.mO3rzSIS.ODD7jQeeG5NbvQ0Wa5";
       openssh.authorizedKeys.keys = [

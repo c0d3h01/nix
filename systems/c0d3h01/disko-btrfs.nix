@@ -8,33 +8,44 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "512M";
+              label = "nixos-boot";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot";
+                mountpoint = "/boot/efi";
                 mountOptions = [
                   "defaults"
                   "umask=0077"
                 ];
               };
             };
+
+            plainSwap = {
+              label = "nixos-swap";
+              size = "12G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                options = [ "discard" ];
+                resumeDevice = true;
+              };
+            };
+
             root = {
+              label = "nixos-root";
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [
-                  "-f"
-                ];
-
+                extraArgs = [ "-f" ];
                 subvolumes = {
                   "/@" = {
                     mountpoint = "/";
                     mountOptions = [
-                      "defaults"
                       "noatime"
-                      "compress=zstd"
+                      "compress=zstd:1"
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -42,9 +53,9 @@
                   "/@home" = {
                     mountpoint = "/home";
                     mountOptions = [
-                      "defaults"
                       "noatime"
-                      "compress=zstd"
+                      "compress=zstd:1"
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -52,9 +63,9 @@
                   "/@nix" = {
                     mountpoint = "/nix";
                     mountOptions = [
-                      "defaults"
                       "noatime"
-                      "compress=zstd"
+                      "compress=zstd:3" # Higher compression
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -62,9 +73,9 @@
                   "/@srv" = {
                     mountpoint = "/srv";
                     mountOptions = [
-                      "defaults"
                       "noatime"
-                      "compress=zstd"
+                      "compress=zstd:1"
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -72,9 +83,9 @@
                   "/@cache" = {
                     mountpoint = "/var/cache";
                     mountOptions = [
-                      "defaults"
-                      "noatime"
-                      "compress=zstd"
+                      "nodatacow"
+                      "nodatasum"
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -82,9 +93,8 @@
                   "/@tmp" = {
                     mountpoint = "/var/tmp";
                     mountOptions = [
-                      "defaults"
-                      "noatime"
-                      "compress=zstd"
+                      "nodatacow"
+                      "ssd"
                       "commit=120"
                     ];
                   };
@@ -92,9 +102,8 @@
                   "/@log" = {
                     mountpoint = "/var/log";
                     mountOptions = [
-                      "defaults"
-                      "noatime"
-                      "compress=zstd"
+                      "nodatacow"
+                      "ssd"
                       "commit=120"
                     ];
                   };
