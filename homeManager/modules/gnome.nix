@@ -8,7 +8,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  programs.gnome-shell = mkIf (userConfig.desktopEnv.windowManager == "gnome") {
+  programs.gnome-shell = mkIf (userConfig.machineConfig.windowManager == "gnome") {
     enable = true;
     extensions = [
       {

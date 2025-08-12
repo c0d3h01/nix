@@ -43,11 +43,6 @@
         electrum
         arduino
       ]
-      ++ lib.optionals userConfig.machineConfig.gaming [
-        lutris
-        heroic
-        mangohud
-      ]
       ++ lib.optionals userConfig.devStack.wine [
         wineWowPackages.stable
         winetricks
