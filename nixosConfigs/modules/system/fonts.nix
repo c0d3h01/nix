@@ -1,36 +1,36 @@
-_:
+{ pkgs, ... }:
+
 {
-  # fonts.packages = with pkgs; [
-  #   jetbrains-mono
-  #   nerd-fonts
-  #   # nerd-fonts-cjk-sans
-  #   # noto-fonts-cjk-serif
-  #   # noto-fonts-color-emoji
-  #   # noto-fonts-emoji # emoji fallback
-  #   # liberation_ttf # Common document fonts
-  # ];
+  fonts = {
+    packages = with pkgs; [
+      # Mono space
+      nerd-fonts.jetbrains-mono
 
-  # fonts = {
-  #   enableDefaultPackages = true;
-  #   packages = with pkgs; [
-  #     ubuntu_font_family
-  #     liberation_ttf
-  #     # Persian Font
-  #     vazir-fonts
-  #   ];
+      # Other regular fonts
+      inter
+      liberation_ttf
 
-  #   fontconfig = {
-  #     defaultFonts = {
-  #       serif = [
-  #         "Liberation Serif"
-  #         "Vazirmatn"
-  #       ];
-  #       sansSerif = [
-  #         "Ubuntu"
-  #         "Vazirmatn"
-  #       ];
-  #       monospace = [ "Ubuntu Mono" ];
-  #     };
-  #   };
-  # };
+      # Emoji & Symbols
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-cjk-sans
+    ];
+
+    fontconfig = {
+      enable = true;
+      antialias = true;
+
+      hinting = {
+        enable = true;
+        style = "slight";
+      };
+
+      defaultFonts = {
+        sansSerif = [ "Inter" ];
+        serif = [ "Liberation Serif" ];
+        monospace = [ "JetBrainsMono Nerd Font" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+    };
+  };
 }

@@ -19,10 +19,11 @@
     gtk = {
       enable = true;
 
-      # font = {
-      #   name = ;
-      #   size = ;
-      # };
+     # Set system UI font
+      font = {
+        name = "Inter";
+        size = 10;
+      };
 
       theme = {
         name = "Adwaita-Dark";

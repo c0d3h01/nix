@@ -5,6 +5,7 @@
     ./automount.nix
     ./base.nix
     ./command-not-found.nix
+    ./console.nix
     ./dbus.nix
     ./diff.nix
     ./docs.nix
