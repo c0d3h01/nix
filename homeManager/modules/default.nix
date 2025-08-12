@@ -1,12 +1,22 @@
 {
   imports = [
-    ./notion-app
+    ./bat.nix
+    ./bottom.nix
+    ./common.nix
     ./direnv.nix
+    ./extractors.nix
+    ./fd.nix
+    ./fzf.nix
+    ./git.nix
     ./gnome.nix
     ./gtk.nix
+    ./jj.nix
     ./monitoring.nix
     ./nix-your-shell.nix
+    ./ripgrep.nix
     ./secrets.nix
     ./spicetify.nix
+    ./zellij.nix
+    ./zoxide.nix
   ];
 }

@@ -6,19 +6,13 @@
 }:
 
 {
-  config = lib.mkIf userConfig.machineConfig.workstation {
-
-    home = {
-      # gtk applications should use xdg specified settings
-      sessionVariables.GTK_USE_PORTAL = "1";
-
-      pointerCursor = {
-        gtk.enable = true;
-        x11.enable = true;
-        name = "Bibata-Modern-Ice";
-        package = pkgs.bibata-cursors;
-        size = 24;
-      };
+  config = {
+    home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 24;
     };
 
     # GTK theming
