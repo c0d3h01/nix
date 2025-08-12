@@ -20,11 +20,11 @@
       cpuType = "amd"; # Options = "amd" | "intel"
       gpuType = "amd"; # Options = "amd" | "nvidia" | "intel"
       gaming = false;
+      networking.wireless = false;
       networking.backend = "iwd"; # Options = "iwd" | "wpa_supplicant"
     };
 
     desktopEnv = {
-      theme = "dark";
       windowManager = "gnome"; # Options = "gnome" | "kde"
     };
 
