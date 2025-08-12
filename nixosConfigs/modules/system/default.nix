@@ -5,13 +5,13 @@
     ./automount.nix
     ./base.nix
     ./command-not-found.nix
+    ./dbus.nix
     ./diff.nix
     ./docs.nix
     ./fhs-compact.nix
     ./firmware.nix
     ./flatpak.nix
     ./fonts.nix
-    ./graphical.nix
     ./libvirt.nix
     ./locale.nix
     ./logind.nix
