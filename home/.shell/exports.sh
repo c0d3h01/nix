@@ -5,7 +5,6 @@ ensure_dir() { [ -d "$1" ] || mkdir -p "$1"; }
 # rustup and cargo
 export CARGO_HOME="$HOME/.local/share/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
-[ -f "$HOME/.cargo/env" ] && source '$HOME/.cargo/env'
 
 # android
 export ANDROID_HOME="$HOME/.local/share/android"
@@ -79,18 +78,6 @@ PATH=$HOME/.local/bin/music:$PATH
 PATH=$HOME/.local/bin/tmux:$PATH
 PATH=$HOME/.local/bin/ai:$PATH
 export PATH
-
-# add color to man pages  
-export MANROFFOPT='-c'
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 8)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
 
 # task spooler
 export TS_MAXFINISHED="13"

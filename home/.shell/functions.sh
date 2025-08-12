@@ -1,10 +1,10 @@
 #!/bin/sh
 
-path() { echo -e "${PATH//:/\\n}" | bat; }
+path() { printf "%s\n" "$PATH" | tr ':' '\n' | bat; }
 
 extract() {
-  local file="$1" dir="${2:-.}"
-  [[ ! -f "$file" ]] && echo "Error: '$file' not valid" >&2 && return 1
+  file="$1" dir="${2:-.}"
+  [ ! -f "$file" ] && echo "Error: '$file' not valid" >&2 && return 1
   case "$file" in
     *.tar.bz2|*.tbz2)  tar -xjf "$file" -C "$dir" ;;
     *.tar.gz|*.tgz)    tar -xzf "$file" -C "$dir" ;;
@@ -21,29 +21,20 @@ extract() {
   esac && echo "Extracted '$file' to '$dir'"
 }
 
-mkcd() { mkdir -p "$1" && cd "$1"; }
+mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
 fcd() {
-  local dir
-  dir=$(fd --type d --hidden --exclude .git | fzf --height 40% --reverse) && cd "$dir"
-}
-
-colors() {
-  for i in {0..255}; do
-    printf "\x1b[38;5;%sm%3d\e[0m " "$i" "$i"
-    (( (i + 1) % 16 == 0 )) && printf "\n"
-  done
+  dir=$(fd --type d --hidden --exclude .git | fzf --height 40% --reverse) && cd "$dir" || return;
 }
 
 make() {
-  local build_path
   build_path="$(dirname "$(upfind "Makefile")")"
   command nice -n19 make -C "${build_path:-.}" -j"$(nproc)" "$@"
 }
 
 # Helper: wrap_command(tool fallback func_name)
 wrap_command() {
-  local tool="$1" fallback="$2" func_name="$3"
+  tool="$1" fallback="$2" func_name="$3"
   if command -v "$tool" >/dev/null 2>&1; then
     eval "${func_name}() {
       if [[ -t 1 && -o interactive ]]; then

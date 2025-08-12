@@ -1,19 +1,14 @@
-#!/bin/zsh
+#!/bin/sh
 
-# Basic exports
 export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LANG="$LC_ALL"
 export TERM="xterm-256color"
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
 export BROWSER='firefox'
 export DIFFTOOL='icdiff'
-
-# Importing source
-source "$ZDOTDIR/aliases"
-source "$ZDOTDIR/functions"
-source "$ZDOTDIR/exports"
+export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 
 # zsh settings
 export DISABLE_AUTO_TITLE="true"
@@ -29,7 +24,6 @@ setopt incappendhistory
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
@@ -48,67 +42,54 @@ zstyle ':completion:::::' completer _expand _complete _ignored _approximate # en
 # Tool Initialization
 eval "$(zoxide init zsh --cmd j)"
 eval "$(direnv hook zsh)"
-eval "$(dircolors -b "$ZDOTDIR/dircolors")"
 
 # Starship prompt
 eval "$(starship init zsh)"
 
-# autocompletions
+# Autocompletions
 autoload -Uz compinit
 zmodload zsh/complist
 compinit
 
-# autosuggestions settings
+# Autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-# sourcing plugins
-source "$ZDOTDIR/.zsh-custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-source "$ZDOTDIR/.zsh-custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-source "$ZDOTDIR/.zsh-custom/plugins/fzf-tab/fzf-tab.plugin.zsh"
-# source "$ZDOTDIR/.zsh-custom/plugins/.zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-# source "$HOME/.zsh-custom/plugins/.zsh-autopair/autopair.zsh"
+# FZF-tab config
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 
-# Pure Prompt
-# fpath+=($HOME/.zsh-pure)
-# # fpath+=("$(brew --prefix)/share/zsh/site-functions") # For Homebrew
-# zstyle :prompt:pure:path color yellow
-# zstyle :prompt:pure:git:branch color yellow
-# zstyle :prompt:pure:user color cyan
-# zstyle :prompt:pure:host color yellow
-# zstyle :prompt:pure:git:branch:cached color red
-# zstyle :prompt:pure:git:stash show yes
-# autoload -U promptinit; promptinit
-# prompt pure
-
-# fzf-tab
-zstyle ':completion:*:git-checkout:*' sort false # disable sorting for git-checkout
-zstyle ':fzf-tab:*' use-fzf-default-opts yes # use fzf default options
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath' # preview for cd
-
-ifsource(){
-    [ -f "$1" ] && source "$1"
-}
+# Helper to source if exists
+ifsource(){ [ -f "$1" ] && source "$1"; }
 
 # Credentials
 ifsource "$HOME/.credentials"
-
-# source dir hashes
 ifsource "$HOME/.zsh_dir_hashes"
 
-# load nix
+# Load nix
 ifsource /etc/profile.d/nix.sh
 ifsource "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # Local environment
 ifsource "$HOME/.local/bin/env"
 
-# Source fzf
-ifsource "$HOME/.nix-profile/share/fzf/completion.zsh"
-ifsource "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
+# Source plugins
+ifsource "$HOME/.shell/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+ifsource "$HOME/.shell/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+ifsource "$HOME/.shell/zsh-completions/zsh-completions.plugin.zsh"
+# FZF - Tab
+ifsource "$HOME/.shell/fzf-tab/fzf-tab.plugin.zsh"
+# FZF
+ifsource "$HOME/.shell/fzf/shell/completion.zsh"
+ifsource "$HOME/.shell/fzf/shell/key-bindings.zsh"
+# Custom
+ifsource "$HOME/.shell/aliases.sh"
+ifsource "$HOME/.shell/exports.sh"
+ifsource "$HOME/.shell/functions.sh"
 
-# Use vim mode in zsh
+# Vim mode
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -v
@@ -117,32 +98,18 @@ bindkey '^N' history-search-forward
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
-bindkey '^H' backward-kill-word # ctrl+bspc
-bindkey '^[^?' backward-kill-word # alt+bspc
-# bindkey '^r' history-incremental-search-backward
+bindkey '^H' backward-kill-word
+bindkey '^[^?' backward-kill-word
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
-bindkey "${terminfo[kcuu1]}" history-search-backward
-bindkey "${terminfo[kcud1]}" history-search-forward
+bindkey "''${terminfo[kcuu1]}" history-search-backward
+bindkey "''${terminfo[kcud1]}" history-search-forward
 export KEYTIMEOUT=1
 
-# setup direnv
+# Setup direnv
 eval "$(direnv hook zsh)"
-
-# ,darkmode quiet # set dark or light mode
-export ZSH_LOADED=1
-
-# Launch Zellij automatically
-# eval "$(zellij setup --generate-auto-start zsh)"
-# if command -v zellij >/dev/null; then
-#   if [[ -z "$ZELLIJ" && -z "$ZELLIJ_SESSION_NAME" && -z "$TMUX" ]]; then
-#     if [[ -z "$SSH_CONNECTION" && $- == *i* ]]; then
-#       exec zellij
-#     fi
-#   fi
-# fi
 
 # Prevent broken terminals by resetting to sane defaults after a command
 ttyctl -f
