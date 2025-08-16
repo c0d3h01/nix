@@ -6,9 +6,11 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.pack.cpp" },
   {
     "zbirenbaum/copilot.lua",
     opts = {

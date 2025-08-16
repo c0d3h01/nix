@@ -8,6 +8,17 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    file_operations = {
+      timeout = 10000, -- default timeout in ms for completing LSP operations
+      operations = {
+        willCreate = true,
+        didCreate = true,
+        willRename = true,
+        didRename = true,
+        willDelete = true,
+        didDelete = true,
+      },
+    },
     -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true, -- enable/disable codelens refresh on start
