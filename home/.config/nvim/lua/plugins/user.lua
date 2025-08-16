@@ -14,31 +14,18 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
-  -- == Examples of Overriding Plugins ==
-
   -- customize dashboard options
-  -- {
-  --   "folke/snacks.nvim",
-  --   opts = {
-  --     dashboard = {
-  --       preset = {
-  --         header = table.concat({
-  --           " █████  ███████ ████████ ██████   ██████ ",
-  --           "██   ██ ██         ██    ██   ██ ██    ██",
-  --           "███████ ███████    ██    ██████  ██    ██",
-  --           "██   ██      ██    ██    ██   ██ ██    ██",
-  --           "██   ██ ███████    ██    ██   ██  ██████ ",
-  --           "",
-  --           "███    ██ ██    ██ ██ ███    ███",
-  --           "████   ██ ██    ██ ██ ████  ████",
-  --           "██ ██  ██ ██    ██ ██ ██ ████ ██",
-  --           "██  ██ ██  ██  ██  ██ ██  ██  ██",
-  --           "██   ████   ████   ██ ██      ██",
-  --         }, "\n"),
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = table.concat({
+          }, "\n"),
+        },
+      },
+    },
+  },
 
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },

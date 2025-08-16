@@ -19,8 +19,8 @@ return {
       null_ls.builtins.completion.spell,
       null_ls.builtins.formatting.gofumpt,
       null_ls.builtins.formatting.goimports,
-      -- null_ls.builtins.diagnostics.golangci_lint,
-      -- null_ls.builtins.code_actions.impl,
+      null_ls.builtins.diagnostics.golangci_lint,
+      null_ls.builtins.code_actions.impl,
       null_ls.builtins.formatting.clang_format,
       null_ls.builtins.formatting.shfmt.with { args = { "-i", "2" } },
     })
