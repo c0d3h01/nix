@@ -69,8 +69,8 @@ in
   # ZRAM configuration
   zramSwap = lib.mkIf isLaptop {
     enable = true;
-    priority = 50;
-    algorithm = "lz4";
+    priority = 100;
+    algorithm = "lzo-rle";
     memoryPercent = 100;
   };
 
