@@ -6,7 +6,7 @@ ifsource(){ [ -f "$1" ] && source "$1"; }
 # rustup and cargo
 # export CARGO_HOME="$HOME/.cargo"
 # export PATH="$CARGO_HOME/bin:$PATH"
-ifsource "$CARGO_HOME/env"
+ifsource "$HOME/.cargo/env"
 
 # android
 export ANDROID_HOME="$HOME/Android"
