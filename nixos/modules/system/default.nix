@@ -19,7 +19,6 @@
     ./logind.nix
     ./logs.nix
     ./oomd.nix
-    ./power.nix
     ./printing.nix
     ./scheduler.nix
     ./seatd.nix
