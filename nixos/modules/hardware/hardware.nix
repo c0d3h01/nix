@@ -99,6 +99,30 @@ in
       "nfs"
     ];
 
+    kernel.sysctl = {
+      # Scheduler tweaks
+      "kernel.sched_autogroup_enabled" = 1;
+
+      # This will conflict with scx maybe!
+      /*
+      "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+      "kernel.sched_latency_ns" = 6000000;  # 6ms
+      "kernel.sched_min_granularity_ns" = 750000;  # 0.75ms
+      "kernel.sched_wakeup_granularity_ns" = 1000000;  # 1ms
+      "kernel.sched_migration_cost_ns" = 250000;  # 0.25ms
+      */
+
+      # File system performance
+      # Increase file descriptor limit
+      "fs.file-max" = 2097152;
+
+      # Memory management
+      "vm.swappiness" = 10;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_ratio" = 10;
+      "vm.dirty_background_ratio" = 2;
+    };
+
     kernelParams = [
       "nowatchdog"
       "splash"
