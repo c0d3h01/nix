@@ -11,8 +11,7 @@
 
     # Drivers will be detected & set itself
     videoDrivers = [
-      "modesetting"
-      "fbdev"
+      "amdgpu"
     ];
   };
 }
