@@ -8,10 +8,11 @@
 let
   inherit (lib) mkIf;
   cfg = userConfig.machineConfig.gpuType;
+  isWorskstaion = userConfig.machineConfig.workstation.enable;
 in
 {
   config = mkIf (cfg == "nvidia") {
-    hardware.graphics = {
+    hardware.graphics = lib.mkIf isWorskstaion {
       enable = true;
 
       extraPackages = with pkgs; [
