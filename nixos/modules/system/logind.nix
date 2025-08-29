@@ -8,9 +8,11 @@
   config = lib.mkIf (userConfig.machineConfig.type == "laptop") {
     # Let logind manage power actions on laptops
     services.logind = {
-      lidSwitch = "suspend-then-hibernate";
-      lidSwitchExternalPower = "suspend-then-hibernate";
-      lidSwitchDocked = "ignore";
+      enable = true;
+      settings.Login = {
+        HandleLidSwitchDocked = "ignore";
+        HandleLidSwitchExternalPower = "suspend-then-hibernate";
+      };
       powerKey = "suspend-then-hibernate";
     };
 

@@ -1,10 +1,9 @@
 {
   imports = [
+    ./media
     ./appImage.nix
-    ./audio.nix
     ./automount.nix
     ./base.nix
-    ./command-not-found.nix
     ./console.nix
     ./dbus.nix
     ./diff.nix
@@ -21,7 +20,6 @@
     ./oomd.nix
     ./printing.nix
     ./scheduler.nix
-    ./seatd.nix
     ./secrets.nix
     ./serial.nix
     ./touchpad.nix
