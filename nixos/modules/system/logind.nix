@@ -8,20 +8,12 @@
   config = lib.mkIf (userConfig.machineConfig.type == "laptop") {
     # Let logind manage power actions on laptops
     services.logind = {
-      enable = true;
       settings.Login = {
+        HandleLidSwitch = "ignore";
         HandleLidSwitchDocked = "ignore";
+        HandlePowerKey = "suspend-then-hibernate";
         HandleLidSwitchExternalPower = "suspend-then-hibernate";
       };
-      powerKey = "suspend-then-hibernate";
     };
-
-    systemd.sleep.extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=yes
-      AllowSuspendThenHibernate=yes
-      AllowHybridSleep=yes
-      HibernateDelaySec=45min
-    '';
   };
 }
