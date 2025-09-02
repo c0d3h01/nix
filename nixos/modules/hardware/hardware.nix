@@ -47,7 +47,6 @@ let
 
   laptopKernelParams = lib.optionals isLaptop [
     "acpi_backlight=native"
-    "pcie_aspm=performance"
     "processor.max_cstate=2" # Better responsiveness
   ];
 in
@@ -70,7 +69,7 @@ in
   zramSwap = lib.mkIf isLaptop {
     enable = true;
     priority = 100;
-    algorithm = "lzo-rle";
+    algorithm = "zstd";
     memoryPercent = 100;
   };
 
@@ -106,8 +105,9 @@ in
       "loglevel=3"
       "udev.log_level=3"
       "rd.udev.log_level=3"
-      "usbcore.autosuspend=-1"
       "pti=auto"
+      "usbcore.autosuspend=-1"
+      "pcie_aspm=performance"
     ]
     ++ cpuKernelParams
     ++ laptopKernelParams;
@@ -158,5 +158,5 @@ in
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   # Intel thermal management
-  services.thermald.enable = lib.mkIf (cpuType == "intel" && lib.mkIf isLaptop) true;
+  services.thermald.enable = lib.mkIf (cpuType == "intel" && isLaptop) true;
 }
