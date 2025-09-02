@@ -12,21 +12,26 @@ let
 in
 {
   config = mkIf (cfg == "amd") {
+
+    # xorg drivers
+    services.xserver.videoDrivers = [ "amdgpu" ];
+
     hardware.graphics = lib.mkIf isWorskstaion {
       enable = true;
 
       extraPackages = with pkgs; [
-        libva
-        libvdpau
-        vulkan-tools
         mesa
+        amdvlk
+        libva-vdpau-driver
+        rocmPackages.clr
+        rocmPackages.clr.icd
       ];
 
       enable32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        libva
-        libvdpau
-        vulkan-loader
+        mesa
+        amdvlk
+        libva-vdpau-driver
       ];
     };
 
@@ -34,15 +39,9 @@ in
     environment.systemPackages = with pkgs; [
       glxinfo
       vulkan-tools
+      vulkan-loader
       libva-utils
       clinfo
-    ];
-
-    boot.kernelParams = [
-      # Support for older GCN GPUs (Southern Islands: SI, CIK)
-      # Only needed if you have pre-2015 AMD GPUs (e.g., HD 7000, R9 200, etc.)
-      "amdgpu.si_support=1"
-      "amdgpu.cik_support=1"
     ];
 
     # Environment variables
