@@ -10,10 +10,11 @@ let
 in
 {
   config = mkIf (userConfig.machineConfig.windowManager == "kde") {
-    services = {
-      desktopManager.plasma6.enable = lib.mkDefault true;
-      displayManager.sddm.enable = lib.mkDefault true;
-    };
+
+    # Plasma desktop environment configuration
+    services.desktopManager.plasma6.enable = true;
+    services.displayManager.sddm.enable = true;
+    xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
 
     # Exclude unwanted KDE packages
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
