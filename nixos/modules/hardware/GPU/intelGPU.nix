@@ -12,13 +12,14 @@ let
 in
 {
   config = mkIf (cfg == "intel") {
+
+    # xorg drivers
+    services.xserver.videoDrivers = [ "modesetting" ];
+
     hardware.graphics = lib.mkIf isWorskstaion {
       enable = true;
 
       extraPackages = with pkgs; [
-        libva
-        libvdpau
-        vulkan-loader
         intel-media-driver
         libva-vdpau-driver
         intel-compute-runtime
@@ -27,9 +28,6 @@ in
 
       enable32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        libva
-        libvdpau
-        vulkan-loader
         intel-media-driver
         libva-vdpau-driver
         intel-compute-runtime
@@ -40,15 +38,10 @@ in
     environment.systemPackages = with pkgs; [
       glxinfo
       vulkan-tools
+      vulkan-loader
       libva-utils
       clinfo
       intel-gpu-tools
-    ];
-
-    boot.kernelParams = [
-      "i915.enable_fbc=1"
-      "i915.enable_psr=1"
-      "i915.enable_guc=3"
     ];
 
     # Environment variables for optimal GPU performance
