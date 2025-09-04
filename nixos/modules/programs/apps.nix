@@ -16,29 +16,27 @@
       usbmon.enable = true;
     };
 
-    environment.systemPackages =
-      with pkgs;
-      [
-        ghostty
-        android-studio
-        vscode-fhs
-        jetbrains.webstorm
-        postman
-        github-desktop
-        drawio
-        slack
-        discord
-        telegram-desktop
-        zoom-us
-        libreoffice
-        obsidian
-        anydesk
-        qbittorrent
-        ledger-live-desktop
-        arduino
-        rpi-imager
-        wineWowPackages.stable
-        winetricks
-      ];
+    environment.systemPackages = with pkgs; [
+      ghostty
+      android-studio
+      vscode-fhs
+      jetbrains.webstorm
+      postman
+      github-desktop
+      drawio
+      slack
+      discord
+      telegram-desktop
+      zoom-us
+      libreoffice
+      obsidian
+      anydesk
+      qbittorrent
+      ledger-live-desktop
+      arduino
+      rpi-imager
+      wineWowPackages.stable
+      winetricks
+    ];
   };
 }

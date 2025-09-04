@@ -63,7 +63,7 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 
 # Helper to source if exists
-ifsource(){ [ -f "$1" ] && source "$1"; }
+ifsource() { [ -f "$1" ] && source "$1"; }
 
 # Credentials
 ifsource "$HOME/.credentials"

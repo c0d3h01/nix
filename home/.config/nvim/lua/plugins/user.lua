@@ -20,8 +20,7 @@ return {
     opts = {
       dashboard = {
         preset = {
-          header = table.concat({
-          }, "\n"),
+          header = table.concat({}, "\n"),
         },
       },
     },
