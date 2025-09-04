@@ -1,7 +1,7 @@
 {
   c0d3h01 = {
     username = "c0d3h01";
-    hostname = "nixos";
+    hostname = "eva";
     fullName = "Harshal Sawant";
     system = "x86_64-linux";
 
