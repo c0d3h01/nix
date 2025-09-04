@@ -14,7 +14,7 @@ let
 in
 {
   programs.starship = {
-    inherit (config.garden.profiles.workstation) enable;
+    enable = true;
 
     settings = {
       add_newline = true;
