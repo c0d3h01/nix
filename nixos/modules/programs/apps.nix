@@ -3,8 +3,7 @@
   lib,
   userConfig,
   ...
-}:
-{
+}: {
   config = lib.mkIf userConfig.machineConfig.workstation.enable {
     programs.wireshark = {
       enable = true;
@@ -16,8 +15,6 @@
     environment.systemPackages = with pkgs; [
       firefox
       ghostty
-      cursor-cli
-      code-cursor-fhs
       android-studio
       vscode-fhs
       jetbrains.webstorm
