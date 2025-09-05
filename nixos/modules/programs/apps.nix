@@ -32,6 +32,8 @@
       obsidian
       anydesk
       qbittorrent
+      element-desktop
+      signal-desktop
       ledger-live-desktop
       arduino
       rpi-imager
