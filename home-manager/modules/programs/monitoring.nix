@@ -4,13 +4,10 @@
   pkgs,
   ...
 }:
-let
-  isMonitoring = lib.mkIf userConfig.devStack.monitoring.enable;
-in
+
 {
-  home.packages =
-    with pkgs;
-    isMonitoring [
+  config = lib.mkIf userConfig.devStack.monitoring.enable {
+    home.packages = with pkgs; [
       # Recon & Scanning
       amass # DNS subdomain enumeration
       whois # Domain WHOIS lookup
@@ -77,4 +74,5 @@ in
       # Other Security Tools
       # deepsecrets  # Find secrets in code
     ];
+  };
 }

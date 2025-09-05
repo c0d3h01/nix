@@ -1,6 +1,8 @@
 {
+  lib,
   pkgs,
   inputs,
+  userConfig,
   ...
 }:
 
@@ -9,7 +11,7 @@
     inputs.spicetify.homeManagerModules.default
   ];
 
-  programs.spicetify =
+  programs.spicetify = lib.mkIf userConfig.devStack.monitoring.enable (
     let
       spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
@@ -29,5 +31,6 @@
         history
         adblock
       ];
-    };
+    }
+  );
 }

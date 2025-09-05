@@ -15,14 +15,14 @@ in
         id = "gsconnect@andyholmes.github.io";
         package = pkgs.gnomeExtensions.gsconnect;
       }
-      # {
-      #   id = "dash-to-dock@micxgx.gmail.com";
-      #   package = pkgs.gnomeExtensions.dash-to-dock;
-      # }
       {
-        id = "dash2dock-lite@icedman.github.com";
-        package = pkgs.gnomeExtensions.dash2dock-lite;
+        id = "dash-to-dock@micxgx.gmail.com";
+        package = pkgs.gnomeExtensions.dash-to-dock;
       }
+      # {
+      #   id = "dash2dock-lite@icedman.github.com";
+      #   package = pkgs.gnomeExtensions.dash2dock-lite;
+      # }
     ];
   };
 
@@ -31,14 +31,14 @@ in
     "org/gnome/settings-daemon/plugins/power" = {
       power-button-action = "interactive";
     };
-    "org/gnome/shell/extensions/dash2dock-lite" = {
-      calendar-icon = true;
-      clock-icon = true;
-      mounted-icon = true;
-      open-app-animation = true;
-      edge-distance = 0.4;
-      running-indicator-style = 1;
-    };
+    # "org/gnome/shell/extensions/dash2dock-lite" = {
+    #   calendar-icon = true;
+    #   clock-icon = true;
+    #   mounted-icon = true;
+    #   open-app-animation = true;
+    #   edge-distance = 0.4;
+    #   running-indicator-style = 1;
+    # };
     # interface
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";

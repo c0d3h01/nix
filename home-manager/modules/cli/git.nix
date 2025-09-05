@@ -18,11 +18,6 @@ let
       "${pkgs.openssh}/bin/ssh-keygen";
 in
 {
-  home = {
-    file.".gitattributes".source = ./gitattributes;
-    file.".gitmessage".source = ./gitmessage;
-  };
-
   programs.git = {
     enable = true;
 
@@ -65,6 +60,11 @@ in
       undo = "reset HEAD~1 --mixed";
       ignore = ''!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/"$@"; }; gi'';
       trim = "!git remote prune origin && git gc";
+      remotes = "remote --verbose";
+      contributors = "shortlog --summary --numbered";
+      clone = "clone --recursive";
+      update = "!git pull && git submodule update --init --recursive";
+      snapshot = "!git stash push -m \"snapshot: $(date)\" && git stash apply stash@{0}";
     };
 
     # Global ignores
@@ -185,7 +185,7 @@ in
       # Commit & Format
       commit = {
         verbose = true;
-        template = "~/.config/git/gitmessage";
+        template = "~/.gitmessage";
       };
       format = {
         signoff = false;

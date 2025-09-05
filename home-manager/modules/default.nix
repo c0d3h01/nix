@@ -1,25 +1,7 @@
 {
   imports = [
-    ./git
-    ./bat.nix
-    ./bottom.nix
-    ./common.nix
-    ./direnv.nix
-    ./extractors.nix
-    ./fastfetch.nix
-    ./fd.nix
-    ./fzf.nix
-    ./gh.nix
-    ./gnome.nix
-    ./gtk.nix
-    ./monitoring.nix
-    ./neovim.nix
-    ./nix-your-shell.nix
-    ./ripgrep.nix
-    ./secrets.nix
-    ./spicetify.nix
-    ./starship.nix
-    ./zellij.nix
-    ./zoxide.nix
+    ./cli
+    ./programs
+    ./system
   ];
 }
