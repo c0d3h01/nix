@@ -1,32 +1,25 @@
-{ lib, config, ... }:
+{ lib, ... }:
 let
-  inherit (lib) concatStrings;
-
-  # TODO: come back and change this a bit
   ss = symbol: style: {
     inherit symbol;
+    inherit style;
     format = "[$symbol ](${style})";
   };
   ssv = symbol: style: {
     inherit symbol;
+    inherit style;
     format = "via [$symbol](${style})";
   };
 in
 {
   programs.starship = {
     enable = true;
-
     settings = {
       add_newline = true;
-      format = concatStrings [
-        "[╭╴](238)$os"
-        "$all[╰─󰁔](237)$character"
-      ];
+      # Explicit order instead of $all
+      format = "[╭╴](238)$os$username$directory$git_branch$git_status$python$nodejs$rust$golang$java$lua$nix_shell$docker_context$container\n[╰─󰁔](237)";
 
-      character = {
-        success_symbol = "";
-        error_symbol = "";
-      };
+      character.disabled = true;
 
       username = {
         style_user = "white";
@@ -42,24 +35,16 @@ in
         read_only_style = "197";
         read_only = "  ";
         format = "at [$path]($style)[$read_only]($read_only_style) ";
-
         substitutions = {
           "󰋞 /Documents" = "󰈙 ";
-          "󰋞 /documents" = "󰈙 ";
-
           "󰋞 /Downloads" = " ";
-          "󰋞 /downloads" = " ";
-
           "󰋞 /media/music" = " ";
           "󰋞 /media/pictures" = " ";
           "󰋞 /media/videos" = " ";
           "󰋞 /Music" = " ";
           "󰋞 /Pictures" = " ";
           "󰋞 /Videos" = " ";
-
           "󰋞 /dev" = "󱌢 ";
-          "󰋞 /Dev" = "󱌢 ";
-
           "󰋞 /skl" = "󰑴 ";
           "󰋞 /.config" = " ";
         };
@@ -68,32 +53,21 @@ in
       os = {
         style = "bold white";
         format = "[$symbol]($style)";
-
         symbols = {
+          NixOS = "";
           Arch = "";
           Artix = "";
-          Debian = "";
-          # Kali = "󰠥";
-          EndeavourOS = "";
           Fedora = "";
-          NixOS = "";
-          openSUSE = "";
-          SUSE = "";
+          Debian = "";
           Ubuntu = "";
-          Raspbian = "";
-          #elementary = "";
-          #Coreos = "";
           Gentoo = "";
-          #mageia = ""
-          CentOS = "";
-          #sabayon = "";
-          #slackware = "";
           Mint = "";
           Alpine = "";
-          #aosc = "";
-          #devuan = "";
           Manjaro = "";
-          #rhel = "";
+          CentOS = "";
+          openSUSE = "";
+          SUSE = "";
+          Raspbian = "";
           Macos = "󰀵";
           Linux = "";
           Windows = "";
@@ -102,15 +76,14 @@ in
 
       container = ss " 󰏖" "yellow dimmed";
       python = ss "" "yellow";
-      nodejs = ss " " "yellow";
-      lua = ss "󰢱 " "blue";
+      nodejs = ss "" "yellow";
+      lua = ss "󰢱" "blue";
       rust = ss "" "red";
-      java = ss " " "red";
-      c = ss " " "blue";
+      java = ss "" "red";
+      c = ss "" "blue";
       golang = ss "" "blue";
-      docker_context = ss " " "blue";
-
-      nix_shell = ssv " " "blue";
+      docker_context = ss "" "blue";
+      nix_shell = ssv "" "blue";
 
       git_branch = {
         symbol = "󰊢 ";
@@ -119,6 +92,7 @@ in
         truncation_symbol = "…/";
         style = "bold green";
       };
+
       git_status = {
         format = "[\\($all_status$ahead_behind\\)]($style) ";
         style = "bold green";
