@@ -99,6 +99,11 @@ in
     extraConfig = {
       init.defaultBranch = "main";
 
+      credential.helper = "store";
+
+      protocol.version = 2;
+      color.ui = "auto";
+
       core = {
         editor = "nvim";
         autocrlf = false;
@@ -106,19 +111,18 @@ in
         whitespace = "space-before-tab,-indent-with-non-tab,trailing-space";
         preloadindex = true;
         untrackedCache = true;
-        fsmonitor = true;
       };
-      color.ui = "auto";
 
       diff = {
         tool = "nvim";
-        algorithm = "patience";
+        algorithm = "histogram";
         renames = "copies";
         mnemonicPrefix = true;
         compactionHeuristic = true;
         colorMoved = "default";
         colorMovedWS = "ignore-space-change";
       };
+
       difftool = {
         prompt = false;
         "nvim".cmd = ''nvim -d "$LOCAL" "$REMOTE"'';
@@ -128,25 +132,25 @@ in
         tool = "nvim";
         conflictStyle = "zdiff3";
         log = true;
-        # ff = "only";  # forbid non-FF merges you initiate
-        verifySignatures = true;
       };
+
       mergetool = {
         keepBackup = false;
         "nvim".cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd w' -c 'wincmd J'";
       };
 
       push = {
-        default = "simple";
+        default = "current";
         autoSetupRemote = true;
         recurseSubmodules = "on-demand";
         followTags = true;
-        useForceIfIncludes = true;
       };
+
       pull = {
-        rebase = true;
+        rebase = "merges";
         autostash = true;
       };
+
       fetch = {
         prune = true;
         pruneTags = true;
@@ -166,6 +170,7 @@ in
         autoSetupRebase = "always";
         sort = "-committerdate";
       };
+
       status = {
         showUntrackedFiles = "all";
         submoduleSummary = true;
@@ -195,6 +200,7 @@ in
         template = "~/.gitmessage";
         status = true;
       };
+
       format = {
         signoff = false;
         pretty = "fuller";
@@ -224,11 +230,7 @@ in
       protocol.file.allow = "user";
       protocol.ext.allow = "never";
 
-      http = {
-        cookiefile = "~/.gitcookies";
-        lowSpeedLimit = 1;
-        lowSpeedTime = 600;
-      };
+      http.cookiefile = "~/.gitcookies";
 
       advice = {
         statusHints = false;
@@ -239,28 +241,16 @@ in
 
       # URL shortcuts
       url = {
-        "git@github.com:" = {
-          insteadOf = [
-            "github:"
-            "gh:"
-            "https://github.com/"
-            "git://github.com/"
-          ];
-        };
-        "git@gist.github.com:" = {
-          insteadOf = [
-            "gist:"
-            "gst:"
-            "https://gist.github.com/"
-            "git://gist.github.com/"
-          ];
-        };
+        "ssh://aur@aur.archlinux.org/".insteadOf = "aur:";
+        "ssh://git@codeberg.org/".insteadOf = "cb:";
+        "ssh://git@ssh.gitlab.freedesktop.org/".insteadOf = "fdo:";
+        "ssh://git@github.com/".insteadOf = "gh:";
+        "ssh://git@gitlab.com/".insteadOf = "gl:";
+        "ssh://git@invent.kde.org/".insteadOf = "kde:";
+        "ssh://git@git.lix.systems/".insteadOf = "lix:";
+        "ssh://git@git.afnix.fr/".insteadOf = "afnix:";
+        "ssh://git@stash.msk.avito.ru:7999/".insteadOf = "avito:";
       };
-
-      credential.helper = [
-        (if isDarwin then "osxkeychain" else "libsecret")
-        ghCredHelper
-      ];
     };
   };
 }
