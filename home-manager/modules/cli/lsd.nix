@@ -8,9 +8,9 @@
       sorting = {
         column = "name";
         natural = true;
-        dirs_first = true;
+        dir_grouping = "first";
       };
-      size = "human";
+      size = "default";
       date = "relative";
       icons.when = "auto";
       color.when = "auto";
