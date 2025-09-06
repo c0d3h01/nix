@@ -2,6 +2,11 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
-    exitShellOnExit = true;
+
+    settings = {
+      pane_frames = false;
+      show_startup_tips = false;
+      theme = "one-half-dark";
+    };
   };
 }
