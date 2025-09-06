@@ -8,8 +8,8 @@
     pager = delta
     autocrlf = false
     safecrlf = true
-    excludesfile = ~/.gitignore
-    attributesfile = ~/.gitattributes
+    excludesfile = ~/.config/git/ignore
+    attributesfile = ~/.config/git/attributes
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
     # Speed up commands involving untracked files such as `git status`
@@ -143,7 +143,7 @@
 # Commit configuration
 [commit]
     verbose = true
-    template = ~/.gitmessage
+    template = ~/.config/git/message
 
 [format]
     signoff = false
@@ -254,6 +254,3 @@
     trim = !git remote prune origin && git gc
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     recent = branch --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)"
-
-[maintenance]
-	repo = /home/c0d3h01/dotfiles
