@@ -6,6 +6,8 @@
   programs.gh = {
     enable = true;
 
+    gitCredentialHelper.enable = true;
+
     # Extensions
     extensions = with pkgs; [
       gh-cal
