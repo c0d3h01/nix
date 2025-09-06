@@ -3,10 +3,10 @@
     enable = true;
     arguments = [
       "--smart-case"
-      "--pretty"
-      "--max-columns=150"
+      "--max-columns=200"
       "--max-columns-preview"
-      "--glob=!.git/*"
+      "--hidden"
+      "--follow"
     ];
   };
 }
