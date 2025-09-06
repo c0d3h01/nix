@@ -1,29 +1,56 @@
--- Customize Mason
+-- Stable Mason configuration
 
 ---@type LazySpec
 return {
-  -- use mason-tool-installer for automatically installing Mason packages
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    -- overrides `require("mason-tool-installer").setup(...)`
     opts = {
-      -- Make sure to use the names found in `:Mason`
+      -- Essential tools for stable operation
       ensure_installed = {
-        -- install language servers
+        -- Language servers
         "lua-language-server",
-        "nil",
+        "pyright",
+        "json-lsp",
+        "yaml-language-server",
+        "bash-language-server",
+        "marksman", -- Markdown LSP
 
-        -- install formatters
-        "stylua",
-        "autoflake",
-        "alejandra",
+        -- Formatters
+        "stylua", -- Lua formatter
+        "prettier", -- JS/TS/JSON/YAML/Markdown formatter
+        "black", -- Python formatter
+        "shfmt", -- Shell formatter
 
-        -- install debuggers
-        "debugpy",
+        -- Diagnostics/Linters (optional, install only if available)
+        -- "shellcheck", -- Uncomment if you want shell linting
+        
+        -- Debug adapters
+        "debugpy", -- Python debugger
 
-        -- install any other package
+        -- Other tools
         "tree-sitter-cli",
       },
+      auto_update = false, -- Disable auto-update for stability
+      run_on_start = true,
+      start_delay = 3000, -- Wait 3 seconds before installing
+    },
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        border = "rounded",
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗"
+        }
+      },
+      install_root_dir = vim.fn.stdpath("data") .. "/mason",
+      pip = {
+        upgrade_pip = false, -- Don't upgrade pip automatically for stability
+      },
+      log_level = vim.log.levels.INFO,
     },
   },
 }

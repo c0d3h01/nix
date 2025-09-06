@@ -5,11 +5,11 @@ return {
     { "b0o/SchemaStore.nvim", version = false },
   },
   opts = function(_, opts)
-    -- Merge feature toggles
+    -- Merge feature toggles - disable problematic features for stability
     opts.features = vim.tbl_deep_extend("force", opts.features or {}, {
-      codelens = false,
-      inlay_hints = false,
-      semantic_tokens = false,
+      codelens = true,
+      inlay_hints = true,
+      semantic_tokens = true, -- Enable but handle safely
     })
 
     -- Formatting settings
@@ -17,61 +17,63 @@ return {
       format_on_save = {
         enabled = true,
         allow_filetypes = {},
-        ignore_filetypes = { "markdown" },
+        ignore_filetypes = { "markdown", "text" },
       },
-      timeout_ms = 1500,
+      timeout_ms = 2000,
+      disabled = { "lua_ls" }, -- Let stylua handle Lua formatting
     })
 
-    -- Ensure a base set of servers (non-destructive)
-    local ensure = {
+    -- Essential servers only for stability
+    opts.servers = {
       "lua_ls",
       "pyright",
-      "ts_ls",
       "jsonls",
-      "bashls",
-      "html",
-      "cssls",
       "yamlls",
+      "bashls",
       "marksman",
-      "dockerls",
-      -- "gopls",
-      -- "clangd",
     }
-    opts.servers = opts.servers or {}
-    local present = {}
-    for _, s in ipairs(opts.servers) do present[s] = true end
-    for _, s in ipairs(ensure) do if not present[s] then table.insert(opts.servers, s) end end
 
-    -- Helper to safely fetch schemastore schemas
+    -- Helper to safely get schemas
     local function get_schemas(kind)
       local ok, schemastore = pcall(require, "schemastore")
       if not ok then return {} end
-      if kind == "json" then
+      if kind == "json" and schemastore.json then
         return schemastore.json.schemas()
-      elseif kind == "yaml" then
+      elseif kind == "yaml" and schemastore.yaml then
         return schemastore.yaml.schemas()
       end
       return {}
     end
 
-    -- Merge per-server config as tables (NO functions)
-    opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
+    -- Safe server configurations
+    opts.config = {
       lua_ls = {
         settings = {
           Lua = {
             completion = { callSnippet = "Replace" },
-            diagnostics = { globals = { "vim" } },
-            workspace = { checkThirdParty = false },
+            diagnostics = { 
+              globals = { "vim" },
+              disable = { "missing-fields" }
+            },
+            workspace = { 
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME,
+                "${3rd}/luv/library",
+              }
+            },
             telemetry = { enable = false },
+            format = { enable = false }, -- Use stylua instead
           },
         },
       },
-      tsserver = { single_file_support = false },
-      gopls = {
+      pyright = {
         settings = {
-          gopls = {
-            analyses = { unusedparams = true },
-            staticcheck = true,
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoImportCompletions = true,
+            },
           },
         },
       },
@@ -87,78 +89,112 @@ return {
         settings = {
           yaml = {
             keyOrdering = false,
-            schemaStore = { enable = false, url = "" }, -- we supply schemas ourselves
+            schemaStore = { 
+              enable = false, 
+              url = "" 
+            },
             schemas = get_schemas("yaml"),
           },
         },
       },
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-    })
+      bashls = {
+        filetypes = { "sh", "bash", "zsh" },
+      },
+    }
 
-    -- Extend mappings instead of replacing
+    -- Safe LSP mappings
     opts.mappings = opts.mappings or {}
     opts.mappings.n = opts.mappings.n or {}
-    opts.mappings.v = opts.mappings.v or {}
 
     local function map_once(mode, lhs, rhs)
       opts.mappings[mode] = opts.mappings[mode] or {}
-      if not opts.mappings[mode][lhs] then opts.mappings[mode][lhs] = rhs end
+      if not opts.mappings[mode][lhs] then 
+        opts.mappings[mode][lhs] = rhs 
+      end
     end
 
+    -- Core LSP mappings
+    map_once("n", "K", { 
+      function() vim.lsp.buf.hover() end, 
+      desc = "LSP Hover" 
+    })
+    map_once("n", "gd", { 
+      function() vim.lsp.buf.definition() end, 
+      desc = "Go to definition" 
+    })
+    map_once("n", "gD", { 
+      function() vim.lsp.buf.declaration() end, 
+      desc = "Go to declaration" 
+    })
+    map_once("n", "gr", { 
+      function() vim.lsp.buf.references() end, 
+      desc = "References" 
+    })
+    map_once("n", "gi", { 
+      function() vim.lsp.buf.implementation() end, 
+      desc = "Go to implementation" 
+    })
+    map_once("n", "<Leader>rn", { 
+      function() vim.lsp.buf.rename() end, 
+      desc = "Rename symbol" 
+    })
+    map_once("n", "<Leader>ca", { 
+      function() vim.lsp.buf.code_action() end, 
+      desc = "Code action" 
+    })
     map_once("n", "<Leader>lf", {
-      function() vim.lsp.buf.format { async = true } end,
-      desc = "LSP Format buffer",
-    })
-    map_once("v", "<Leader>lf", {
-      function() vim.lsp.buf.format { async = true } end,
-      desc = "LSP Format selection",
+      function() 
+        vim.lsp.buf.format({ 
+          async = true,
+          timeout_ms = 2000,
+        }) 
+      end,
+      desc = "Format buffer",
     })
 
-    map_once("n", "K",  { function() vim.lsp.buf.hover() end, desc = "LSP Hover" })
-    map_once("n", "gd", { function() vim.lsp.buf.definition() end, desc = "Go to definition" })
-    map_once("n", "gD", { function() vim.lsp.buf.declaration() end, desc = "Go to declaration", cond = "textDocument/declaration" })
-    map_once("n", "gr", { function() vim.lsp.buf.references() end, desc = "References" })
-    map_once("n", "gi", { function() vim.lsp.buf.implementation() end, desc = "Go to implementation" })
-    map_once("n", "gt", { function() vim.lsp.buf.type_definition() end, desc = "Type definition" })
-    map_once("n", "gl", { function() vim.diagnostic.open_float() end, desc = "Line diagnostics" })
-    map_once("n", "<Leader>rn", { function() vim.lsp.buf.rename() end, desc = "Rename symbol" })
-    map_once("n", "<Leader>ca", { function() vim.lsp.buf.code_action() end, desc = "Code action" })
-
+    -- Safe inlay hints toggle
     map_once("n", "<Leader>uh", {
       function()
-        local ih = vim.lsp.inlay_hint
-        if ih then
-          local enabled = ih.is_enabled and ih.is_enabled(0)
-          ih.enable(not enabled, { 0 })
-          vim.notify("Inlay hints " .. (enabled and "disabled" or "enabled"))
+        if vim.lsp.inlay_hint then
+          local current_state = vim.lsp.inlay_hint.is_enabled(0)
+          vim.lsp.inlay_hint.enable(not current_state, { 0 })
+          vim.notify("Inlay hints " .. (current_state and "disabled" or "enabled"))
+        else
+          vim.notify("Inlay hints not available")
         end
       end,
       desc = "Toggle Inlay Hints",
     })
 
-    map_once("n", "<Leader>uS", {
-      function() require("astrolsp.toggles").buffer_semantic_tokens() end,
-      desc = "Toggle semantic tokens (buffer)",
-      cond = function(client)
-        return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens
-      end,
-    })
-
+    -- Group labels
     if not opts.mappings.n["<Leader>l"] then
       opts.mappings.n["<Leader>l"] = { desc = "LSP" }
     end
-    if not opts.mappings.n["<Leader>f"] then
-      opts.mappings.n["<Leader>f"] = { desc = "Find" }
-    end
 
-    -- on_attach wrapper
+    -- Safe on_attach function
     local previous_on_attach = opts.on_attach
     opts.on_attach = function(client, bufnr)
-      if not opts.features.semantic_tokens and client.server_capabilities.semanticTokensProvider then
-        client.server_capabilities.semanticTokensProvider = nil
+      -- Safely handle semantic tokens
+      if client.server_capabilities.semanticTokensProvider then
+        if not opts.features.semantic_tokens then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
       end
-      vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-      if type(previous_on_attach) == "function" then previous_on_attach(client, bufnr) end
+
+      -- Set buffer options safely
+      local success, _ = pcall(vim.api.nvim_buf_set_option, bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+      if not success then
+        -- Fallback for newer Neovim versions
+        vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+      end
+
+      -- Call previous on_attach if it exists
+      if type(previous_on_attach) == "function" then 
+        local ok, err = pcall(previous_on_attach, client, bufnr)
+        if not ok then
+          vim.notify("Error in previous on_attach: " .. tostring(err), vim.log.levels.WARN)
+        end
+      end
     end
 
     return opts
