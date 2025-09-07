@@ -55,30 +55,9 @@ in
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # handle ACPI events
-  services.acpid.enable = true;
-  hardware.acpilight.enable = true;
-
-  # Scheduled fstrim
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
-  # ZRAM configuration
-  zramSwap = lib.mkIf isLaptop {
-    enable = true;
-    priority = 100;
-    algorithm = "zstd";
-    memoryPercent = 100;
-  };
-
   boot = {
     # Clean tmp dir on boot
     tmp.cleanOnBoot = true;
-
-    # Latest Kernel Version
-    kernelPackages = pkgs.linuxPackages_latest;
 
     kernelModules = [
       "acpi_call"

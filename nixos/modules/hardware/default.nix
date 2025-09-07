@@ -1,8 +1,10 @@
 {
   imports = [
+    ./filesys
     ./GPU
+    ./kernel
+    ./power
     ./bootloader.nix
-    ./btrfs.nix
     ./hardware.nix
   ];
 }

@@ -47,4 +47,10 @@ in
     };
     wantedBy = [ "timers.target" ];
   };
+
+  # Scheduled fstrim
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
 }
