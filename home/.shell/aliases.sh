@@ -21,9 +21,6 @@ alias ip='ip -color=auto'
 alias diff='diff --color=auto'
 alias find='fd'
 alias mkdir='mkdir -pv'
-alias ping='ping -c 5'
-alias wget='wget -c'
-alias ports='ss -tulpn'
 
 # Safety net
 alias rm='rm -Iv --one-file-system'
