@@ -1,11 +1,11 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  
+
   -- Core language packs
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.python" },
-  
+
   {
     import = "astrocommunity.colorscheme.catppuccin",
     enabled = true,
@@ -14,7 +14,7 @@ return {
     import = "astrocommunity.completion.copilot-lua",
     enabled = true,
   },
-  
+
   -- Copilot configuration with safe defaults
   {
     "zbirenbaum/copilot.lua",
