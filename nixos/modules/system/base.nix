@@ -4,7 +4,9 @@
   hostName,
   ...
 }:
-
+let
+  inherit (lib) mkDefault;
+in
 {
   # Set hostname
   networking.hostName = userConfig.hostname;
@@ -20,7 +22,7 @@
 
   # Create the main user
   users.users.${userConfig.username} = {
-    uid = lib.mkDefault 1000;
+    uid = mkDefault 1000;
     isNormalUser = true;
     description = userConfig.fullName;
     shell = "/run/current-system/sw/bin/zsh";
@@ -35,8 +37,6 @@
       "render"
       "input"
       "plugdev"
-      "lp"
-      "tss"
       "power"
       "wireshark"
       "mysql"
