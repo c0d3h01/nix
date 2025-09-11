@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (lib) mkForce;
   cfg = userConfig.machineConfig.networking;
 in
 {
@@ -20,7 +21,7 @@ in
       # macAddress = "random";
 
       # Powersaving mode - Disabled
-      powersave = lib.mkForce false;
+      powersave = mkForce false;
 
       # MAC address randomization of a Wi-Fi device during scanning
       scanRandMacAddress = false;
