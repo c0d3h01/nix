@@ -36,7 +36,6 @@
       arduino
       rpi-imager
       wineWowPackages.stableFull
-      winetricks
     ];
   };
 }
