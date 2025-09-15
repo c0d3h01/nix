@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     mold
     sccache
+    openjdk17
     lld
     ouch
     psmisc
