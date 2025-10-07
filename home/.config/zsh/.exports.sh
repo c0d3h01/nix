@@ -45,6 +45,9 @@ if [[ -d "$PYENV_ROOT" ]]; then
     eval "$(pyenv init --path 2>/dev/null)"
 fi
 
+# Nix
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
 # Node (lazy loaded)
 export NVM_DIR="$HOME/.local/nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && nvm() {
@@ -55,15 +58,7 @@ export NVM_DIR="$HOME/.local/nvm"
 }
 
 # Other tools
-add_to_path "$HOME/.deno/bin"
-add_to_path "$HOME/.dotnet"
 add_to_path "$HOME/.local/share/solana/install/active_release/bin"
-
-# Nix
-if [[ -d "$HOME/.nix-profile" ]]; then
-    add_to_path "$HOME/.nix-profile/bin"
-    export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share"
-fi
 
 # Local bins
 add_to_path "$HOME/.local/bin"
@@ -75,8 +70,8 @@ add_to_path "$HOME/bin"
 
 # Tool configs
 export TS_MAXFINISHED=13
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
-export FZF_DEFAULT_OPTS='-0 --prompt=" " --inline-info --reverse --height "40%" --color fg:-1,hl:4,fg+:1,bg+:-1,hl+:4,info:108,prompt:242,spinner:108,pointer:1,marker:168'
+# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
+# export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 export DOCKER_BUILDKIT=1
 export DELVE_EDITOR=",emacs-no-wait"
 export AIDER_GITIGNORE=false

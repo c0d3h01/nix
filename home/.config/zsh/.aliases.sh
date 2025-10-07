@@ -8,18 +8,18 @@ alias -- -='cd -'
 
 # ls/lsd
 if command -v lsd &>/dev/null; then
-    alias ls='lsd --group-dirs=first --color=auto'
-    alias l='lsd -l --group-dirs=first --color=auto'
-    alias ll='lsd -lA --header --classify --size=short --group-dirs=first --date="+%Y-%m-%d %H:%M" --color=auto'
-    alias la='lsd -A --group-dirs=first --color=auto'
-    alias lt='lsd --tree --depth=2 --group-dirs=first --color=auto'
-    alias lta='lsd --tree --depth=2 -A --group-dirs=first --color=auto'
-    alias tree='lsd --tree --color=auto'
+  alias ls='lsd --group-dirs=first --color=auto'
+  alias l='lsd -l --group-dirs=first --color=auto'
+  alias ll='lsd -lA --header --classify --size=short --group-dirs=first --date="+%Y-%m-%d %H:%M" --color=auto'
+  alias la='lsd -A --group-dirs=first --color=auto'
+  alias lt='lsd --tree --depth=2 --group-dirs=first --color=auto'
+  alias lta='lsd --tree --depth=2 -A --group-dirs=first --color=auto'
+  alias tree='lsd --tree --color=auto'
 else
-    alias ls='ls --color=auto --group-directories-first'
-    alias l='ls -lh'
-    alias ll='ls -lAh'
-    alias la='ls -A'
+  alias ls='ls --color=auto --group-directories-first'
+  alias l='ls -lh'
+  alias ll='ls -lAh'
+  alias la='ls -A'
 fi
 
 # Modern tools
@@ -109,16 +109,3 @@ alias tml='tmux list-sessions'
 # Network
 alias myip='curl -s https://api.ipify.org && echo'
 alias serve='python3 -m http.server'
-
-# Global aliases (zsh)
-alias -g L='| less'
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g N='2>/dev/null'
-alias -g J='| jq'
-alias -g C='| xclip -selection clipboard'
-
-# Suffix aliases (zsh)
-alias -s {md,txt,json,yaml,yml}=$EDITOR
-alias -s {zip,tar,gz}=extract

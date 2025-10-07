@@ -168,10 +168,10 @@
     helper = "!f() { command -v gh >/dev/null 2>&1 && gh auth git-credential; }; f"
 
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [transfer]
     fsckobjects = true

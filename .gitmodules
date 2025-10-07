@@ -1,15 +1,15 @@
-[submodule "home/.shell/zsh-autosuggestions"]
-	path = home/.shell/zsh-autosuggestions
+[submodule "home/.config/zsh/plugins/zsh-autosuggestions"]
+	path = home/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "home/.shell/zsh-syntax-highlighting"]
-	path = home/.shell/zsh-syntax-highlighting
+[submodule "home/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = home/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "home/.shell/fzf-tab"]
-	path = home/.shell/fzf-tab
+[submodule "home/.config/zsh/plugins/fzf-tab"]
+	path = home/.config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git
-[submodule "home/.shell/zsh-completions"]
-	path = home/.shell/zsh-completions
+[submodule "home/.config/zsh/plugins/zsh-completions"]
+	path = home/.config/zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "home/.shell/fzf"]
-	path = home/.shell/fzf
+[submodule "home/.config/zsh/plugins/fzf"]
+	path = home/.config/zsh/plugins/fzf
 	url = https://github.com/junegunn/fzf.git
