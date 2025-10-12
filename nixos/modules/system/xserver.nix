@@ -5,7 +5,7 @@
 {
   services.xserver = {
     enable = true;
-    desktopManager.xterm.enable = enable;
+    desktopManager.xterm.enable = true;
     excludePackages = [ pkgs.xterm ];
   };
 }
