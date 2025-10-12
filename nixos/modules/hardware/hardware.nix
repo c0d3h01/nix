@@ -129,8 +129,11 @@ in
   boot.tmp.tmpfsSize = mkDefault "50%";
 
   # Network configuration
-  networking.useDHCP = mkDefault false;
-  networking.dhcpcd.enable = mkDefault false;
+  networking.useDHCP = mkDefault true;
+  networking.dhcpcd.enable = mkDefault true;
+  
+  networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
+  networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   # Platform detection
   nixpkgs.hostPlatform = mkDefault userConfig.system;
