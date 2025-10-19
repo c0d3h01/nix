@@ -4,9 +4,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 
-# XDG Base Directory
-export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
-
 # Zsh history location
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=5000

@@ -61,9 +61,6 @@ if [[ -d "$PYENV_ROOT" ]]; then
     eval "$(pyenv init --path 2>/dev/null)"
 fi
 
-# Nix
-export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
-
 # Node (lazy loaded)
 export NVM_DIR="$HOME/.local/nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && nvm() {
