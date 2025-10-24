@@ -38,7 +38,7 @@
       };
     };
 
-    chaotic-unstable = {
+    chaotic = {
       type = "github";
       owner = "chaotic-cx";
       repo = "nyx";
