@@ -10,6 +10,7 @@
     ./fzf.nix
     ./htop.nix
     ./lsd.nix
+    ./mergiraf.nix
     ./neovim.nix
     ./ripgrep.nix
     ./starship.nix

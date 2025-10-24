@@ -24,14 +24,6 @@ in
       gdu
       imagemagick
 
-      # Git tools
-      git
-      gh
-      git-lfs
-      delta
-      lazygit
-      mergiraf
-
       # Extractor tools
       unzip
       unrar
@@ -39,11 +31,6 @@ in
       xz
       zstd
       cabextract
-    ]
-    ++ [
-      # Language Servers
-      lua-language-server
-      nil
     ]
     ++ optionals isWorkstation [
       # Desk App
