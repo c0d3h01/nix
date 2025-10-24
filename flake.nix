@@ -13,6 +13,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     systems = {
       type = "github";
@@ -36,13 +37,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
       };
-    };
-
-    chaotic = {
-      type = "github";
-      owner = "chaotic-cx";
-      repo = "nyx";
-      rev = "nyxpkgs-unstable";
     };
 
     disko = {
