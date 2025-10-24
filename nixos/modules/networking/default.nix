@@ -2,7 +2,6 @@
   imports = [
     ./firewall.nix
     ./networkManager.nix
-    ./optimizations.nix
     ./ssh.nix
     ./systemd.nix
     ./tcpcrypt.nix
