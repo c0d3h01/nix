@@ -42,7 +42,7 @@
     vim = "$EDITOR";
     cl = "clear";
     x = "exit";
-    reload = "exec $SHELL";  # Works with bash/zsh/fish
+    reload = "exec $SHELL"; # Works with bash/zsh/fish
 
     # Nix
     nc = "nix-collect-garbage";
@@ -62,9 +62,9 @@
     gd = "git diff";
     gl = "git pull";
     gp = "git push";
-    gpf = "git push --force-with-lease";  # Safer force push
+    gpf = "git push --force-with-lease"; # Safer force push
     gst = "git status";
-    gss = "git status -s";  # Short status
+    gss = "git status -s"; # Short status
     glog = "git log --oneline --decorate --graph";
     gloga = "git log --oneline --decorate --graph --all";
 
@@ -75,12 +75,12 @@
     kd = "kubectl describe";
     ka = "kubectl apply -f";
     kl = "kubectl logs";
-    klf = "kubectl logs -f";  # Follow logs
+    klf = "kubectl logs -f"; # Follow logs
     kex = "kubectl exec -it";
 
     # Docker
     d = "docker";
-    dc = "docker compose";  # Updated: docker-compose -> docker compose
+    dc = "docker compose"; # Updated: docker-compose -> docker compose
     dps = "docker ps";
     dpsa = "docker ps -a";
     di = "docker images";
@@ -125,7 +125,7 @@
     myip = "curl -s https://api.ipify.org && echo";
     localip = "ip -4 addr show | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}' | grep -v 127.0.0.1";
     serve = "python3 -m http.server";
-    ports = "ss -tuln";  # Show listening ports
+    ports = "ss -tuln"; # Show listening ports
 
     # System monitoring
     meminfo = "free -h && echo && ps aux --sort=-%mem | head -n 10";

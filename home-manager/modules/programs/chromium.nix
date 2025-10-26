@@ -9,7 +9,7 @@
 let
   inherit (lib) optionals concatStringsSep mkIf;
 
-  # FEATURE FLAGS  
+  # FEATURE FLAGS
   enableFeaturesList = [
     "WebContentsForceDark"
     "UseOzonePlatform"
@@ -23,14 +23,14 @@ let
     "OptimizationHintsFetching"
   ];
 
-  # COMMAND LINE FLAGS - DEVELOPMENT OPTIMIZED  
+  # COMMAND LINE FLAGS - DEVELOPMENT OPTIMIZED
   # Performance Optimizations
   performanceFlags = [
     # GPU Acceleration
     "--enable-gpu-rasterization"
     "--enable-oop-rasterization"
     "--enable-zero-copy"
-    
+
     # V8 JavaScript Engine (Development Optimized)
     "--js-flags=--max-old-space-size=2048,--max-semi-space-size=16"
   ];
@@ -55,20 +55,20 @@ let
   # Cache Management (Persistent, Dev-Sized)
   cacheFlags = [
     "--disk-cache-dir=${config.xdg.cacheHome}/google-chrome"
-    "--disk-cache-size=524288000"  # 500MB for dev assets
+    "--disk-cache-size=524288000" # 500MB for dev assets
   ];
 
   # Developer Experience Features
   devFlags = [
     # Enable bleeding-edge web APIs
     "--enable-experimental-web-platform-features"
-    
+
     # Allow localhost HTTPS without certificates
     "--allow-insecure-localhost"
-    
+
     # Disable XSS auditor (causes false positives in dev)
     "--disable-xss-auditor"
-    
+
     # Auto-open DevTools for popup windows
     "--auto-open-devtools-for-tabs"
   ];
@@ -79,16 +79,16 @@ let
     "--no-default-browser-check"
   ];
 
-  # COMBINED FLAGS  
-  allFlags = 
-    performanceFlags ++
-    securityFlags ++
-    waylandFlags ++
-    aestheticFlags ++
-    cacheFlags ++
-    devFlags ++
-    miscFlags ++
-    [
+  # COMBINED FLAGS
+  allFlags =
+    performanceFlags
+    ++ securityFlags
+    ++ waylandFlags
+    ++ aestheticFlags
+    ++ cacheFlags
+    ++ devFlags
+    ++ miscFlags
+    ++ [
       "--enable-features=${concatStringsSep "," enableFeaturesList}"
       "--disable-features=${concatStringsSep "," disableFeaturesList}"
     ];
@@ -106,20 +106,20 @@ let
 
 in
 {
-  # PACKAGE INSTALLATION  
+  # PACKAGE INSTALLATION
   home.packages = optionals userConfig.machineConfig.workstation.enable [
     optimizedChrome
   ];
 
-  # DIRECTORY SETUP  
+  # DIRECTORY SETUP
   home.activation = mkIf userConfig.machineConfig.workstation.enable {
     # Create cache directory
-    createChromeCache = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    createChromeCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD mkdir -p ${config.xdg.cacheHome}/google-chrome
     '';
   };
 
-  # DESKTOP ENTRY  
+  # DESKTOP ENTRY
   xdg.desktopEntries = mkIf userConfig.machineConfig.workstation.enable {
     google-chrome = {
       name = "Google Chrome";
@@ -128,7 +128,11 @@ in
       exec = "google-chrome-stable %U";
       icon = "google-chrome";
       terminal = false;
-      categories = [ "Network" "WebBrowser" "Development" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+        "Development"
+      ];
       mimeType = [
         "text/html"
         "text/xml"
@@ -138,15 +142,15 @@ in
       ];
     };
   };
-  
+
   # Install extensions system-wide
   programs.chromium = mkIf userConfig.machineConfig.workstation.enable {
     enable = true;
     extensions = [
-      "fmkadmapgofadopljbjfkapdkoienihi"  # React Developer Tools
-      "nhdogjmejiglipccpnnnanhbledajbpd"  # Vue.js devtools
-      "lmhkpmbekcpmknklioeibfkpmmfibljd"  # Redux DevTools
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm"  # uBlock Origin
+      "fmkadmapgofadopljbjfkapdkoienihi" # React Developer Tools
+      "nhdogjmejiglipccpnnnanhbledajbpd" # Vue.js devtools
+      "lmhkpmbekcpmknklioeibfkpmmfibljd" # Redux DevTools
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
     ];
   };
 }

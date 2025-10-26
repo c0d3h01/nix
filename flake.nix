@@ -68,14 +68,16 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./flake
         ./home-manager/flake-module.nix
         ./nixos/flake-module.nix
       ];
-    } // {
+    }
+    // {
       inherit (inputs) chaotic;
     };
 }

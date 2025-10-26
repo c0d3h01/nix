@@ -1,7 +1,7 @@
 { config, ... }:
 {
   programs.lazygit = {
-    enable = config.programs.git.enable;
+    inherit (config.programs.git) enable;
 
     settings = {
       update.method = "never";

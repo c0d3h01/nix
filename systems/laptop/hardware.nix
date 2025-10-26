@@ -24,8 +24,8 @@
             size = "8G";
             content = {
               type = "swap";
-               discardPolicy = "both";
-               resumeDevice = true;
+              discardPolicy = "both";
+              resumeDevice = true;
             };
           };
 
