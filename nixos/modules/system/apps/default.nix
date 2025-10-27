@@ -5,4 +5,3 @@
     ./fhs-compact.nix
   ];
 }
-

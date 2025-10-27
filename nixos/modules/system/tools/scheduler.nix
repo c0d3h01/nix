@@ -11,4 +11,3 @@
     package = pkgs.scx.rustscheds;
   };
 }
-

@@ -5,4 +5,3 @@
     ./serial.nix
   ];
 }
-

@@ -13,4 +13,3 @@
     services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 350;
   };
 }
-

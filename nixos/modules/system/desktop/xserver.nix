@@ -9,4 +9,3 @@
     excludePackages = [ pkgs.xterm ];
   };
 }
-
