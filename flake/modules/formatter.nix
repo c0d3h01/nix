@@ -1,92 +1,102 @@
 { lib, ... }:
 {
-  perSystem = { pkgs, ... }: let
-    inherit (pkgs) lib;
-  in {
-    formatter = pkgs.treefmt.withConfig {
-      runtimeInputs = with pkgs; [
-        actionlint
-        deadnix
-        keep-sorted
-        nixfmt
-        shellcheck
-        shfmt
-        statix
-        stylua
-        taplo
-        mypy
+  perSystem =
+    { pkgs, ... }:
+    let
+      inherit (pkgs) lib;
+    in
+    {
+      formatter = pkgs.treefmt.withConfig {
+        runtimeInputs = with pkgs; [
+          actionlint
+          deadnix
+          keep-sorted
+          nixfmt
+          shellcheck
+          shfmt
+          statix
+          stylua
+          taplo
+          mypy
 
-        (writeShellScriptBin "statix-fix" ''
-          for file in "$@"; do
-            ${lib.getExe statix} fix "$file"
-          done
-        '')
-      ];
-
-      settings = {
-        on-unmatched = "info";
-        tree-root-file = "flake.nix";
-
-        excludes = [
-          "secrets/*"
-          "gdb/*"
-          "home/.config/zsh/*"
-          ".envrc"
-          "*.lock"
-          "*.patch"
-          "*.age"
+          (writeShellScriptBin "statix-fix" ''
+            for file in "$@"; do
+              ${lib.getExe statix} fix "$file"
+            done
+          '')
         ];
 
-        formatter = {
-          actionlint.command = "actionlint";
-          actionlint.includes = [
-            ".github/workflows/*.yml"
-            ".github/workflows/*.yaml"
+        settings = {
+          on-unmatched = "info";
+          tree-root-file = "flake.nix";
+
+          excludes = [
+            "secrets/*"
+            "gdb/*"
+            "home/.config/zsh/*"
+            ".envrc"
+            "*.lock"
+            "*.patch"
+            "*.age"
           ];
 
-          mypy.command = "mypy";
-          mypy.options = [
-            "--ignore-missing-imports"
-            "--show-error-codes"
-          ];
-          mypy.includes = [ "*.py" ];
-          mypy.excludes = [ "home/.jupyter/*" ];
+          formatter = {
+            actionlint.command = "actionlint";
+            actionlint.includes = [
+              ".github/workflows/*.yml"
+              ".github/workflows/*.yaml"
+            ];
 
-          deadnix.command = "deadnix";
-          deadnix.includes = [ "*.nix" ];
+            mypy.command = "mypy";
+            mypy.options = [
+              "--ignore-missing-imports"
+              "--show-error-codes"
+            ];
+            mypy.includes = [ "*.py" ];
+            mypy.excludes = [ "home/.jupyter/*" ];
 
-          keep-sorted.command = "keep-sorted";
-          keep-sorted.includes = [ "*" ];
+            deadnix.command = "deadnix";
+            deadnix.includes = [ "*.nix" ];
 
-          nixfmt.command = "nixfmt";
-          nixfmt.includes = [ "*.nix" ];
+            keep-sorted.command = "keep-sorted";
+            keep-sorted.includes = [ "*" ];
 
-          shellcheck.command = "shellcheck";
-          shellcheck.includes = [ "*.sh" "*.bash" ];
+            nixfmt.command = "nixfmt";
+            nixfmt.includes = [ "*.nix" ];
 
-          shfmt.command = "shfmt";
-          shfmt.options = [ "-s" "-w" "-i" "2" ];
-          shfmt.includes = [
-            "*.sh"
-            "*.bashrc"
-            "*.bash_profile"
-            "*.zshrc"
-            "*.envrc"
-            "*.envrc.private-template"
-          ];
+            shellcheck.command = "shellcheck";
+            shellcheck.includes = [
+              "*.sh"
+              "*.bash"
+            ];
 
-          statix.command = "statix-fix";
-          statix.includes = [ "*.nix" ];
+            shfmt.command = "shfmt";
+            shfmt.options = [
+              "-s"
+              "-w"
+              "-i"
+              "2"
+            ];
+            shfmt.includes = [
+              "*.sh"
+              "*.bashrc"
+              "*.bash_profile"
+              "*.zshrc"
+              "*.envrc"
+              "*.envrc.private-template"
+            ];
 
-          stylua.command = "stylua";
-          stylua.includes = [ "*.lua" ];
+            statix.command = "statix-fix";
+            statix.includes = [ "*.nix" ];
 
-          taplo.command = "taplo";
-          taplo.options = "format";
-          taplo.includes = [ "*.toml" ];
+            stylua.command = "stylua";
+            stylua.includes = [ "*.lua" ];
+
+            taplo.command = "taplo";
+            taplo.options = "format";
+            taplo.includes = [ "*.toml" ];
+          };
         };
       };
     };
-  };
 }
-
