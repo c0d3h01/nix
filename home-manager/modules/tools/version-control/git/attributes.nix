@@ -38,5 +38,3 @@
     "*.svh merge=mergiraf"
   ];
 }
-
-

@@ -133,5 +133,3 @@
     diskinfo = "df -h && echo && du -sh /* 2>/dev/null | sort -rh | head -n 10";
   };
 }
-
-

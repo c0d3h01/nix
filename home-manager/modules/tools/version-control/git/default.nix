@@ -9,5 +9,3 @@
     ./lazygit.nix
   ];
 }
-
-

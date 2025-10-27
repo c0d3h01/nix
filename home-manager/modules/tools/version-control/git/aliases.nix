@@ -25,5 +25,3 @@
     root = "rev-parse --show-toplevel";
   };
 }
-
-
