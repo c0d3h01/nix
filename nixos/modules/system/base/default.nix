@@ -6,4 +6,3 @@
     ./location.nix
   ];
 }
-

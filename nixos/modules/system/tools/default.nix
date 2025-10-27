@@ -9,4 +9,3 @@
     ./scheduler.nix
   ];
 }
-

@@ -6,4 +6,3 @@
     daemonSettings.EspLocation = config.boot.loader.efi.efiSysMountPoint;
   };
 }
-

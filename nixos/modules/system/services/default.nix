@@ -6,5 +6,3 @@
     ./printing.nix
   ];
 }
-
-

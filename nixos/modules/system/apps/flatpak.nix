@@ -9,4 +9,3 @@
     services.flatpak.enable = false;
   };
 }
-

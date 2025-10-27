@@ -52,4 +52,3 @@
     "fbcon=nodefer"
   ];
 }
-

@@ -54,4 +54,3 @@ in
     systemd.sockets.docker.wantedBy = lib.mkForce [ ];
   };
 }
-

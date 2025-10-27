@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) optionals mkIf mkMerge mkAfter;
+  inherit (lib)
+    optionals
+    mkIf
+    mkMerge
+    mkAfter
+    ;
   # Core runtime libraries needed by a large class of prebuilt binaries.
   baseLibs = with pkgs; [
     glibc # C runtime + ld-linux
@@ -126,4 +131,3 @@ in
   # Foreign binaries frequently and want clearer diagnostics:
   # environment.variables.LD_DEBUG = "libs"; # Uncomment temporarily for troubleshooting missing libs.
 }
-
