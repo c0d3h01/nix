@@ -4,7 +4,7 @@
     { pkgs, config, ... }:
     {
       checks.formatting =
-        pkgs.runCommandNoCCLocal "formatting-checks"
+        pkgs.runCommandLocal "formatting-checks"
           {
             nativeBuildInputs = [ config.formatter ];
           }
