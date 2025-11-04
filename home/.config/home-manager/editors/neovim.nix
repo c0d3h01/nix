@@ -88,9 +88,4 @@ in
       require('bufferline').setup()
     '';
   };
-
-  xdg.configFile."nvim" = {
-    source = ../../../home/.config/nvim;
-    recursive = true;
-  };
 }

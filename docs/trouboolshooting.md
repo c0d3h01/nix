@@ -14,7 +14,7 @@ sudo nixos-enter --root /mnt
 sudo mount -t tmpfs -o mode=1777 tmpfs /mnt/var/tmp
 ```
 
-## In chroot only!
+## In chroot only
 
 ```bash
 sudo mount --rbind /dev /mnt/dev

@@ -18,13 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      type = "github";
-      owner = "nix-community";
-      repo = "NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       type = "github";
       owner = "nix-community";
@@ -72,12 +65,9 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./flake
-        ./home-manager/flake-module.nix
-        ./nixos/flake-module.nix
+        ./flake-modules
+        ./nixos/home-flake.nix
+        ./nixos/nixos-flake.nix
       ];
-    }
-    // {
-      inherit (inputs) chaotic;
     };
 }
