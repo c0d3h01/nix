@@ -6,9 +6,19 @@ in
   programs.zsh = {
     enable = true;
 
+    autocd = true;
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+
+    # oh-my-zsh = {
+    #   enable = true;
+    #   theme  = "robbyrussell";
+    #   plugins = [
+    #     "git"
+    #     "sudo"
+    #   ];
+    # };
 
     dotDir = "${config.xdg.configHome}/zsh";
 

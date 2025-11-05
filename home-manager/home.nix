@@ -6,10 +6,11 @@
 
 {
   imports = [
-    ./tools
-    ./editors
+    ./git
     ./programs
+    ./shells
     ./system
+    ./terminal
   ];
 
   # Let Home Manager install and manage itself.
@@ -25,10 +26,10 @@
     homeDirectory = "/home/${userConfig.username}";
     stateVersion = lib.trivial.release;
     sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      BROWSER = "google-chrome";
-      TERMINAL = "kitty";
+      EDITOR = "neovim";
+      VISUAL = "neovim";
+      BROWSER = "firefox";
+      TERMINAL = "ghostty";
     };
   };
 }

@@ -1,8 +1,7 @@
 {
   imports = [
-    ./chromium.nix
     ./monitoring.nix
-    ./packages.nix
+    ./notion-enhanced.nix
     ./spicetify.nix
   ];
 }
