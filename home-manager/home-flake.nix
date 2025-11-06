@@ -9,6 +9,10 @@ let
       pkgs = import inputs.nixpkgs {
         inherit (userConfig) system;
         config.allowUnfree = true;
+        overlays = [
+          inputs.self.overlays.notion-app-enhanced
+          inputs.self.overlays.nixgl
+        ];
       };
       extraSpecialArgs = {
         inherit inputs userConfig hostName;

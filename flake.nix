@@ -10,13 +10,6 @@
       repo = "default";
     };
 
-    darwin = {
-      type = "github";
-      owner = "nix-darwin";
-      repo = "nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixgl = {
       type = "github";
       owner = "nix-community";
@@ -35,13 +28,6 @@
       type = "github";
       owner = "hercules-ci";
       repo = "flake-parts";
-    };
-
-    flake-utils = {
-      type = "github";
-      owner = "numtide";
-      repo = "flake-utils";
-      inputs.systems.follows = "systems";
     };
 
     home-manager = {
