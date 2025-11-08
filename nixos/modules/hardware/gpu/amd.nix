@@ -17,7 +17,7 @@ in
     services.xserver.videoDrivers = [ "amdgpu" ];
 
     # auto-epp for amd active pstate.
-    services.auto-epp.enable = true;
+    # services.auto-epp.enable = true;
 
     hardware.graphics = lib.mkIf isWorskstaion {
       enable = true;
