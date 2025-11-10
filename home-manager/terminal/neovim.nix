@@ -14,34 +14,34 @@
 
     plugins = with pkgs.vimPlugins; [
       # Appearance
-      catppuccin-nvim
-      lualine-nvim
-      indent-blankline-nvim
-      nvim-web-devicons
-      bufferline-nvim
-      gitsigns-nvim
+      # catppuccin-nvim
+      # lualine-nvim
+      # indent-blankline-nvim
+      # nvim-web-devicons
+      # bufferline-nvim
+      # gitsigns-nvim
 
       # Navigation
-      nvim-tree-lua
-      telescope-nvim
-      telescope-fzf-native-nvim
+      # nvim-tree-lua
+      # telescope-nvim
+      # telescope-fzf-native-nvim
 
       # LSP & Completion
-      nvim-lspconfig
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-path
-      cmp-buffer
-      luasnip
-      cmp_luasnip
-      lspkind-nvim
+      # nvim-lspconfig
+      # nvim-cmp
+      # cmp-nvim-lsp
+      # cmp-path
+      # cmp-buffer
+      # luasnip
+      # cmp_luasnip
+      # lspkind-nvim
 
       # Utilities
-      nvim-autopairs
-      nvim-comment
-      which-key-nvim
-      toggleterm-nvim
-      alpha-nvim
+      # nvim-autopairs
+      # nvim-comment
+      # which-key-nvim
+      # toggleterm-nvim
+      # alpha-nvim
     ];
   };
 }
