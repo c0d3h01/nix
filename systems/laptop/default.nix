@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware.nix
   ];
 
   users.users = lib.mkIf isUsr {
