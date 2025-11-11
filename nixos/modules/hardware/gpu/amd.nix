@@ -19,30 +19,28 @@ in
     # auto-epp for amd active pstate.
     # services.auto-epp.enable = true;
 
+    # OpenCL support using ROCM runtime library
+    hardware.amdgpu.opencl.enable = true;
+
     hardware.graphics = lib.mkIf isWorskstaion {
       enable = true;
+      enable32Bit = true;
 
       extraPackages = with pkgs; [
-        mesa
-        libvdpau-va-gl
-        libva-vdpau-driver
-        # OpenCL support
-        rocmPackages.clr.icd
+        amdvlk
       ];
 
-      enable32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        mesa
-        libvdpau-va-gl
-        libva-vdpau-driver
+        amdvlk
       ];
     };
+
+    # LACT - Linux AMDGPU Controller
+    environment.systemPackages = with pkgs; [ lact ];
+    systemd.packages = with pkgs; [ lact ];
+    systemd.services.lactd.wantedBy = ["multi-user.target"];
 
     # Environment variables for optimal GPU performance
-    environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "radeonsi";
-      VDPAU_DRIVER = "radeonsi";
-      AMD_VULKAN_ICD = "RADV";
-    };
+    environment.variables.AMD_VULKAN_ICD = "RADV";
   };
 }
