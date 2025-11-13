@@ -38,6 +38,8 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v20
 
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
       - name: Format files
         run: |
           nix fmt
