@@ -1,11 +1,7 @@
-name: Auto-Format and PR
+name: Auto-Format
+
 on:
   workflow_dispatch:
-  workflow_call:
-    inputs:
-      ref:
-        required: false
-        type: string
   push:
     branches: [master]
     paths-ignore:
@@ -14,64 +10,32 @@ on:
       - "*.md"
 
 concurrency:
-  group: format-and-pr-${{ github.ref }}
+  group: format-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: write
   pull-requests: write
-  actions: read
-  statuses: write
 
 jobs:
-  format-and-pr:
-    name: Format and PR
+  format:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+
+      - uses: DeterminateSystems/nix-installer-action@v20
+      - uses: DeterminateSystems/magic-nix-cache-action@v1
+
+      - run: nix fmt
+
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - uses: peter-evans/create-pull-request@v7
         with:
-          ref: ${{ inputs.ref && inputs.ref || github.ref }}
-          persist-credentials: true
-          fetch-depth: 0
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v20
-
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-
-      - name: Format files
-        run: |
-          nix fmt
-
-      - name: Check for changes
-        id: check_changes
-        shell: bash
-        run: |
-          git add -A
-          if git diff --cached --quiet; then
-            echo "NO_CHANGES=1" >> "$GITHUB_ENV"
-          else
-            echo "NO_CHANGES=0" >> "$GITHUB_ENV"
-          fi
-
-      - name: Commit and push changes
-        if: env.NO_CHANGES != '1'
-        shell: bash
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: auto-format files"
-          git push origin HEAD:${{ github.ref_name }} || true
-
-      - name: Open PR
-        if: env.NO_CHANGES != '1'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: auto-format files"
-          title: "chore: auto-format files"
-          body: "Automated formatting changes."
-          branch: "auto-format-branch"
-          base: ${{ github.ref_name }}
+          commit-message: "chore: auto-format"
+          title: "chore: auto-format"
+          branch: auto-format
           delete-branch: true
+          labels: automerge
