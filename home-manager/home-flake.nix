@@ -6,7 +6,7 @@
   ...
 }:
 let
-  hosts = import ../systems/config.nix;
+  hosts = import (self + /hosts/config.nix);
   mkHomeConfiguration =
     hostName: userConfig:
     inputs.home-manager.lib.homeManagerConfiguration {

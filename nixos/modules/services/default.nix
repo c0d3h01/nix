@@ -5,6 +5,7 @@
     ./mysql.nix
     ./ollama.nix
     ./podman.nix
+    ./secrets.nix
     ./syncthing.nix
     ./tabby.nix
   ];

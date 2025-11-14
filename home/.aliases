@@ -69,11 +69,12 @@ alias gst='git status'
 alias glog='git log --oneline --decorate --graph'
 
 # Kubernetes
-alias k='kubectl'
-alias kg='kubectl get'
-alias kd='kubectl describe'
-alias ka='kubectl apply -f'
-alias kl='kubectl logs'
+if [[ $commands[kubectl] ]]; then
+   alias k=kubectl
+   source <(kubectl completion zsh)
+fi
+alias tf=terraform
+alias tg=terragrunt
 
 # Docker
 alias d='docker'

@@ -14,12 +14,12 @@
 
     plugins = with pkgs.vimPlugins; [
       # Appearance
-      # catppuccin-nvim
+      catppuccin-nvim
       # lualine-nvim
       # indent-blankline-nvim
-      # nvim-web-devicons
+      nvim-web-devicons
       # bufferline-nvim
-      # gitsigns-nvim
+      gitsigns-nvim
 
       # Navigation
       # nvim-tree-lua
@@ -27,8 +27,8 @@
       # telescope-fzf-native-nvim
 
       # LSP & Completion
-      # nvim-lspconfig
-      # nvim-cmp
+      nvim-lspconfig
+      nvim-cmp
       # cmp-nvim-lsp
       # cmp-path
       # cmp-buffer
@@ -37,7 +37,7 @@
       # lspkind-nvim
 
       # Utilities
-      # nvim-autopairs
+      nvim-autopairs
       # nvim-comment
       # which-key-nvim
       # toggleterm-nvim

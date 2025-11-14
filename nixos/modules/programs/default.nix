@@ -1,6 +1,5 @@
 {
   imports = [
-    ./apps.nix
-    ./cli.nix
+    ./packages.nix
   ];
 }

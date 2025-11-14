@@ -8,8 +8,8 @@
     pager = delta
     autocrlf = input
     safecrlf = true
-    excludesfile = ~/.config/git/ignore
-    attributesfile = ~/.config/git/attributes
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
     preloadindex = true
     untrackedCache = true
@@ -179,7 +179,7 @@
     fsckObjects = true
 
 [http]
-    cookiefile = ~/.config/git/gitcookies
+    cookiefile = ~/.gitcookies
     lowSpeedLimit = 0
     lowSpeedTime = 999999
     postBuffer = 524288000

@@ -16,7 +16,7 @@ result-*
 *.dll
 *.so
 *.dylib
-.direnv/
+# .direnv/
 node_modules
 vendor
 *.log

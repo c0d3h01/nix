@@ -31,6 +31,9 @@ setopt auto_menu
 setopt always_to_end
 setopt interactive_comments
 
+## Autocycle
+setopt autopushd
+
 # Completion system
 autoload -Uz compinit
 zmodload zsh/complist
@@ -54,16 +57,14 @@ ifsource() { [ -f "$1" ] && source "$1"; }
 ifsource "$HOME/.credentials"
 ifsource "$ZDOTDIR/.zsh_dir_hashes"
 
-# Plugin directory
-PLUGIN_DIR="$ZDOTDIR/plugins"
-
 # Source plugins
-ifsource "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-ifsource "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-ifsource "$PLUGIN_DIR/zsh-completions/zsh-completions.plugin.zsh"
-ifsource "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
-ifsource "$PLUGIN_DIR/fzf/shell/completion.zsh"
-ifsource "$PLUGIN_DIR/fzf/shell/key-bindings.zsh"
+ifsource "~/.zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+ifsource "~/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+ifsource "~/.zsh-completions/zsh-completions.plugin.zsh"
+ifsource "~/.fzf-tab/fzf-tab.plugin.zsh"
+ifsource "~/.fzf/shell/completion.zsh"
+ifsource "~/.fzf/shell/key-bindings.zsh"
+ifsource "~/.homesick/repos/homeshick/homeshick.sh"
 
 # Autosuggestions config
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
@@ -105,7 +106,3 @@ ifsource "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # Prevent broken terminals
 ttyctl -f
-
-export NVM_DIR="$HOME/.local/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

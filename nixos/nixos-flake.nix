@@ -5,7 +5,7 @@
   ...
 }:
 let
-  hosts = import (self + /systems/config.nix);
+  hosts = import (self + /hosts/config.nix);
   mkNixosSystem =
     hostName: userConfig:
     inputs.nixpkgs.lib.nixosSystem {
@@ -21,7 +21,7 @@ let
       modules = [
         # Import modules
         (self + /nixos/modules)
-        (self + /systems)
+        (self + /hosts)
 
         # Disko integration for disk partitioning
         inputs.disko.nixosModules.disko

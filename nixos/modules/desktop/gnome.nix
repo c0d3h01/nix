@@ -27,7 +27,7 @@ in
         gnome-tweaks
         gnome-photos
         thunderbird
-        rhythmbox
+        # rhythmbox
       ];
 
       gnome.excludePackages = with pkgs; [
