@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf optionals;
-  isWorkstation = userConfig.machineConfig.workstation.apps;
+  isWorkstation = userConfig.machineConfig.workstation;
 
   # DESKTOP APPLICATIONS
   desktopApps = with pkgs; [

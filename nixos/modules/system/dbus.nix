@@ -9,7 +9,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf userConfig.machineConfig.workstation.enable {
+  config = mkIf userConfig.machineConfig.workstation {
     services.dbus = {
       enable = true;
       implementation = "broker";

@@ -5,6 +5,6 @@
     polkit.enable = true;
 
     # this should only be installed on graphical systems
-    soteria.enable = userConfig.machineConfig.workstation.enable;
+    soteria.enable = userConfig.machineConfig.workstation;
   };
 }

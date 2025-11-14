@@ -5,7 +5,7 @@
   ...
 }:
 {
-  xdg.portal = lib.mkIf userConfig.machineConfig.workstation.enable {
+  xdg.portal = lib.mkIf userConfig.machineConfig.workstation {
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

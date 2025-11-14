@@ -8,7 +8,7 @@
 let
   inherit (lib) mkIf;
   cfg = userConfig.machineConfig.gpuType;
-  isWorskstaion = userConfig.machineConfig.workstation.enable;
+  isWorskstaion = userConfig.machineConfig.workstation;
 in
 {
   config = mkIf (cfg == "amd") {

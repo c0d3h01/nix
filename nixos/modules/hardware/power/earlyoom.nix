@@ -48,7 +48,7 @@ let
   ];
 in
 {
-  config = mkIf userConfig.machineConfig.workstation.enable {
+  config = mkIf userConfig.machineConfig.workstation {
     services = {
       earlyoom = {
         enable = true;
