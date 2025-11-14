@@ -47,26 +47,19 @@ alias v='$EDITOR'
 alias vi='$EDITOR'
 alias cl='clear'
 alias x='exit'
-alias reload='exec zsh'
+alias reload='exec $SHELL'
 
 # Nix
 alias nc='nix-collect-garbage'
 alias ncd='nix-collect-garbage -d'
 alias hm='home-manager'
-alias hms='home-manager switch'
 
 # Git
 alias g='git'
 alias ga='git add'
-alias gaa='git add --all'
-alias gc='git commit -v'
-alias gcm='git commit -m'
-alias gco='git checkout'
 alias gd='git diff'
-alias gl='git pull'
 alias gp='git push'
-alias gst='git status'
-alias glog='git log --oneline --decorate --graph'
+alias gs='git status'
 
 # Kubernetes
 if [[ $commands[kubectl] ]]; then

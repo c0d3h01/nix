@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 
 # Zsh history location
-export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=5000
 export SAVEHIST=5000
 
@@ -55,16 +55,16 @@ ifsource() { [ -f "$1" ] && source "$1"; }
 
 # Credentials and hashes
 ifsource "$HOME/.credentials"
-ifsource "$ZDOTDIR/.zsh_dir_hashes"
+ifsource "$HOME/.zsh_dir_hashes"
 
 # Source plugins
-ifsource "~/.zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-ifsource "~/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-ifsource "~/.zsh-completions/zsh-completions.plugin.zsh"
-ifsource "~/.fzf-tab/fzf-tab.plugin.zsh"
-ifsource "~/.fzf/shell/completion.zsh"
-ifsource "~/.fzf/shell/key-bindings.zsh"
-ifsource "~/.homesick/repos/homeshick/homeshick.sh"
+ifsource "$HOME/.zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+ifsource "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+ifsource "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
+ifsource "$HOME/.fzf-tab/fzf-tab.plugin.zsh"
+ifsource "$HOME/.fzf/shell/completion.zsh"
+ifsource "$HOME/.fzf/shell/key-bindings.zsh"
+ifsource "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Autosuggestions config
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
@@ -72,9 +72,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 # Custom configs
-ifsource "$ZDOTDIR/exports.sh"
-ifsource "$ZDOTDIR/functions.sh"
-ifsource "$ZDOTDIR/aliases.sh"
+ifsource "$HOME/.exports"
+ifsource "$HOME/.functions"
+ifsource "$HOME/.aliases"
 
 # Tool initialization
 eval "$(zoxide init zsh --cmd j)"
@@ -99,10 +99,6 @@ bindkey '^x^e' edit-command-line
 bindkey "${terminfo[kcuu1]}" history-search-backward
 bindkey "${terminfo[kcud1]}" history-search-forward
 export KEYTIMEOUT=1
-
-# Load nix environment
-ifsource /etc/profile.d/nix.sh
-ifsource "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # Prevent broken terminals
 ttyctl -f

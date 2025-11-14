@@ -25,8 +25,3 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-. "$HOME/.cargo/env"
-
-export PATH="/home/harshal/.local/share/solana/install/active_release/bin:$PATH"
-export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
-export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
