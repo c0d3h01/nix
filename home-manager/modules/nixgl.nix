@@ -1,30 +1,23 @@
 {
   config,
   userConfig,
-  pkgs,
-  nixgl,
   lib,
+  nixglLib,
+  nixglPackages,
   ...
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (config.lib.nixGL) wrap;
   cfg = userConfig.machineConfig;
 in
 {
   config = mkIf cfg.glApps {
     # NixGL configuration for GPU support
-    nixGL = {
+    targets.genericLinux.nixGL = {
       vulkan.enable = true;
-      inherit (nixgl) packages;
-      defaultWrapper = "mesaPrime";
-      offloadWrapper = "mesaPrime";
-      installScripts = [ "mesaPrime" ];
+      defaultWrapper = "mesa";
+      offloadWrapper = "mesa";
+      installScripts = [ "mesa" ];
     };
-
-    # Desktop applications with GL support
-    home.packages = with wrap pkgs; [
-      # vscode
-    ];
   };
 }

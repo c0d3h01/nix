@@ -1,9 +1,20 @@
-{ pkgs, ... }:
-
 {
+  pkgs,
+  config,
+  nixglLib,
+  nixglPackages,
+  ...
+}:
+{
+  programs.wezterm = {
+    enable = true;
+    package = nixglLib.wrap nixglPackages.wezterm;
+  };
+
   home.packages = with pkgs; [
-    wezterm
     gitFull
+    git-lfs
+    lazygit
     neovim
     starship
     bat

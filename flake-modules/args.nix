@@ -1,4 +1,9 @@
-{ lib, inputs, ... }:
+{
+  lib,
+  inputs,
+  nixgl,
+  ...
+}:
 {
   # Define systems to support
   systems = import inputs.systems;
@@ -13,7 +18,10 @@
           allowUnfree = true;
           allowUnsupportedSystem = true;
         };
-        overlays = [ ];
+        overlays = [ inputs.nixgl.overlay ];
+
+        nixglLib = nixgl.lib;
+        nixglPackages = nixgl.packages;
       };
     };
 }
