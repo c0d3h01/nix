@@ -1,4 +1,4 @@
-{ lib, self, ... }:
+{ self, ... }:
 {
   perSystem =
     { pkgs, config, ... }:

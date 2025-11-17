@@ -1,7 +1,6 @@
 {
   userConfig,
   lib,
-  config,
   ...
 }:
 let

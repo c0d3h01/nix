@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   userConfig,
   modulesPath,
   ...
@@ -12,7 +11,6 @@ let
     optionals
     mkIf
     mkDefault
-    mkMerge
     ;
   inherit (userConfig.machineConfig) gpuType cpuType;
 

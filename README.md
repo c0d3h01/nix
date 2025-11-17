@@ -4,8 +4,6 @@
 
 - These are my personal dotfiles, managed with [Nix Flakes](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake) and [Home Manager](https://nix-community.github.io/home-manager/).  
 
-[Hardware details](https://github.com/c0d3h01/dotfiles/blob/master/docs/hardware.md)
-
 ---
 
 ## Installation

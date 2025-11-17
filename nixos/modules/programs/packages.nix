@@ -1,12 +1,11 @@
 {
-  config,
   userConfig,
   pkgs,
   lib,
   ...
 }:
 let
-  inherit (lib) mkIf optionals;
+  inherit (lib) optionals;
   isWorkstation = userConfig.machineConfig.workstation;
 
   # DESKTOP APPLICATIONS

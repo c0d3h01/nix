@@ -7,9 +7,6 @@
 let
   inherit (lib)
     optionals
-    mkIf
-    mkMerge
-    mkAfter
     ;
   # Core runtime libraries needed by a large class of prebuilt binaries.
   baseLibs = with pkgs; [

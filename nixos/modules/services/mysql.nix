@@ -1,12 +1,7 @@
 {
   pkgs,
-  lib,
-  userConfig,
   ...
 }:
-let
-  inherit (lib) mkIf;
-in
 {
   services.mysql = {
     enable = true;

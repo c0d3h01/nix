@@ -1,4 +1,4 @@
-{ config, self, ... }:
+{ self, ... }:
 let
   editor = "nvim";
   browser = "firefox";
