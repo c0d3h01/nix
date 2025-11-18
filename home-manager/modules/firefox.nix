@@ -1,5 +1,3 @@
-_:
-
 let
   lock-false = {
     Value = false;
