@@ -80,7 +80,6 @@ let
     glibc
     glfw
     gtk3
-    python311
 
     # File & Storage
     p7zip

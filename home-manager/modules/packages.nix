@@ -17,6 +17,10 @@ in
   home.packages = with pkgs; [
     gitFull
     git-lfs
+    git-crypt
+    diffutils
+    delta
+    gh
     lazygit
     neovim
     starship
