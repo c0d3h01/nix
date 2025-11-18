@@ -9,6 +9,16 @@ let
   inherit (lib) mkIf mkOption types;
   cfg = userConfig.machineConfig;
   nixGLConfig = config.nixGL;
+  
+  # Auto-detect wrapper based on GPU type
+  autoDetectWrapper =
+    if cfg ? gpuType then
+      if cfg.gpuType == "nvidia" then "nvidia"
+      else if cfg.gpuType == "intel" then "intel"
+      else if cfg.gpuType == "amd" then "mesa"
+      else "mesa"
+    else
+      "mesa";
 in
 {
   # Define nixGL options for home-manager
@@ -27,8 +37,8 @@ in
 
     defaultWrapper = mkOption {
       type = types.str;
-      default = "mesa";
-      description = "Default wrapper type (mesa, nvidia, intel)";
+      default = autoDetectWrapper;
+      description = "Default wrapper type (mesa, nvidia, intel). Auto-detected from gpuType if not specified.";
     };
 
     installScripts = mkOption {
