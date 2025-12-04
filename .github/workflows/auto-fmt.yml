@@ -29,7 +29,8 @@ jobs:
             git commit -m 'style: auto fmt'
           fi
 
-      - uses: peter-evans/create-pull-request@v7
+      - id: pr
+        uses: peter-evans/create-pull-request@v7
         with:
           title: style:[Auto formatter with flake]
           token: ${{ secrets.GITHUB_TOKEN }}
