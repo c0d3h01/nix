@@ -10,7 +10,7 @@
           actionlint
           deadnix
           keep-sorted
-          nixfmt
+          alejandra
           shellcheck
           shfmt
           statix
@@ -31,8 +31,6 @@
 
           excludes = [
             "secrets/*"
-            "gdb/*"
-            "plugins/*"
             ".envrc"
             "*.lock"
             "*.patch"
@@ -40,60 +38,84 @@
           ];
 
           formatter = {
-            actionlint.command = "actionlint";
-            actionlint.includes = [
-              ".github/workflows/*.yml"
-              ".github/workflows/*.yaml"
-            ];
+            actionlint = {
+              command = "actionlint";
+              includes = [
+                ".github/workflows/*.yml"
+                ".github/workflows/*.yaml"
+              ];
+            };
 
-            mypy.command = "mypy";
-            mypy.options = [
-              "--ignore-missing-imports"
-              "--show-error-codes"
-            ];
-            mypy.includes = [ "*.py" ];
-            mypy.excludes = [ "home/.jupyter/*" ];
+            mypy = {
+              command = "mypy";
+              includes = [ "*.py" ];
+              excludes = [ "home/.jupyter/*" ];
+              options = [
+                "--ignore-missing-imports"
+                "--show-error-codes"
+              ];
+            };
 
-            deadnix.command = "deadnix";
-            deadnix.includes = [ "*.nix" ];
+            deadnix = {
+              command = "deadnix";
+              includes = [ "*.nix" ];
+            };
 
-            keep-sorted.command = "keep-sorted";
-            keep-sorted.includes = [ "*" ];
+            keep-sorted = {
+              command = "keep-sorted";
+              includes = [
+                "*.nix"
+                "*.toml"
+                "*.json"
+              ];
+            };
 
-            nixfmt.command = "nixfmt";
-            nixfmt.includes = [ "*.nix" ];
+            alejandra = {
+              command = "alejandra";
+              includes = [ "*.nix" ];
+            };
 
-            shellcheck.command = "shellcheck";
-            shellcheck.includes = [
-              "*.sh"
-              "*.bash"
-            ];
+            shellcheck = {
+              command = "shellcheck";
+              includes = [
+                "*.sh"
+                "*.bash"
+              ];
+            };
 
-            shfmt.command = "shfmt";
-            shfmt.options = [
-              "-s"
-              "-w"
-              "-i"
-              "2"
-            ];
-            shfmt.includes = [
-              "*.sh"
-              "*.bashrc"
-              "*.bash_profile"
-              "*.zshrc"
-              "*.envrc"
-              "*.envrc.private-template"
-            ];
+            shfmt = {
+              command = "shfmt";
+              options = [
+                "-s"
+                "-w"
+                "-i"
+                "2"
+              ];
+              includes = [
+                "*.sh"
+                "*.bashrc"
+                "*.bash_profile"
+                "*.zshrc"
+                "*.envrc"
+                "*.envrc.private-template"
+              ];
+            };
 
-            statix.command = "statix-fix";
-            statix.includes = [ "*.nix" ];
+            statix = {
+              command = "statix-fix";
+              includes = [ "*.nix" ];
+            };
 
-            stylua.command = "stylua";
-            stylua.includes = [ "*.lua" ];
+            stylua = {
+              command = "stylua";
+              includes = [ "*.lua" ];
+            };
 
-            taplo.command = "taplo";
-            taplo.options = "format";
-            taplo.includes = [ "*.toml" ];
+            taplo = {
+              command = "taplo";
+              options = "format";
+              includes = [ "*.toml" ];
+            };
           };
         };
       };
