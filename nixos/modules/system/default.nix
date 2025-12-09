@@ -5,16 +5,13 @@
     ./console.nix
     ./dbus.nix
     ./diff.nix
+    ./earlyoom.nix
     ./fhs-compact.nix
-    ./flatpak.nix
-    ./gnupg.nix
     ./irqbalance.nix
     ./libvirt.nix
     ./locale.nix
-    ./logind.nix
-    ./logs.nix
+    ./oomd.nix
     ./printing.nix
-    ./serial.nix
-    ./sudo.nix
+    ./scheduler.nix
   ];
 }

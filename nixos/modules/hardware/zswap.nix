@@ -8,8 +8,8 @@ in {
   # ZRAM configuration
   zramSwap = lib.mkIf isLaptop {
     enable = true;
-    priority = 1000;
+    priority = 100;
     algorithm = "zstd";
-    memoryPercent = 200;
+    memoryPercent = 100;
   };
 }

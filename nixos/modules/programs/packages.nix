@@ -16,6 +16,9 @@
     drawio
     libreoffice-still
     arduino
+    kitty
+    wezterm
+    (callPackage ./notion-app {})
   ];
 
   # DEVELOPMENT & SYSTEM TOOLS
