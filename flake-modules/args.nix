@@ -10,7 +10,7 @@
         allowUnfree = true;
         allowUnsupportedSystem = true;
       };
-      overlays = [inputs.nixgl.overlay];
+      overlays = [];
     };
   };
 }

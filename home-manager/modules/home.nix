@@ -8,8 +8,6 @@
   imports = [
     ./gnome.nix
     ./htop.nix
-    ./nix-your-shell.nix
-    ./nixgl.nix
     ./packages.nix
     ./secrets.nix
     ./spicetify.nix
@@ -25,6 +23,7 @@
       if pkgs.stdenv.isDarwin
       then "/Users/${config.home.username}"
       else "/home/${config.home.username}";
-    stateVersion = lib.trivial.release;
+    stateVersion = "25.11";
+    enableNixpkgsReleaseCheck = false;
   };
 }

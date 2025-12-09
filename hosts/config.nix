@@ -14,8 +14,7 @@
       gpuType = "amd"; # Options = "amd" | "nvidia" | "intel"
       networking.backend = "wpa_supplicant"; # Options = "iwd" | "wpa_supplicant"
       windowManager = "gnome"; # Options = "gnome" | "kde"
-      theme = false;
-      glApps = false;
+      theme = true;
     };
 
     devStack = {
