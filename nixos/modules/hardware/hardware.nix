@@ -49,8 +49,6 @@
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault true;
     enableRedistributableFirmware = true;
-    amdgpu.amdvlk.enable = false; # Use RADV (Mesa) for Vega iGPU
-    graphics.enable = true;
   };
 
   # Power management
