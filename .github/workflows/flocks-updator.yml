@@ -19,3 +19,4 @@ jobs:
         with:
           pr-title: "chore: update flake locks"
           pr-labels: dependencies
+          commit-msg: "chore: update flake locks"
