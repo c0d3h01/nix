@@ -6,12 +6,15 @@
 }: let
   rootFs = config.fileSystems."/".fsType;
   isXfs = rootFs == "xfs";
+  isBtrfs = rootFs == "btrfs";
 in {
-  # XFS-specific optimizations
-  environment.systemPackages = lib.mkIf isXfs [pkgs.xfsprogs];
+  # Filesystem-specific packages
+  environment.systemPackages =
+    (lib.mkIf isXfs [pkgs.xfsprogs])
+    ++ (lib.mkIf isBtrfs [pkgs.btrfs-progs]);
 
-  # Filesystem integrity: weekly scrub for both NVMe + HDD
-  systemd.services.filesystem-scrub = lib.mkIf isXfs {
+  # XFS scrub service
+  systemd.services.xfs-scrub = lib.mkIf isXfs {
     description = "XFS filesystem scrub for data integrity";
     serviceConfig = {
       Type = "oneshot";
@@ -21,7 +24,27 @@ in {
     };
   };
 
-  systemd.timers.filesystem-scrub = lib.mkIf isXfs {
+  systemd.timers.xfs-scrub = lib.mkIf isXfs {
+    enable = true;
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+    wantedBy = ["timers.target"];
+  };
+
+  # Btrfs scrub service
+  systemd.services.btrfs-scrub = lib.mkIf isBtrfs {
+    description = "Btrfs filesystem scrub for data integrity";
+    serviceConfig = {
+      Type = "oneshot";
+      Nice = 19;
+      IOSchedulingClass = "idle";
+      ExecStart = "${pkgs.btrfs-progs}/bin/btrfs scrub start -B /";
+    };
+  };
+
+  systemd.timers.btrfs-scrub = lib.mkIf isBtrfs {
     enable = true;
     timerConfig = {
       OnCalendar = "weekly";
