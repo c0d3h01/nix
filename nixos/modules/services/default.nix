@@ -1,5 +1,6 @@
 {
   imports = [
+    ./auto-cpufreq.nix
     ./automount.nix
     ./docker.nix
     ./flatpak.nix
