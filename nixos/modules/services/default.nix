@@ -8,5 +8,6 @@
     ./packages.nix
     ./secrets.nix
     ./ssh.nix
+    ./wireshark.nix
   ];
 }

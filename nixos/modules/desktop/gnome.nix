@@ -27,6 +27,7 @@ in {
     environment = {
       systemPackages = with pkgs; [
         gnome-tweaks
+        gnome-console
         gnome-photos
         vlc
 

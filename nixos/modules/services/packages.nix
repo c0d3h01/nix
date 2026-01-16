@@ -10,15 +10,12 @@
   # DESKTOP APPLICATIONS
   desktopApps = with pkgs; [
     brave
-    notion-app
     vscode-fhs
     postman
     github-desktop
+    element-desktop
     telegram-desktop
-    signal-desktop-bin
-    bitwarden-desktop
     discord
-    gnuchess
     slack
     zoom-us
     drawio
@@ -28,7 +25,6 @@
 
   # DEVELOPMENT & SYSTEM TOOLS
   devSystemTools = with pkgs; [
-    # Development
     gdb
     mold
     sccache
@@ -39,8 +35,6 @@
     rustup
     openjdk17
     lld
-
-    # System Utilities
     ouch
     colordiff
     openssl
