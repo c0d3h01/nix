@@ -18,7 +18,7 @@
       AuthenticationMethods = "publickey";
       PubkeyAuthentication = "yes";
       ChallengeResponseAuthentication = "no";
-      UsePAM = false;
+      UsePAM = true;
       UseDns = false;
       X11Forwarding = false;
 
