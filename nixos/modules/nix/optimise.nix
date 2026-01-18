@@ -3,8 +3,7 @@
     # Automatic store GC
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 3d";
     };
 
     # Periodic hard‑link dedup
