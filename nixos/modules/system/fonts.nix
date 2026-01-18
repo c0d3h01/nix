@@ -1,34 +1,29 @@
 {pkgs, ...}: {
-  fonts = {
-    packages = with pkgs; [
-      # Core fonts
-      dejavu_fonts
-      noto-fonts
-      noto-fonts-color-emoji
+  fonts.packages = with pkgs; [
+    corefonts
+    dejavu_fonts
+    noto-fonts
+    noto-fonts-color-emoji
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    jetbrains-mono
+    nerd-fonts.jetbrains-mono
+    inter
+  ];
 
-      # Monospace/coding fonts
-      jetbrains-mono
-      nerd-fonts.jetbrains-mono
-
-      # UI fonts
-      inter
-    ];
-
-    fontconfig = {
+  fonts.fontconfig = {
+    enable = true;
+    antialias = true;
+    subpixel.rgba = "rgb";
+    hinting = {
       enable = true;
-      antialias = true;
-      hinting = {
-        enable = true;
-        style = "slight";
-      };
-      subpixel.rgba = "rgb";
-
-      defaultFonts = {
-        sansSerif = ["Inter" "DejaVu Sans"];
-        serif = ["DejaVu Serif"];
-        monospace = ["JetBrains Mono" "DejaVu Sans Mono"];
-        emoji = ["Noto Color Emoji"];
-      };
+      style = "slight";
+    };
+    defaultFonts = {
+      sansSerif = ["DejaVu Sans"];
+      serif = ["DejaVu Serif"];
+      monospace = ["DejaVu Sans Mono"];
+      emoji = ["Noto Color Emoji"];
     };
   };
 }
